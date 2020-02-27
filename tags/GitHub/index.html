@@ -16,7 +16,7 @@
   <meta name="description" content="九號的个人博客">
   <meta name="author" content="九號">
   <meta name="keywords" content="九號,九號博客,前端,数码">
-  <title>标签 - GitHub ~ 九號</title>
+  <title>标签 - Github ~ 九號</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -135,25 +135,16 @@
                 
 
 <div class="list-group">
-<!--  <p class="h4">共计 2 篇文章</p>-->
+<!--  <p class="h4">共计 1 篇文章</p>-->
   <hr>
   
     
       
       <p class="h5">2020</p>
     
-    <a href="/2020/01/31/github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Github无法访问问题解决</span>
-      <span style="float: right;">01-31</span>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/2019/11/09/github/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Github使用</span>
-      <span style="float: right;">11-09</span>
+    <a href="/2020/02/02/git22%E7%AB%AF%E5%8F%A3/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Connecting to github.com [IP ADDRESS] port 22.</span>
+      <span style="float: right;">02-02</span>
     </a>
   
 </div>
@@ -294,7 +285,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - GitHub&nbsp;",
+        "标签 - Github&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -341,6 +332,28 @@
   <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
     $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+ach(
       function () {
         var element = document.createElement("a");
         $(element).attr("data-fancybox", "images");

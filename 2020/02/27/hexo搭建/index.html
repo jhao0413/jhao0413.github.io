@@ -16,7 +16,7 @@
   <meta name="description" content="九號的个人博客">
   <meta name="author" content="九號">
   <meta name="keywords" content="九號,九號博客,前端,数码">
-  <title>WIFI杀手制作 ~ 九號</title>
+  <title>Hexo博客搭建 ~ 九號</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -120,7 +120,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  星期五, 十一月 8日 2019, 10:00 上午
+                  星期四, 二月 27日 2020, 10:00 上午
                 </p>
               
 
@@ -129,7 +129,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    602 字
+                    1k 字
                   </span>&nbsp;
                 
 
@@ -137,7 +137,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      3 分钟
                   </span>&nbsp;
                 
 
@@ -170,33 +170,46 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="WIFI杀手！"><a href="#WIFI杀手！" class="headerlink" title="WIFI杀手！"></a>WIFI杀手！</h1><p>高中十分喜欢的一个小玩意，拿出来记录一下，百度上教程比较少，也比较杂乱，那就自己写一个吧。</p>
-<h3 id="制作工具"><a href="#制作工具" class="headerlink" title="制作工具"></a>制作工具</h3><p>既然高中都能做，那也可想而知，制作成本很低，而且容易操作，手机也可以完成刷入WIFI杀手的一系列操作</p>
-<ol>
-<li>esp8266开发板一个（4MB的版本，外接天线或者不外接天线的均可，但一定要是4Mb版本的）   </li>
-<li>一台电脑或者手机（手机就在这里不讲了，手机也可以做但是比电脑麻烦一点</li>
-<li>一根可以数据线（有的线只支持充电，不支持传输数据，遇到这种情况换一根就好了，不过现在这种情况也很少了）</li>
-</ol>
-<p>准备好这些我们就可以开始WIFI杀手的制作啦</p>
-<h3 id="刷入WIFI杀手固件"><a href="#刷入WIFI杀手固件" class="headerlink" title="刷入WIFI杀手固件"></a>刷入WIFI杀手固件</h3><p>做这些准备工作之前，先下载</p>
-<ol>
-<li>首先，将esp8266连接电脑，这时esp8266会常亮蓝灯</li>
-<li>解压我发的文件，如下图所示<img src="/img/esp8266/1.png" srcset="/img/loading.gif" alt=""></li>
-</ol>
-<p><strong>安装烧录工具文件夹里的应用程序</strong>，现在的电脑一般是54位的，除了一些学校的机房可能还是32位，实在不清楚自己电脑的话，百度一下</p>
-<p><strong>注意一下另一个文件就是WIFI杀手的固件</strong></p>
-<ol start="3">
-<li>现在打开烧录工具，应该看到如下界面<img src="/img/esp8266/2.png" srcset="/img/loading.gif" alt="">可能你们的端口不是COM3，也可能时COM4，这个无所谓，只要是插esp8266的那个口就行，要是烧录失败了，就换另外一个口呗，或者自己查一下esp8266插的是哪个口</li>
-<li>现在点击Config，然后点击那个齿轮，选择刚刚的WIFI烧录固件<img src="/img/esp8266/3.png" srcset="/img/loading.gif" alt=""></li>
-<li>然后点击Advanced，将参数修改为如下图所示<img src="/img/esp8266/4.png" srcset="/img/loading.gif" alt=""></li>
-<li>最后再点Operation，Flash刷入就ok（在刷入的过程中，esp8266会蓝灯闪烁为正常现象，刷完后，不闪烁）</li>
-</ol>
-<p>就此固件刷入成功！</p>
-<h3 id="WIFI杀手的使用"><a href="#WIFI杀手的使用" class="headerlink" title="WIFI杀手的使用"></a>WIFI杀手的使用</h3><ol>
-<li>下载我发的那个文件夹里的app安装</li>
-<li>打开app看到如下界面<img src="/img/esp8266/5.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>汉化版的，我就讲一下大概过程吧，搜索WIFI-&gt;选定用户-&gt;选择攻击方式-&gt;攻击<br>模拟信号的话直接在攻击目录下输入参数模拟即可<br>esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
-</ol>
+            <h2 id="为什么选择Hexo"><a href="#为什么选择Hexo" class="headerlink" title="为什么选择Hexo"></a>为什么选择Hexo</h2><p>之前我也试过其他的博客系统，例如：typecho，wordpress等等，但是因为之前是高中，<br>也没有太多的精力去打理，这些博客都需要你有一台服务器或者是虚拟主机，还要一个域名。<br>自己没钱一下买一两年（当时也没必要，也不写啥东西）但是后来准备写的时候发现已经过期了。<br>重新买回来之后还是要重装一遍，而且之前的数据也没有了，但是hexo就不需要考虑这些啦。<br>你只需要在GitHub上有一个账号就足以。</p>
+<h2 id="Hexo是什么"><a href="#Hexo是什么" class="headerlink" title="Hexo是什么"></a>Hexo是什么</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="Hexo搭建"><a href="#Hexo搭建" class="headerlink" title="Hexo搭建"></a>Hexo搭建</h2><h3 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h3><p>windows：到git官网下载安装即可，<a href="https://git-scm.com/downloads">Download git</a>，<br>下载安装成功后鼠标右键就可以看到有Git Bash的命令行工具，以后使用git都在这进行。<br>安装成功后可以使用git –version查看git版本。(别的系统我也没用过，就只讲windows啦)</p>
+<h3 id="2、安装Nodejs"><a href="#2、安装Nodejs" class="headerlink" title="2、安装Nodejs"></a>2、安装Nodejs</h3><p><a href="http://nodejs.cn/download/">Node.js下载地址</a>，根据需要下载安装即可，安装完成之后可以打开命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>可以检查一下是否安装成功，安装成功会显示版本号</p>
+<h3 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h3><p>首先创建一个文件夹，名字随意我这里就文件夹的名字就以blog来说了，打开你创建的文件夹，<br>右键点进git bash，输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>安装完后一样可以通过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>查看是否安装成功</p>
+<p>初始化hexo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+<p>这里的blog是在你刚刚创建的blog文件夹的子文件夹，名字随意<br>接下来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>完成后大概会有以下文件，我的可能会多几个，不要在意，我后面又搞了其他东西</p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161239.png" srcset="/img/loading.gif" alt=""></p>
+<p>接着继续命令行里输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo -g</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>hexo -g意思是生成静态文件<br>hexo server启动服务<br>CTRL+c关闭服务<br>这时候浏览器输入localhost:4000就可以看到博客啦</p>
+<h3 id="4、注册GitHub创建仓库"><a href="#4、注册GitHub创建仓库" class="headerlink" title="4、注册GitHub创建仓库"></a>4、注册GitHub创建仓库</h3><p><a href="https://github.com/">GitHub</a>没有账号的话赶快去注册一个吧，<br>注册成功后创建一个仓库</p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161927.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162056.png" srcset="/img/loading.gif" alt=""></p>
+<p>仓库的名字不能随意写，username.github.io,username是你的用户名，写完后点击Create repository</p>
+<h3 id="5、将SSh添加到GitHub"><a href="#5、将SSh添加到GitHub" class="headerlink" title="5、将SSh添加到GitHub"></a>5、将SSh添加到GitHub</h3><p>在命令行中输入以下内容（别照抄直接回车！）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;name&quot;</span><br><span class="line">git config --global user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
+<p>name是你GitHub的用户名，Email是你GitHub的邮箱<br>然后创建ssh，一直回车就好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C&quot;email&quot;</span><br></pre></td></tr></table></figure>
+<p>这里的Email和上面的同理<br>现在你的电脑里就有一个.ssh的文件夹</p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162818.png" srcset="/img/loading.gif" alt=""></p>
+<p>id_rsa是电脑的私人密钥，id_rsa.pub是公共密钥，当然是用公共密钥啦，现在将id_rsa.pub的内容复制到GitHub，<br>GitHub中在右上角打开setting，里面有SSH and GPG keys点击后new一个，名字随意</p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227163223.png" srcset="/img/loading.gif" alt=""></p>
+<p>在gitbash中检查是否安装成功</p>
+<h3 id="6、将hexo部署到GitHub"><a href="#6、将hexo部署到GitHub" class="headerlink" title="6、将hexo部署到GitHub"></a>6、将hexo部署到GitHub</h3><p>这时候打开刚刚的文件夹找到配置文件_config.yml，文件的最后修改为如下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/UserName/UserName.github.io.git //username是你的用户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>这里有两种方式一种是https一种是.git的方式，第一种每次需要输入用户名密码，第二种不需要。<br>现在安装部署命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>现在只要依次执行以下命令即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo c</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>hexo c(clean)清除你之前生成的东西，最好每次清理一下，以免发生不必要的错误<br>hexo g(generate)生成静态文件<br>hexo d(deploy)部署文章<br>最后出现INFO Deploy done:git就是部署成功了。现在打开<a href="http://username.github.io">http://username.github.io</a><br>（username是你的用户名）就可以看到你的博客啦<br>你的博客就成功部署了<br>关于hexo的更多操作可以加我询问哈~</p>
 
             <hr>
           </div>
@@ -207,7 +220,7 @@
               <span>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/esp8266">esp8266</a>
+                  <a class="hover-with-bg" href="/categories/hexo">hexo</a>
                   &nbsp;
                 
               </span>&nbsp;&nbsp;
@@ -216,7 +229,7 @@
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/esp8266">esp8266</a>
+                  <a class="hover-with-bg" href="/tags/Hexo">Hexo</a>
                 
               </span>
             
@@ -383,7 +396,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "WIFI杀手制作&nbsp;",
+        "Hexo博客搭建&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
