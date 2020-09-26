@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="九號的个人博客">
+  <meta name="author" content="九號">
+  <meta name="keywords" content="九號,九號博客,前端,数码">
+  <title>vue+element+阿里云oss图片上传 - 九號</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>九號的个人小站</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/links/">
+              <i class="iconfont icon-link-fill"></i>
+              友链</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://jhao413.oss-cn-beijing.aliyuncs.com/blog/QQ图片20200924161930.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+                <div class="mt-3 post-meta">
+                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+                  <time datetime="2020-09-24 10:00">
+                    2020年9月24日 上午
+                  </time>
+                </div>
+              
+
+              <div class="mt-1">
+                
+                  
+                  <span class="post-meta mr-2">
+                    <i class="iconfont icon-chart"></i>
+                    990 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta mr-2">
+                      <i class="iconfont icon-clock-fill"></i>
+                    
+                    
+                    18
+                     分钟
+                  </span>
+                
+
+                
+              </div>
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h3 id="vue-element-阿里云oss图片上传"><a href="#vue-element-阿里云oss图片上传" class="headerlink" title="vue+element+阿里云oss图片上传"></a>vue+element+阿里云oss图片上传</h3><h4 id="1、npm安装ali-oss"><a href="#1、npm安装ali-oss" class="headerlink" title="1、npm安装ali-oss"></a>1、npm安装ali-oss</h4><pre><code class="hljs plain">npm install ali-oss</code></pre>
+
+<h4 id="2、使用element的-upload-组件进行上传"><a href="#2、使用element的-upload-组件进行上传" class="headerlink" title="2、使用element的 upload 组件进行上传"></a>2、使用element的 upload 组件进行上传</h4><p><em>html部分如下</em></p>
+<pre><code class="hljs vue">&lt;template&gt;
+  &lt;div class&#x3D;&quot;home&quot;&gt;
+    &lt;el-upload
+      class&#x3D;&quot;upload-demo&quot;
+      action
+      :http-request&#x3D;&quot;fnUploadRequest&quot;
+      list-type&#x3D;&quot;picture-card&quot;
+      :on-preview&#x3D;&quot;handlePictureCardPreview&quot;
+      :on-remove&#x3D;&quot;handleRemove&quot;
+    &gt;
+      &lt;i class&#x3D;&quot;el-icon-plus&quot;&gt;&lt;&#x2F;i&gt;
+    &lt;&#x2F;el-upload&gt;
+    &lt;el-dialog :visible.sync&#x3D;&quot;dialogVisible&quot;&gt;
+      &lt;img width&#x3D;&quot;100%&quot; :src&#x3D;&quot;dialogImageUrl&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;
+    &lt;&#x2F;el-dialog&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;</code></pre>
+
+<p><em>js部分如下</em></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> OSS <span class="hljs-keyword">from</span> <span class="hljs-string">"ali-oss"</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  data() &#123;
+    <span class="hljs-keyword">return</span> &#123;
+      dialogImageUrl: <span class="hljs-string">""</span>,
+      dialogVisible: <span class="hljs-literal">false</span>,
+      disabled: <span class="hljs-literal">false</span>,
+      loading: <span class="hljs-literal">false</span>,
+      fileList: [],
+    &#125;;
+  &#125;,
+  methods: &#123;
+    handleRemove(file, fileList) &#123;
+      <span class="hljs-built_in">console</span>.log(file, fileList);
+    &#125;,
+    handlePictureCardPreview(file) &#123;
+      <span class="hljs-keyword">this</span>.dialogImageUrl = file.url;
+      <span class="hljs-keyword">this</span>.dialogVisible = <span class="hljs-literal">true</span>;
+    &#125;,
+    <span class="hljs-keyword">async</span> fnUploadRequest(option) &#123;
+      <span class="hljs-keyword">try</span> &#123;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"参数"</span>, option);
+        <span class="hljs-comment">// 获取OSS配置信息</span>
+        <span class="hljs-keyword">let</span> client = <span class="hljs-keyword">new</span> OSS(&#123;
+          secure: <span class="hljs-literal">true</span>,
+          accessKeyId: <span class="hljs-string">""</span>, <span class="hljs-comment">//阿里云AccessKey ID</span>
+          accessKeySecret: <span class="hljs-string">""</span>, <span class="hljs-comment">//阿里云accessKeySecret</span>
+          bucket: <span class="hljs-string">""</span>, <span class="hljs-comment">//bucket域名</span>
+          region: <span class="hljs-string">""</span>, <span class="hljs-comment">//oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）</span>
+        &#125;);
+        <span class="hljs-keyword">this</span>.loading = <span class="hljs-literal">true</span>;
+          
+          <span class="hljs-comment">//获取当前时间（为了保证不出现重复文件名导致文件覆盖）</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFormatDate</span>(<span class="hljs-params"></span>) </span>&#123;
+          <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+          <span class="hljs-keyword">var</span> month = date.getMonth() + <span class="hljs-number">1</span>;
+          <span class="hljs-keyword">var</span> strDate = date.getDate();
+          <span class="hljs-keyword">if</span> (month &gt;= <span class="hljs-number">1</span> &amp;&amp; month &lt;= <span class="hljs-number">9</span>) &#123;
+            month = <span class="hljs-string">"0"</span> + month;
+          &#125;
+          <span class="hljs-keyword">if</span> (strDate &gt;= <span class="hljs-number">0</span> &amp;&amp; strDate &lt;= <span class="hljs-number">9</span>) &#123;
+            strDate = <span class="hljs-string">"0"</span> + strDate;
+          &#125;
+          <span class="hljs-keyword">var</span> currentDate =
+            date.getFullYear() +
+            <span class="hljs-string">"-"</span> +
+            month +
+            <span class="hljs-string">"-"</span> +
+            strDate +
+            <span class="hljs-string">" "</span> +
+            date.getHours() +
+            <span class="hljs-string">":"</span> +
+            date.getMinutes() +
+            <span class="hljs-string">":"</span> +
+            date.getSeconds();
+          <span class="hljs-keyword">return</span> currentDate;
+        &#125;
+
+        <span class="hljs-keyword">let</span> file = option.file;
+        <span class="hljs-keyword">const</span> point = file.name.lastIndexOf(<span class="hljs-string">"."</span>);
+        <span class="hljs-keyword">let</span> suffix = file.name.substr(point);
+        <span class="hljs-keyword">let</span> fileName = file.name.substr(<span class="hljs-number">0</span>, point);
+        <span class="hljs-keyword">let</span> date = getFormatDate();
+        <span class="hljs-keyword">let</span> fileNames = <span class="hljs-string">`<span class="hljs-subst">$&#123;fileName&#125;</span>_<span class="hljs-subst">$&#123;date&#125;</span><span class="hljs-subst">$&#123;suffix&#125;</span>`</span>;
+        <span class="hljs-keyword">let</span> relativePath = <span class="hljs-string">"blog/"</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"oss客户端"</span>, client);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"文件"</span>, file);
+        <span class="hljs-comment">// 分片上传文件</span>
+        <span class="hljs-keyword">let</span> ret = <span class="hljs-keyword">await</span> client.multipartUpload(relativePath + fileNames, file, &#123;
+          progress: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p</span>) </span>&#123;
+            <span class="hljs-keyword">let</span> e = &#123;&#125;;
+            e.percent = p * <span class="hljs-number">100</span>;
+            option.onProgress(e);
+          &#125;,
+        &#125;);
+
+        <span class="hljs-keyword">if</span> (ret.res.statusCode === <span class="hljs-number">200</span>) &#123;
+          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"上传成功"</span>, ret);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          option.onError(<span class="hljs-string">"上传失败"</span>);
+        &#125;
+      &#125; <span class="hljs-keyword">catch</span> (error) &#123;
+        <span class="hljs-built_in">console</span>.error(error);
+        option.onError(<span class="hljs-string">"上传失败"</span>);
+      &#125;
+      <span class="hljs-keyword">this</span>.loading = <span class="hljs-literal">false</span>;
+    &#125;,
+  &#125;,
+&#125;;</code></pre>
+
+<p><strong>全部代码</strong></p>
+<pre><code class="hljs vue">&lt;template&gt;
+  &lt;div class&#x3D;&quot;home&quot;&gt;
+    &lt;el-upload
+      class&#x3D;&quot;upload-demo&quot;
+      action
+      :http-request&#x3D;&quot;fnUploadRequest&quot;
+      list-type&#x3D;&quot;picture-card&quot;
+      :on-preview&#x3D;&quot;handlePictureCardPreview&quot;
+      :on-remove&#x3D;&quot;handleRemove&quot;
+    &gt;
+      &lt;i class&#x3D;&quot;el-icon-plus&quot;&gt;&lt;&#x2F;i&gt;
+    &lt;&#x2F;el-upload&gt;
+    &lt;el-dialog :visible.sync&#x3D;&quot;dialogVisible&quot;&gt;
+      &lt;img width&#x3D;&quot;100%&quot; :src&#x3D;&quot;dialogImageUrl&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;
+    &lt;&#x2F;el-dialog&gt;
+  &lt;&#x2F;div&gt;
+&lt;&#x2F;template&gt;
+
+&lt;script&gt;
+import OSS from &quot;ali-oss&quot;;
+export default &#123;
+  data() &#123;
+    return &#123;
+      dialogImageUrl: &quot;&quot;,
+      dialogVisible: false,
+      disabled: false,
+      loading: false,
+      fileList: [],
+    &#125;;
+  &#125;,
+  methods: &#123;
+    handleRemove(file, fileList) &#123;
+      console.log(file, fileList);
+    &#125;,
+    handlePictureCardPreview(file) &#123;
+      this.dialogImageUrl &#x3D; file.url;
+      this.dialogVisible &#x3D; true;
+    &#125;,
+    async fnUploadRequest(option) &#123;
+      try &#123;
+        console.log(&quot;参数&quot;, option);
+        &#x2F;&#x2F; 获取OSS配置信息
+        let client &#x3D; new OSS(&#123;
+          secure: true,
+          accessKeyId: &quot;&quot;, &#x2F;&#x2F;阿里云AccessKey ID
+          accessKeySecret: &quot;&quot;, &#x2F;&#x2F;阿里云accessKeySecret
+          bucket: &quot;&quot;, &#x2F;&#x2F;bucket域名
+          region: &quot;&quot;, &#x2F;&#x2F;oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）
+        &#125;);
+        this.loading &#x3D; true;
+        function getFormatDate() &#123;
+          var date &#x3D; new Date();
+          var month &#x3D; date.getMonth() + 1;
+          var strDate &#x3D; date.getDate();
+          if (month &gt;&#x3D; 1 &amp;&amp; month &lt;&#x3D; 9) &#123;
+            month &#x3D; &quot;0&quot; + month;
+          &#125;
+          if (strDate &gt;&#x3D; 0 &amp;&amp; strDate &lt;&#x3D; 9) &#123;
+            strDate &#x3D; &quot;0&quot; + strDate;
+          &#125;
+          var currentDate &#x3D;
+            date.getFullYear() +
+            &quot;-&quot; +
+            month +
+            &quot;-&quot; +
+            strDate +
+            &quot; &quot; +
+            date.getHours() +
+            &quot;:&quot; +
+            date.getMinutes() +
+            &quot;:&quot; +
+            date.getSeconds();
+          return currentDate;
+        &#125;
+
+        let file &#x3D; option.file;
+        const point &#x3D; file.name.lastIndexOf(&quot;.&quot;);
+        let suffix &#x3D; file.name.substr(point);
+        let fileName &#x3D; file.name.substr(0, point);
+        let date &#x3D; getFormatDate();
+        let fileNames &#x3D; &#96;$&#123;fileName&#125;_$&#123;date&#125;$&#123;suffix&#125;&#96;;
+        let relativePath &#x3D; &quot;blog&#x2F;&quot;;
+        console.log(&quot;oss客户端&quot;, client);
+        console.log(&quot;文件&quot;, file);
+        &#x2F;&#x2F; 分片上传文件
+        let ret &#x3D; await client.multipartUpload(relativePath + fileNames, file, &#123;
+          progress: async function(p) &#123;
+            let e &#x3D; &#123;&#125;;
+            e.percent &#x3D; p * 100;
+            option.onProgress(e);
+          &#125;,
+        &#125;);
+
+        if (ret.res.statusCode &#x3D;&#x3D;&#x3D; 200) &#123;
+          console.log(&quot;上传成功&quot;, ret);
+        &#125; else &#123;
+          option.onError(&quot;上传失败&quot;);
+        &#125;
+      &#125; catch (error) &#123;
+        console.error(error);
+        option.onError(&quot;上传失败&quot;);
+      &#125;
+      this.loading &#x3D; false;
+    &#125;,
+  &#125;,
+&#125;;
+&lt;&#x2F;script&gt;
+
+&lt;style&gt;
+.home &#123;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+&#125;
+
+.upload-demo &#123;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+&#125;
+&lt;&#x2F;style&gt;</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" rel="nofollow noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/27/hexo%E6%90%AD%E5%BB%BA/">
+                        <span class="hidden-mobile">Hexo博客搭建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+  <div>
+    
+      <!-- 不蒜子统计PV -->
+      
+      <span id="busuanzi_container_site_pv" style="display: none">
+      总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    
+    
+      <!-- 不蒜子统计UV -->
+      
+      <span id="busuanzi_container_site_uv" style="display: none">
+      总访客数 <span id="busuanzi_value_site_uv"></span> 人
+    </span>
+    
+  </div>
+
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "vue+element+阿里云oss图片上传&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
