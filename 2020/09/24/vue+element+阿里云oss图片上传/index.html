@@ -152,7 +152,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    990 字
+                    825 字
                   </span>
                 
 
@@ -162,7 +162,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    18
+                    15
                      分钟
                   </span>
                 
@@ -194,23 +194,23 @@
               <h3 id="vue-element-阿里云oss图片上传"><a href="#vue-element-阿里云oss图片上传" class="headerlink" title="vue+element+阿里云oss图片上传"></a>vue+element+阿里云oss图片上传</h3><h4 id="1、npm安装ali-oss"><a href="#1、npm安装ali-oss" class="headerlink" title="1、npm安装ali-oss"></a>1、npm安装ali-oss</h4><pre><code class="hljs plain">npm install ali-oss</code></pre>
 
 <h4 id="2、使用element的-upload-组件进行上传"><a href="#2、使用element的-upload-组件进行上传" class="headerlink" title="2、使用element的 upload 组件进行上传"></a>2、使用element的 upload 组件进行上传</h4><p><em>html部分如下</em></p>
-<pre><code class="hljs vue">&lt;template&gt;
-  &lt;div class&#x3D;&quot;home&quot;&gt;
-    &lt;el-upload
-      class&#x3D;&quot;upload-demo&quot;
-      action
-      :http-request&#x3D;&quot;fnUploadRequest&quot;
-      list-type&#x3D;&quot;picture-card&quot;
-      :on-preview&#x3D;&quot;handlePictureCardPreview&quot;
-      :on-remove&#x3D;&quot;handleRemove&quot;
-    &gt;
-      &lt;i class&#x3D;&quot;el-icon-plus&quot;&gt;&lt;&#x2F;i&gt;
-    &lt;&#x2F;el-upload&gt;
-    &lt;el-dialog :visible.sync&#x3D;&quot;dialogVisible&quot;&gt;
-      &lt;img width&#x3D;&quot;100%&quot; :src&#x3D;&quot;dialogImageUrl&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;
-    &lt;&#x2F;el-dialog&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;</code></pre>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"home"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-upload</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">class</span>=<span class="hljs-string">"upload-demo"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">action</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:http-request</span>=<span class="hljs-string">"fnUploadRequest"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">list-type</span>=<span class="hljs-string">"picture-card"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:on-preview</span>=<span class="hljs-string">"handlePictureCardPreview"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:on-remove</span>=<span class="hljs-string">"handleRemove"</span></span>
+<span class="hljs-tag">    &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"el-icon-plus"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-upload</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-dialog</span> <span class="hljs-attr">:visible.sync</span>=<span class="hljs-string">"dialogVisible"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100%"</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"dialogImageUrl"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
 
 <p><em>js部分如下</em></p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> OSS <span class="hljs-keyword">from</span> <span class="hljs-string">"ali-oss"</span>;
@@ -304,122 +304,122 @@
 &#125;;</code></pre>
 
 <p><strong>全部代码</strong></p>
-<pre><code class="hljs vue">&lt;template&gt;
-  &lt;div class&#x3D;&quot;home&quot;&gt;
-    &lt;el-upload
-      class&#x3D;&quot;upload-demo&quot;
-      action
-      :http-request&#x3D;&quot;fnUploadRequest&quot;
-      list-type&#x3D;&quot;picture-card&quot;
-      :on-preview&#x3D;&quot;handlePictureCardPreview&quot;
-      :on-remove&#x3D;&quot;handleRemove&quot;
-    &gt;
-      &lt;i class&#x3D;&quot;el-icon-plus&quot;&gt;&lt;&#x2F;i&gt;
-    &lt;&#x2F;el-upload&gt;
-    &lt;el-dialog :visible.sync&#x3D;&quot;dialogVisible&quot;&gt;
-      &lt;img width&#x3D;&quot;100%&quot; :src&#x3D;&quot;dialogImageUrl&quot; alt&#x3D;&quot;&quot; &#x2F;&gt;
-    &lt;&#x2F;el-dialog&gt;
-  &lt;&#x2F;div&gt;
-&lt;&#x2F;template&gt;
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"home"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-upload</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">class</span>=<span class="hljs-string">"upload-demo"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">action</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:http-request</span>=<span class="hljs-string">"fnUploadRequest"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">list-type</span>=<span class="hljs-string">"picture-card"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:on-preview</span>=<span class="hljs-string">"handlePictureCardPreview"</span></span>
+<span class="hljs-tag">      <span class="hljs-attr">:on-remove</span>=<span class="hljs-string">"handleRemove"</span></span>
+<span class="hljs-tag">    &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"el-icon-plus"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-upload</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">el-dialog</span> <span class="hljs-attr">:visible.sync</span>=<span class="hljs-string">"dialogVisible"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"100%"</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"dialogImageUrl"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">el-dialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-&lt;script&gt;
-import OSS from &quot;ali-oss&quot;;
-export default &#123;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript"><span class="hljs-keyword">import</span> OSS <span class="hljs-keyword">from</span> <span class="hljs-string">"ali-oss"</span>;</span>
+<span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
   data() &#123;
-    return &#123;
-      dialogImageUrl: &quot;&quot;,
-      dialogVisible: false,
-      disabled: false,
-      loading: false,
+<span class="actionscript">    <span class="hljs-keyword">return</span> &#123;</span>
+<span class="actionscript">      dialogImageUrl: <span class="hljs-string">""</span>,</span>
+<span class="actionscript">      dialogVisible: <span class="hljs-literal">false</span>,</span>
+<span class="actionscript">      disabled: <span class="hljs-literal">false</span>,</span>
+<span class="actionscript">      loading: <span class="hljs-literal">false</span>,</span>
       fileList: [],
     &#125;;
   &#125;,
   methods: &#123;
     handleRemove(file, fileList) &#123;
-      console.log(file, fileList);
+<span class="javascript">      <span class="hljs-built_in">console</span>.log(file, fileList);</span>
     &#125;,
     handlePictureCardPreview(file) &#123;
-      this.dialogImageUrl &#x3D; file.url;
-      this.dialogVisible &#x3D; true;
+<span class="actionscript">      <span class="hljs-keyword">this</span>.dialogImageUrl = file.url;</span>
+<span class="actionscript">      <span class="hljs-keyword">this</span>.dialogVisible = <span class="hljs-literal">true</span>;</span>
     &#125;,
-    async fnUploadRequest(option) &#123;
-      try &#123;
-        console.log(&quot;参数&quot;, option);
-        &#x2F;&#x2F; 获取OSS配置信息
-        let client &#x3D; new OSS(&#123;
-          secure: true,
-          accessKeyId: &quot;&quot;, &#x2F;&#x2F;阿里云AccessKey ID
-          accessKeySecret: &quot;&quot;, &#x2F;&#x2F;阿里云accessKeySecret
-          bucket: &quot;&quot;, &#x2F;&#x2F;bucket域名
-          region: &quot;&quot;, &#x2F;&#x2F;oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）
+<span class="javascript">    <span class="hljs-keyword">async</span> fnUploadRequest(option) &#123;</span>
+<span class="actionscript">      <span class="hljs-keyword">try</span> &#123;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"参数"</span>, option);</span>
+<span class="actionscript">        <span class="hljs-comment">// 获取OSS配置信息</span></span>
+<span class="javascript">        <span class="hljs-keyword">let</span> client = <span class="hljs-keyword">new</span> OSS(&#123;</span>
+<span class="actionscript">          secure: <span class="hljs-literal">true</span>,</span>
+<span class="actionscript">          accessKeyId: <span class="hljs-string">""</span>, <span class="hljs-comment">//阿里云AccessKey ID</span></span>
+<span class="actionscript">          accessKeySecret: <span class="hljs-string">""</span>, <span class="hljs-comment">//阿里云accessKeySecret</span></span>
+<span class="actionscript">          bucket: <span class="hljs-string">""</span>, <span class="hljs-comment">//bucket域名</span></span>
+<span class="actionscript">          region: <span class="hljs-string">""</span>, <span class="hljs-comment">//oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）</span></span>
         &#125;);
-        this.loading &#x3D; true;
-        function getFormatDate() &#123;
-          var date &#x3D; new Date();
-          var month &#x3D; date.getMonth() + 1;
-          var strDate &#x3D; date.getDate();
-          if (month &gt;&#x3D; 1 &amp;&amp; month &lt;&#x3D; 9) &#123;
-            month &#x3D; &quot;0&quot; + month;
+<span class="actionscript">        <span class="hljs-keyword">this</span>.loading = <span class="hljs-literal">true</span>;</span>
+<span class="actionscript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFormatDate</span><span class="hljs-params">()</span> </span>&#123;</span>
+<span class="javascript">          <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();</span>
+<span class="actionscript">          <span class="hljs-keyword">var</span> month = date.getMonth() + <span class="hljs-number">1</span>;</span>
+<span class="actionscript">          <span class="hljs-keyword">var</span> strDate = date.getDate();</span>
+          if (month &gt;= 1 &amp;&amp; month &lt;= 9) &#123;
+<span class="actionscript">            month = <span class="hljs-string">"0"</span> + month;</span>
           &#125;
-          if (strDate &gt;&#x3D; 0 &amp;&amp; strDate &lt;&#x3D; 9) &#123;
-            strDate &#x3D; &quot;0&quot; + strDate;
+          if (strDate &gt;= 0 &amp;&amp; strDate &lt;= 9) &#123;
+<span class="actionscript">            strDate = <span class="hljs-string">"0"</span> + strDate;</span>
           &#125;
-          var currentDate &#x3D;
+<span class="actionscript">          <span class="hljs-keyword">var</span> currentDate =</span>
             date.getFullYear() +
-            &quot;-&quot; +
+<span class="actionscript">            <span class="hljs-string">"-"</span> +</span>
             month +
-            &quot;-&quot; +
+<span class="actionscript">            <span class="hljs-string">"-"</span> +</span>
             strDate +
-            &quot; &quot; +
+<span class="actionscript">            <span class="hljs-string">" "</span> +</span>
             date.getHours() +
-            &quot;:&quot; +
+<span class="actionscript">            <span class="hljs-string">":"</span> +</span>
             date.getMinutes() +
-            &quot;:&quot; +
+<span class="actionscript">            <span class="hljs-string">":"</span> +</span>
             date.getSeconds();
-          return currentDate;
+<span class="actionscript">          <span class="hljs-keyword">return</span> currentDate;</span>
         &#125;
 
-        let file &#x3D; option.file;
-        const point &#x3D; file.name.lastIndexOf(&quot;.&quot;);
-        let suffix &#x3D; file.name.substr(point);
-        let fileName &#x3D; file.name.substr(0, point);
-        let date &#x3D; getFormatDate();
-        let fileNames &#x3D; &#96;$&#123;fileName&#125;_$&#123;date&#125;$&#123;suffix&#125;&#96;;
-        let relativePath &#x3D; &quot;blog&#x2F;&quot;;
-        console.log(&quot;oss客户端&quot;, client);
-        console.log(&quot;文件&quot;, file);
-        &#x2F;&#x2F; 分片上传文件
-        let ret &#x3D; await client.multipartUpload(relativePath + fileNames, file, &#123;
-          progress: async function(p) &#123;
-            let e &#x3D; &#123;&#125;;
-            e.percent &#x3D; p * 100;
+<span class="javascript">        <span class="hljs-keyword">let</span> file = option.file;</span>
+<span class="actionscript">        <span class="hljs-keyword">const</span> point = file.name.lastIndexOf(<span class="hljs-string">"."</span>);</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> suffix = file.name.substr(point);</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> fileName = file.name.substr(<span class="hljs-number">0</span>, point);</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> date = getFormatDate();</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> fileNames = <span class="hljs-string">`<span class="hljs-subst">$&#123;fileName&#125;</span>_<span class="hljs-subst">$&#123;date&#125;</span><span class="hljs-subst">$&#123;suffix&#125;</span>`</span>;</span>
+<span class="javascript">        <span class="hljs-keyword">let</span> relativePath = <span class="hljs-string">"blog/"</span>;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"oss客户端"</span>, client);</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"文件"</span>, file);</span>
+<span class="actionscript">        <span class="hljs-comment">// 分片上传文件</span></span>
+<span class="javascript">        <span class="hljs-keyword">let</span> ret = <span class="hljs-keyword">await</span> client.multipartUpload(relativePath + fileNames, file, &#123;</span>
+<span class="javascript">          progress: <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">p</span>) </span>&#123;</span>
+<span class="javascript">            <span class="hljs-keyword">let</span> e = &#123;&#125;;</span>
+            e.percent = p * 100;
             option.onProgress(e);
           &#125;,
         &#125;);
 
-        if (ret.res.statusCode &#x3D;&#x3D;&#x3D; 200) &#123;
-          console.log(&quot;上传成功&quot;, ret);
-        &#125; else &#123;
-          option.onError(&quot;上传失败&quot;);
+        if (ret.res.statusCode === 200) &#123;
+<span class="javascript">          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"上传成功"</span>, ret);</span>
+<span class="actionscript">        &#125; <span class="hljs-keyword">else</span> &#123;</span>
+<span class="actionscript">          option.onError(<span class="hljs-string">"上传失败"</span>);</span>
         &#125;
-      &#125; catch (error) &#123;
-        console.error(error);
-        option.onError(&quot;上传失败&quot;);
+<span class="actionscript">      &#125; <span class="hljs-keyword">catch</span> (error) &#123;</span>
+<span class="javascript">        <span class="hljs-built_in">console</span>.error(error);</span>
+<span class="actionscript">        option.onError(<span class="hljs-string">"上传失败"</span>);</span>
       &#125;
-      this.loading &#x3D; false;
+<span class="actionscript">      <span class="hljs-keyword">this</span>.loading = <span class="hljs-literal">false</span>;</span>
     &#125;,
   &#125;,
 &#125;;
-&lt;&#x2F;script&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-&lt;style&gt;
-.home &#123;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<span class="css"><span class="hljs-selector-class">.home</span> &#123;</span>
   width: 100%;
   height: 100vh;
   position: relative;
 &#125;
 
-.upload-demo &#123;
+<span class="css"><span class="hljs-selector-class">.upload-demo</span> &#123;</span>
   width: 30%;
   height: 30%;
   position: absolute;
@@ -430,7 +430,7 @@ export default &#123;
   margin: auto;
   text-align: center;
 &#125;
-&lt;&#x2F;style&gt;</code></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></code></pre>
 
 
             </article>
