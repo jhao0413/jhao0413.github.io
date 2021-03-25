@@ -17,7 +17,7 @@
   <meta name="description" content="九號的个人博客">
   <meta name="author" content="九號">
   <meta name="keywords" content="九號,九號博客,前端,数码">
-  <title>Github无法访问问题解决 - 九號</title>
+  <title>vue cli 解决跨域 线上 nginx 反向代理配置 - 九號</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -141,8 +141,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-01-31 10:00">
-                    2020年1月31日 上午
+                  <time datetime="2020-05-03 10:00">
+                    2020年5月3日 上午
                   </time>
                 </div>
               
@@ -152,7 +152,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    387 字
+                    271 字
                   </span>
                 
 
@@ -162,7 +162,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    4
+                    3
                      分钟
                   </span>
                 
@@ -191,18 +191,55 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="Github竟拒我于门外"><a href="#Github竟拒我于门外" class="headerlink" title="Github竟拒我于门外"></a>Github竟拒我于门外</h1><h3 id="手机可以访问但电脑不可以？"><a href="#手机可以访问但电脑不可以？" class="headerlink" title="手机可以访问但电脑不可以？"></a>手机可以访问但电脑不可以？</h3><p>至于为什么有了这篇帖子咱们还得从一只蝙蝠说起…</p>
-<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/17bf778d9f5e9a4eff93d7edc496dd1a.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>从过年之后就再也没踏出过家门一步，吃了睡睡了吃的日子到了今天发现有一丝丝的颓废，于是满心欢喜的打开vs code写写代码，git命令到git push却发现无法提交。</p>
-<p>于是我电脑尝试打开官网看看居然得到如下结果<br><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.webp" srcset="/img/loading.gif" alt=""><br>第一时间想到是不是要挂小飞机了，但是打开还是无济于事，抱着试一试的心态我用手机打开了GitHub的官网？？？手机没挂小飞机也能进？</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>于是在网上找了各种办法，最后看到了一个靠谱的办法就是修改host文件（文件路径：C:\Windows\System32\drivers\etc\hosts）<br>将一下ip粘贴到hosts文件就可以了</p>
-<pre><code class="hljs plain">192.30.253.113 github.com
-192.30.253.113 github.com
-192.30.253.118 gist.github.com
-192.30.253.119 gist.github.com</code></pre>
-<p>与此同时问题就又来了，居然保存不了！他还给亲切的提示了你没有权限保存，请向管理员申请。自己管自己？<img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>各种说通过右键属性更改权限的办法都试了，但是都没用。</p>
-<p>最后一个有效的办法就是右键win的图标，找到Windows PowerSheell（管理员）注意是<strong>管理员</strong>！然后输入”notepad hosts”即可编辑保存了。<br>到此这个问题就完美解决啦</p>
+              <h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置"><a href="#vue-cli-解决跨域-线上-nginx-反向代理配置" class="headerlink" title="vue cli 解决跨域 线上 nginx 反向代理配置"></a>vue cli 解决跨域 线上 nginx 反向代理配置</h2><h4 id="1、开发环境跨域"><a href="#1、开发环境跨域" class="headerlink" title="1、开发环境跨域"></a>1、开发环境跨域</h4><p>在<strong>vue cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
+<pre><code class="hljs javascript">proxyTable: &#123;
+    <span class="hljs-comment">//解决</span>
+    publicPath: <span class="hljs-string">"./"</span>,
+      <span class="hljs-string">'/api'</span>:&#123;
+        target:<span class="hljs-string">'http://xx.com'</span>,
+        changeOrigin:<span class="hljs-literal">true</span>,
+        pathRewrite:&#123;
+            <span class="hljs-string">'^/api'</span>:<span class="hljs-string">'/api'</span>
+        &#125;
+      &#125;
+    &#125;,</code></pre>
+
+<p>在<strong>vue cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
+<pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
+  publicPath: <span class="hljs-string">"./"</span>,
+  devServer: &#123;
+    proxy: &#123;
+      <span class="hljs-string">"/api"</span>: &#123;
+        target: <span class="hljs-string">"http://xx.com"</span>,
+        changeOrigin: <span class="hljs-literal">true</span>,
+        ws: <span class="hljs-literal">true</span>,
+        secure: <span class="hljs-literal">false</span>,
+        pathRewrite: &#123;
+          <span class="hljs-string">"^/api"</span>: <span class="hljs-string">""</span>,
+        &#125;,
+      &#125;,
+    &#125;,
+  &#125;,
+&#125;;</code></pre>
+
+<h4 id="2、nginx反向代理设置"><a href="#2、nginx反向代理设置" class="headerlink" title="2、nginx反向代理设置"></a>2、nginx反向代理设置</h4><p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
+<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png" srcset="/img/loading.gif" alt=""></p>
+<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
+<pre><code class="hljs javascript">location /api/ &#123;
+        # 把 /api 路径下的请求转发给真正的后端服务器
+        proxy_pass http:<span class="hljs-comment">//xx.xx.xx.xx:3000/;</span>
+        #注意端口后需加/
+
+        # 把host头传过去，后端服务程序将收到your.domain.name, 否则收到的是localhost:8080
+        proxy_set_header Host $http_host;
+
+        # 把cookie中的path部分从/api替换成/service
+        proxy_cookie_path /api /;
+
+        # 把cookie的path部分从localhost:8080替换成your.domain.name
+        proxy_cookie_domain localhost:<span class="hljs-number">80</span> http:<span class="hljs-comment">//xx.xx.xx.xx:3000/;</span>
+    &#125;</code></pre>
+
 
             </article>
             <hr>
@@ -212,7 +249,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/GitHub/">GitHub</a>
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
                     
                   </div>
                 
@@ -220,7 +257,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/GitHub/">GitHub</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
                   </div>
                 
@@ -233,9 +270,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/02/02/git22%E7%AB%AF%E5%8F%A3/">
+                      <a href="/2020/09/24/vue+element+%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Connecting to github.com [IP ADDRESS] port 22.</span>
+                        <span class="hidden-mobile">vue+element+阿里云oss图片上传</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -243,8 +280,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/01/12/axios/">
-                        <span class="hidden-mobile">axios的基本使用</span>
+                      <a href="/2020/04/12/router/">
+                        <span class="hidden-mobile">vue router 的 Uncaught (in promise) 问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -403,7 +440,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Github无法访问问题解决&nbsp;",
+        "vue cli 解决跨域 线上 nginx 反向代理配置&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

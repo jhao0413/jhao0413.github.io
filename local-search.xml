@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>服务器部署node</title>
+    <link href="/2021/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node/"/>
+    <url>/2021/03/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node/</url>
+    
+    <content type="html"><![CDATA[<h2 id="服务器部署node"><a href="#服务器部署node" class="headerlink" title="服务器部署node"></a>服务器部署node</h2><h4 id="1、安装PM管理器"><a href="#1、安装PM管理器" class="headerlink" title="1、安装PM管理器"></a>1、安装PM管理器</h4><p>在宝塔控制面板的软件商店中下载安装PM管理器（node.js管理器，内置 node.js + npm + nvm + pm2）</p><h4 id="2、确定node版本"><a href="#2、确定node版本" class="headerlink" title="2、确定node版本"></a>2、确定node版本</h4><p>保证服务器所安装的node版本与本机版本一致，避免一些因版本不同而出现的不必要的错误（第3步模块安装仅安装到正在使用的nodejs版本，如果切换node版本需要重新安装模块）</p><h4 id="3、模块安装"><a href="#3、模块安装" class="headerlink" title="3、模块安装"></a>3、模块安装</h4><p>安装所需模块（例如：express、cors等），直接输入模块名称即可安装</p><h4 id="4、上传文件"><a href="#4、上传文件" class="headerlink" title="4、上传文件"></a>4、上传文件</h4><p>上传node文件（<strong>注意：这里不需要上传node_modules文件夹</strong>），这里需要更改导入相应模块时的路径，如下：</p><h5 id="未更改的部分代码文件："><a href="#未更改的部分代码文件：" class="headerlink" title="未更改的部分代码文件："></a>未更改的部分代码文件：</h5><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">"express"</span>);<span class="hljs-keyword">const</span> server = express();<span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">"cors"</span>);<span class="hljs-keyword">var</span> mysql = <span class="hljs-built_in">require</span>(<span class="hljs-string">"mysql"</span>);<span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">"body-parser"</span>);</code></pre><h5 id="更改后的部分代码文件："><a href="#更改后的部分代码文件：" class="headerlink" title="更改后的部分代码文件："></a>更改后的部分代码文件：</h5><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> modulesPath = <span class="hljs-string">"/www/server/nvm/versions/node/v12.13.0/lib/node_modules/"</span>;<span class="hljs-comment">//这里的目录/www/server/nvm/versions/node/按服务器node版本/lib/node_modules/</span><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(modulesPath+<span class="hljs-string">"express"</span>);<span class="hljs-keyword">const</span> server = express();<span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(modulesPath+<span class="hljs-string">"cors"</span>);<span class="hljs-keyword">var</span> mysql = <span class="hljs-built_in">require</span>(modulesPath+<span class="hljs-string">"mysql"</span>);<span class="hljs-keyword">var</span> bodyParser = <span class="hljs-built_in">require</span>(modulesPath+<span class="hljs-string">"body-parser"</span>);</code></pre><h4 id="5、开启服务"><a href="#5、开启服务" class="headerlink" title="5、开启服务"></a>5、开启服务</h4><p>在PM2管理器中选择项目所在根目录，并输入启动文件名称（node文件名），项目名称（项目名称随意）,添加即可开启服务</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>node</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>node</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vue cli3 预处理器配置全局变量</title>
+    <link href="/2020/11/08/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E9%85%8D%E7%BD%AE/"/>
+    <url>/2020/11/08/%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="vue-cli3-预处理器配置全局变量"><a href="#vue-cli3-预处理器配置全局变量" class="headerlink" title="vue cli3 预处理器配置全局变量"></a>vue cli3 预处理器配置全局变量</h2><p>在vue cli3中使用预处理器（Sass/Less/Stylus）配置全局变量详细总结。在创建项目时就可以选择安装预处理器了，如果没有安装可以通过如下命令进行安装。</p><pre><code class="hljs plain"># Sassnpm install -D sass-loader node-sass# Lessnpm install -D less-loader less# Stylusnpm install -D stylus-loader stylus</code></pre><h3 id="STEP1"><a href="#STEP1" class="headerlink" title="STEP1"></a>STEP1</h3><p>一定一定少不了安装style-resources-loader</p><pre><code class="hljs plain">npm i style-resources-loader -dev</code></pre><p>然后添加</p><pre><code class="hljs plain">vue add style-resources-loader</code></pre><h3 id="STEP2"><a href="#STEP2" class="headerlink" title="STEP2"></a>STEP2</h3><p>在vue.config.js中进行配置，如果没有自己创建就好(与package.json同级)</p><h4 id="官方写法"><a href="#官方写法" class="headerlink" title="官方写法"></a>官方写法</h4><p>详情见：<a href="https://cli.vuejs.org/zh/guide/css.html">Vue CLI CSS相关</a></p><pre><code class="hljs javascript"><span class="hljs-comment">// vue.config.js</span><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)<span class="hljs-built_in">module</span>.exports = &#123;  chainWebpack: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;    <span class="hljs-keyword">const</span> types = [<span class="hljs-string">'vue-modules'</span>, <span class="hljs-string">'vue'</span>, <span class="hljs-string">'normal-modules'</span>, <span class="hljs-string">'normal'</span>]    types.forEach(<span class="hljs-function"><span class="hljs-params">type</span> =&gt;</span> addStyleResource(config.module.rule(<span class="hljs-string">'stylus'</span>).oneOf(type)))    <span class="hljs-comment">//stylus为你自己使用的预处理器名自行更换</span>  &#125;,&#125;<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addStyleResource</span> (<span class="hljs-params">rule</span>) </span>&#123;  rule.use(<span class="hljs-string">'style-resource'</span>)    .loader(<span class="hljs-string">'style-resources-loader'</span>)    .options(&#123;      patterns: [        path.resolve(__dirname, <span class="hljs-string">'./预处理器文件所在路径'</span>),      ],    &#125;)&#125;</code></pre><h4 id="更简单的写法"><a href="#更简单的写法" class="headerlink" title="更简单的写法"></a>更简单的写法</h4><p>这两种写法效果相同</p><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;  pluginOptions: &#123;    <span class="hljs-string">'style-resources-loader'</span>: &#123;      preProcessor: <span class="hljs-string">"less"</span>,      <span class="hljs-comment">// 指定全局变量的less文件</span>      patterns: [path.resolve(__dirname, <span class="hljs-string">"src/assets/less/theme.less"</span>)]       <span class="hljs-comment">// 同上文件路径</span>    &#125;  &#125;,&#125;</code></pre><h3 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h3><p>完成后重启服务</p><pre><code class="hljs plain">npm run serve</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue#分类</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vue+element+阿里云oss图片上传</title>
     <link href="/2020/09/24/vue+element+%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/"/>
     <url>/2020/09/24/vue+element+%E9%98%BF%E9%87%8C%E4%BA%91oss%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/</url>
@@ -29,11 +79,61 @@
   
   
   <entry>
+    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
+    <link href="/2020/05/03/vue%20cli%20%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%20%E7%BA%BF%E4%B8%8A%20nginx%20%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/"/>
+    <url>/2020/05/03/vue%20cli%20%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%20%E7%BA%BF%E4%B8%8A%20nginx%20%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置"><a href="#vue-cli-解决跨域-线上-nginx-反向代理配置" class="headerlink" title="vue cli 解决跨域 线上 nginx 反向代理配置"></a>vue cli 解决跨域 线上 nginx 反向代理配置</h2><h4 id="1、开发环境跨域"><a href="#1、开发环境跨域" class="headerlink" title="1、开发环境跨域"></a>1、开发环境跨域</h4><p>在<strong>vue cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p><pre><code class="hljs javascript">proxyTable: &#123;    <span class="hljs-comment">//解决</span>    publicPath: <span class="hljs-string">"./"</span>,      <span class="hljs-string">'/api'</span>:&#123;        target:<span class="hljs-string">'http://xx.com'</span>,        changeOrigin:<span class="hljs-literal">true</span>,        pathRewrite:&#123;            <span class="hljs-string">'^/api'</span>:<span class="hljs-string">'/api'</span>        &#125;      &#125;    &#125;,</code></pre><p>在<strong>vue cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;  publicPath: <span class="hljs-string">"./"</span>,  devServer: &#123;    proxy: &#123;      <span class="hljs-string">"/api"</span>: &#123;        target: <span class="hljs-string">"http://xx.com"</span>,        changeOrigin: <span class="hljs-literal">true</span>,        ws: <span class="hljs-literal">true</span>,        secure: <span class="hljs-literal">false</span>,        pathRewrite: &#123;          <span class="hljs-string">"^/api"</span>: <span class="hljs-string">""</span>,        &#125;,      &#125;,    &#125;,  &#125;,&#125;;</code></pre><h4 id="2、nginx反向代理设置"><a href="#2、nginx反向代理设置" class="headerlink" title="2、nginx反向代理设置"></a>2、nginx反向代理设置</h4><p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png" srcset="/img/loading.gif" alt=""></p><p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p><pre><code class="hljs javascript">location /api/ &#123;        # 把 /api 路径下的请求转发给真正的后端服务器        proxy_pass http:<span class="hljs-comment">//xx.xx.xx.xx:3000/;</span>        #注意端口后需加/        # 把host头传过去，后端服务程序将收到your.domain.name, 否则收到的是localhost:8080        proxy_set_header Host $http_host;        # 把cookie中的path部分从/api替换成/service        proxy_cookie_path /api /;        # 把cookie的path部分从localhost:8080替换成your.domain.name        proxy_cookie_domain localhost:<span class="hljs-number">80</span> http:<span class="hljs-comment">//xx.xx.xx.xx:3000/;</span>    &#125;</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vue router 的 Uncaught (in promise) 问题</title>
+    <link href="/2020/04/12/router/"/>
+    <url>/2020/04/12/router/</url>
+    
+    <content type="html"><![CDATA[<h2 id="vue-router-的-Uncaught-in-promise-问题"><a href="#vue-router-的-Uncaught-in-promise-问题" class="headerlink" title="vue router 的 Uncaught (in promise) 问题"></a>vue router 的 Uncaught (in promise) 问题</h2><p>升级到Vue-Router版本到3.1.0及以上之后，页面在跳转路由时如果重复点击，会报Uncaught (in promise)的问题，虽然没什么影响，但是看起来还是很不舒服。<br>代码如下</p><pre><code class="hljs javascript">&lt;template&gt;  &lt;div id=<span class="hljs-string">"app"</span>&gt;      &lt;div&gt;        &lt;button @click=<span class="hljs-string">"homeClick"</span>&gt;Home&lt;<span class="hljs-regexp">/button&gt;</span><span class="hljs-regexp">    &lt;button @click="aboutClick"&gt;About&lt;/</span>button&gt;      &lt;<span class="hljs-regexp">/div&gt;</span><span class="hljs-regexp">      &lt;router-view/</span>&gt;  &lt;<span class="hljs-regexp">/div&gt;</span><span class="hljs-regexp">&lt;/</span>template&gt;&lt;script&gt;<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;  name: <span class="hljs-string">'app'</span>,  methods:&#123;    homeClick() &#123;            <span class="hljs-keyword">this</span>.$router.push(<span class="hljs-string">'/'</span>);    &#125;,        aboutClick()&#123;    <span class="hljs-keyword">this</span>.$router.push(<span class="hljs-string">'/about'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;&#125;);    &#125;    &#125;&#125;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p> V3.1.0版本里面新增功能：push和replace方法会返回一个promise, 你可能在控制台看到未捕获的异常（来源CSDN）</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在调用方法的时候用catch捕获异常，以下是修改后的代码</p><pre><code class="hljs javascript">&lt;template&gt;  &lt;div id=<span class="hljs-string">"app"</span>&gt;      &lt;div&gt;        &lt;button @click=<span class="hljs-string">"homeClick"</span>&gt;Home&lt;<span class="hljs-regexp">/button&gt;</span><span class="hljs-regexp">    &lt;button @click="aboutClick"&gt;About&lt;/</span>button&gt;      &lt;<span class="hljs-regexp">/div&gt;</span><span class="hljs-regexp">      &lt;router-view/</span>&gt;  &lt;<span class="hljs-regexp">/div&gt;</span><span class="hljs-regexp">&lt;/</span>template&gt;&lt;script&gt;<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;  name: <span class="hljs-string">'app'</span>,  components: &#123;    <span class="hljs-comment">// HelloWorld</span>  &#125;,    methods:&#123;homeClick() &#123;            <span class="hljs-keyword">this</span>.$router.push(<span class="hljs-string">'/'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;&#125;);&#125;,aboutClick()&#123;<span class="hljs-keyword">this</span>.$router.push(<span class="hljs-string">'/about'</span>).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;&#125;);&#125;    &#125;&#125;&lt;<span class="hljs-regexp">/script&gt;</span></code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hexo博客搭建</title>
     <link href="/2020/02/27/hexo%E6%90%AD%E5%BB%BA/"/>
     <url>/2020/02/27/hexo%E6%90%AD%E5%BB%BA/</url>
     
-    <content type="html"><![CDATA[<h2 id="为什么选择Hexo"><a href="#为什么选择Hexo" class="headerlink" title="为什么选择Hexo"></a>为什么选择Hexo</h2><p>之前我也试过其他的博客系统，例如：typecho，wordpress等等，但是因为之前是高中，<br>也没有太多的精力去打理，这些博客都需要你有一台服务器或者是虚拟主机，还要一个域名。<br>自己没钱一下买一两年（当时也没必要，也不写啥东西）但是后来准备写的时候发现已经过期了。<br>重新买回来之后还是要重装一遍，而且之前的数据也没有了，但是hexo就不需要考虑这些啦。<br>你只需要在GitHub上有一个账号就足以。</p><h2 id="Hexo是什么"><a href="#Hexo是什么" class="headerlink" title="Hexo是什么"></a>Hexo是什么</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h2 id="Hexo搭建"><a href="#Hexo搭建" class="headerlink" title="Hexo搭建"></a>Hexo搭建</h2><h3 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h3><p>windows：到git官网下载安装即可，<a href="https://git-scm.com/downloads">Download git</a>，<br>下载安装成功后鼠标右键就可以看到有Git Bash的命令行工具，以后使用git都在这进行。<br>安装成功后可以使用git –version查看git版本。(别的系统我也没用过，就只讲windows啦)</p><h3 id="2、安装Nodejs"><a href="#2、安装Nodejs" class="headerlink" title="2、安装Nodejs"></a>2、安装Nodejs</h3><p><a href="http://nodejs.cn/download/">Node.js下载地址</a>，根据需要下载安装即可，安装完成之后可以打开命令行</p><pre><code class="hljs plain">node -vnpm -v</code></pre><p>可以检查一下是否安装成功，安装成功会显示版本号</p><h3 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h3><p>首先创建一个文件夹，名字随意我这里就文件夹的名字就以blog来说了，打开你创建的文件夹，<br>右键点进git bash，输入以下命令</p><pre><code class="hljs plain">npm install -g hexo-cli</code></pre><p>安装完后一样可以通过</p><pre><code class="hljs plain">hexo -v</code></pre><p>查看是否安装成功</p><p>初始化hexo</p><pre><code class="hljs plain">hexo init blog</code></pre><p>这里的blog是在你刚刚创建的blog文件夹的子文件夹，名字随意<br>接下来</p><pre><code class="hljs plain">cd blognpm install</code></pre><p>完成后大概会有以下文件，我的可能会多几个，不要在意，我后面又搞了其他东西</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161239.png" srcset="/img/loading.gif" alt=""></p><p>接着继续命令行里输入</p><pre><code class="hljs plain">hexo -ghexo server</code></pre><p>hexo -g意思是生成静态文件<br>hexo server启动服务<br>CTRL+c关闭服务<br>这时候浏览器输入localhost:4000就可以看到博客啦</p><h3 id="4、注册GitHub创建仓库"><a href="#4、注册GitHub创建仓库" class="headerlink" title="4、注册GitHub创建仓库"></a>4、注册GitHub创建仓库</h3><p><a href="https://github.com/">GitHub</a>没有账号的话赶快去注册一个吧，<br>注册成功后创建一个仓库</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161927.png" srcset="/img/loading.gif" alt=""></p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162056.png" srcset="/img/loading.gif" alt=""></p><p>仓库的名字不能随意写，username.github.io,username是你的用户名，写完后点击Create repository</p><h3 id="5、将SSh添加到GitHub"><a href="#5、将SSh添加到GitHub" class="headerlink" title="5、将SSh添加到GitHub"></a>5、将SSh添加到GitHub</h3><p>在命令行中输入以下内容（别照抄直接回车！）</p><pre><code class="hljs plain">git config --global user.name &quot;name&quot;git config --global user.email &quot;email&quot;</code></pre><p>name是你GitHub的用户名，Email是你GitHub的邮箱<br>然后创建ssh，一直回车就好了</p><pre><code class="hljs plain">ssh-keygen -t rsa -C&quot;email&quot;</code></pre><p>这里的Email和上面的同理<br>现在你的电脑里就有一个.ssh的文件夹</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162818.png" srcset="/img/loading.gif" alt=""></p><p>id_rsa是电脑的私人密钥，id_rsa.pub是公共密钥，当然是用公共密钥啦，现在将id_rsa.pub的内容复制到GitHub，<br>GitHub中在右上角打开setting，里面有SSH and GPG keys点击后new一个，名字随意</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227163223.png" srcset="/img/loading.gif" alt=""></p><p>在gitbash中检查是否安装成功</p><h3 id="6、将hexo部署到GitHub"><a href="#6、将hexo部署到GitHub" class="headerlink" title="6、将hexo部署到GitHub"></a>6、将hexo部署到GitHub</h3><p>这时候打开刚刚的文件夹找到配置文件_config.yml，文件的最后修改为如下内容</p><pre><code class="hljs plain">deploy:  type: git  repo: https:&#x2F;&#x2F;github.com&#x2F;UserName&#x2F;UserName.github.io.git &#x2F;&#x2F;username是你的用户名  branch: master</code></pre><p>这里有两种方式一种是https一种是.git的方式，第一种每次需要输入用户名密码，第二种不需要。<br>现在安装部署命令</p><pre><code class="hljs plain">npm install hexo-deployer-git --save</code></pre><p>现在只要依次执行以下命令即可</p><pre><code class="hljs plain">hexo chexo ghexo d</code></pre><p>hexo c(clean)清除你之前生成的东西，最好每次清理一下，以免发生不必要的错误<br>hexo g(generate)生成静态文件<br>hexo d(deploy)部署文章<br>最后出现INFO Deploy done:git就是部署成功了。现在打开<a href="http://username.github.io">http://username.github.io</a><br>（username是你的用户名）就可以看到你的博客啦<br>你的博客就成功部署了<br>关于hexo的更多操作可以加我询问哈~</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="为什么选择Hexo"><a href="#为什么选择Hexo" class="headerlink" title="为什么选择Hexo"></a>为什么选择Hexo</h2><p>之前我也试过其他的博客系统，例如：typecho，wordpress等等，但是因为之前是高中，<br>也没有太多的精力去打理，这些博客都需要你有一台服务器或者是虚拟主机，还要一个域名。<br>自己没钱一下买一两年（当时也没必要，也不写啥东西）但是后来准备写的时候发现已经过期了。<br>重新买回来之后还是要重装一遍，而且之前的数据也没有了，但是hexo就不需要考虑这些啦。<br>你只需要在GitHub上有一个账号就足以。</p><h2 id="Hexo是什么"><a href="#Hexo是什么" class="headerlink" title="Hexo是什么"></a>Hexo是什么</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p><h2 id="Hexo搭建"><a href="#Hexo搭建" class="headerlink" title="Hexo搭建"></a>Hexo搭建</h2><h3 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h3><p>windows：到git官网下载安装即可，<a href="https://git-scm.com/downloads">Download git</a>，<br>下载安装成功后鼠标右键就可以看到有Git Bash的命令行工具，以后使用git都在这进行。<br>安装成功后可以使用git –version查看git版本。(别的系统我也没用过，就只讲windows啦)</p><h3 id="2、安装Nodejs"><a href="#2、安装Nodejs" class="headerlink" title="2、安装Nodejs"></a>2、安装Nodejs</h3><p><a href="http://nodejs.cn/download/">Node.js下载地址</a>，根据需要下载安装即可，安装完成之后可以打开命令行</p><pre><code class="hljs plain">node -vnpm -v</code></pre><p>可以检查一下是否安装成功，安装成功会显示版本号</p><h3 id="3、安装hexo"><a href="#3、安装hexo" class="headerlink" title="3、安装hexo"></a>3、安装hexo</h3><p>首先创建一个文件夹，名字随意我这里就文件夹的名字就以blog来说了，打开你创建的文件夹，<br>右键点进git bash，输入以下命令</p><pre><code class="hljs plain">npm install -g hexo-cli</code></pre><p>安装完后一样可以通过</p><pre><code class="hljs plain">hexo -v</code></pre><p>查看是否安装成功</p><p>初始化hexo</p><pre><code class="hljs plain">hexo init blog</code></pre><p>这里的blog是在你刚刚创建的blog文件夹的子文件夹，名字随意<br>接下来</p><pre><code class="hljs plain">cd blognpm install</code></pre><p>完成后大概会有以下文件，我的可能会多几个，不要在意，我后面又搞了其他东西</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161239.png" srcset="/img/loading.gif" alt=""></p><p>接着继续命令行里输入</p><pre><code class="hljs plain">hexo -ghexo server</code></pre><p>hexo -g意思是生成静态文件<br>hexo server启动服务<br>CTRL+c关闭服务<br>这时候浏览器输入localhost:4000就可以看到博客啦</p><h3 id="4、注册GitHub创建仓库"><a href="#4、注册GitHub创建仓库" class="headerlink" title="4、注册GitHub创建仓库"></a>4、注册GitHub创建仓库</h3><p><a href="https://github.com/">GitHub</a>没有账号的话赶快去注册一个吧，<br>注册成功后创建一个仓库</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161927.png" srcset="/img/loading.gif" alt=""></p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162056.png" srcset="/img/loading.gif" alt=""></p><p>仓库的名字不能随意写，username.github.io,username是你的用户名，写完后点击Create repository</p><h3 id="5、将SSh添加到GitHub"><a href="#5、将SSh添加到GitHub" class="headerlink" title="5、将SSh添加到GitHub"></a>5、将SSh添加到GitHub</h3><p>在命令行中输入以下内容（别照抄直接回车！）</p><pre><code class="hljs plain">git config --global user.name &quot;name&quot;git config --global user.email &quot;email&quot;</code></pre><p>name是你GitHub的用户名，Email是你GitHub的邮箱<br>然后创建ssh，一直回车就好了</p><pre><code class="hljs plain">ssh-keygen -t rsa -C&quot;email&quot;</code></pre><p>这里的Email和上面的同理<br>现在你的电脑里就有一个.ssh的文件夹</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162818.png" srcset="/img/loading.gif" alt=""></p><p>id_rsa是电脑的私人密钥，id_rsa.pub是公共密钥，当然是用公共密钥啦，现在将id_rsa.pub的内容复制到GitHub，<br>GitHub中在右上角打开setting，里面有SSH and GPG keys点击后new一个，名字随意</p><p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227163223.png" srcset="/img/loading.gif" alt=""></p><p>在gitbash中检查是否安装成功</p><h3 id="6、将hexo部署到GitHub"><a href="#6、将hexo部署到GitHub" class="headerlink" title="6、将hexo部署到GitHub"></a>6、将hexo部署到GitHub</h3><p>这时候打开刚刚的文件夹找到配置文件_config.yml，文件的最后修改为如下内容</p><pre><code class="hljs plain">deploy:  type: git  repo: https:&#x2F;&#x2F;github.com&#x2F;UserName&#x2F;UserName.github.io.git &#x2F;&#x2F;username是你的用户名  branch: master</code></pre><p>这里有两种方式一种是https一种是.git的方式，第一种每次需要输入用户名密码，第二种不需要。<br>现在安装部署命令</p><pre><code class="hljs plain">npm install hexo-deployer-git --save</code></pre><p>现在只要依次执行以下命令即可</p><pre><code class="hljs plain">hexo cleanhexo ghexo d</code></pre><p>hexo c(clean)清除你之前生成的东西，最好每次清理一下，以免发生不必要的错误<br>hexo g(generate)生成静态文件<br>hexo d(deploy)部署文章<br>最后出现INFO Deploy done:git就是部署成功了。现在打开<a href="http://username.github.io">http://username.github.io</a><br>（username是你的用户名）就可以看到你的博客啦<br>你的博客就成功部署了<br>关于hexo的更多操作可以加我询问哈~</p>]]></content>
     
     
     <categories>
@@ -46,6 +146,31 @@
     <tags>
       
       <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>axios get与post请求</title>
+    <link href="/2020/02/18/axios%20get%E4%B8%8Epost%E8%AF%B7%E6%B1%82/"/>
+    <url>/2020/02/18/axios%20get%E4%B8%8Epost%E8%AF%B7%E6%B1%82/</url>
+    
+    <content type="html"><![CDATA[<h2 id="axios-get与post请求"><a href="#axios-get与post请求" class="headerlink" title="axios get与post请求"></a>axios get与post请求</h2><h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><p><em>/api</em>:url地址</p><p><em>params</em>:{}中写参数</p><p><em>response</em>:处理返回结果</p><pre><code class="hljs javascript">axios.get(<span class="hljs-string">'/api'</span>, &#123;                params: &#123;                    content:<span class="hljs-string">''</span>                &#125;,            &#125;).then(                response =&gt; &#123;                    <span class="hljs-built_in">console</span>.log(response)                &#125;)</code></pre><h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><p>qs.stringify()将对象 序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p><pre><code class="hljs javascript">axios.post(<span class="hljs-string">'/api/api/login'</span>, qs.stringify(                                &#123;                                        content:<span class="hljs-string">""</span>                                &#125;),                                &#123;                                    headers: &#123;                                        <span class="hljs-string">"CSRF-token"</span>:<span class="hljs-string">""</span>                                        <span class="hljs-comment">//headers发送cookies信息</span>                                    &#125;                                &#125;, )                            .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;                                <span class="hljs-comment">//处理返回信息</span>                            &#125;);</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
       
     </tags>
     
@@ -96,6 +221,31 @@
     <tags>
       
       <tag>GitHub</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>axios的基本使用</title>
+    <link href="/2020/01/12/axios/"/>
+    <url>/2020/01/12/axios/</url>
+    
+    <content type="html"><![CDATA[<h2 id="axios的基本使用"><a href="#axios的基本使用" class="headerlink" title="axios的基本使用"></a>axios的基本使用</h2><p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p><p>最简单的axios写法如下</p><pre><code class="hljs javascript">axios.get(<span class="hljs-string">'url'</span>)  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;    <span class="hljs-built_in">console</span>.log(response);  &#125;)  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;    <span class="hljs-built_in">console</span>.log(error);  &#125;);</code></pre><p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p><h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h3><p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p><p>最常见的就是当域名不同时（如下）</p><pre><code class="hljs plain">www.abc.com 访问 www.def.com</code></pre><p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p><h3 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h3><p>这里分为vue cli2与 vue cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p><h4 id="STEP1"><a href="#STEP1" class="headerlink" title="STEP1"></a>STEP1</h4><p>修改/创建配置文件</p><h5 id="vue-cli2"><a href="#vue-cli2" class="headerlink" title="vue cli2"></a>vue cli2</h5><p>将config文件夹下的index.js打开，写入代码如下</p><p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考</a></p><p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p><p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;  devServer: &#123;    proxy: &#123;      <span class="hljs-string">'/api'</span>: &#123;        target: <span class="hljs-string">'https://url.com'</span>, <span class="hljs-comment">//对应自己的接口</span>        changeOrigin: <span class="hljs-literal">true</span>,        ws: <span class="hljs-literal">true</span>,        pathRewrite: &#123;          <span class="hljs-string">'^/api'</span>: <span class="hljs-string">''</span>        &#125;        <span class="hljs-comment">//这里的名字可以自定义（api）</span>      &#125;    &#125;  &#125;&#125;</code></pre><h5 id="vue-cli3-4"><a href="#vue-cli3-4" class="headerlink" title="vue cli3/4"></a>vue cli3/4</h5><p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p><h4 id="STEP2"><a href="#STEP2" class="headerlink" title="STEP2"></a>STEP2</h4><p>创建一个js文件名字随意，大致代码如下</p><p>axios更多的实例请求配置详见：<a href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明</a></p><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">request</span>(<span class="hljs-params">config</span>) </span>&#123;  创建一个axios实例    <span class="hljs-keyword">var</span> instance = axios.create(&#123;        method: <span class="hljs-string">'get'</span>,<span class="hljs-comment">//传输方式（get/post）</span>        params: &#123;          <span class="hljs-comment">//需要传递的参数写在这里</span>          name:<span class="hljs-string">'jhao'</span>        &#125;,        headers: &#123;            <span class="hljs-string">'content-type'</span>: <span class="hljs-string">'text/plain:charset=UTF-8'</span>        &#125;    &#125;);    <span class="hljs-keyword">return</span> instance(config)<span class="hljs-comment">//返回参数</span>&#125;</code></pre><h4 id="STEP3"><a href="#STEP3" class="headerlink" title="STEP3"></a>STEP3</h4><p>在main.js中导入STEP2的文件</p><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; request &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./api/request'</span><span class="hljs-comment">//换成自己的js文件</span>request(<span class="hljs-string">'/api/cgi-bin/musicu.fcg'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span>&#123;  <span class="hljs-built_in">console</span>.log(res);&#125;)</code></pre><h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
       
     </tags>
     

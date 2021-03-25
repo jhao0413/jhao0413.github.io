@@ -17,7 +17,7 @@
   <meta name="description" content="九號的个人博客">
   <meta name="author" content="九號">
   <meta name="keywords" content="九號,九號博客,前端,数码">
-  <title>Github无法访问问题解决 - 九號</title>
+  <title>axios的基本使用 - 九號</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -141,8 +141,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-01-31 10:00">
-                    2020年1月31日 上午
+                  <time datetime="2020-01-12 10:00">
+                    2020年1月12日 上午
                   </time>
                 </div>
               
@@ -152,7 +152,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    387 字
+                    783 字
                   </span>
                 
 
@@ -162,7 +162,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    4
+                    9
                      分钟
                   </span>
                 
@@ -191,18 +191,75 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="Github竟拒我于门外"><a href="#Github竟拒我于门外" class="headerlink" title="Github竟拒我于门外"></a>Github竟拒我于门外</h1><h3 id="手机可以访问但电脑不可以？"><a href="#手机可以访问但电脑不可以？" class="headerlink" title="手机可以访问但电脑不可以？"></a>手机可以访问但电脑不可以？</h3><p>至于为什么有了这篇帖子咱们还得从一只蝙蝠说起…</p>
-<p><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/17bf778d9f5e9a4eff93d7edc496dd1a.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>从过年之后就再也没踏出过家门一步，吃了睡睡了吃的日子到了今天发现有一丝丝的颓废，于是满心欢喜的打开vs code写写代码，git命令到git push却发现无法提交。</p>
-<p>于是我电脑尝试打开官网看看居然得到如下结果<br><img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.webp" srcset="/img/loading.gif" alt=""><br>第一时间想到是不是要挂小飞机了，但是打开还是无济于事，抱着试一试的心态我用手机打开了GitHub的官网？？？手机没挂小飞机也能进？</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>于是在网上找了各种办法，最后看到了一个靠谱的办法就是修改host文件（文件路径：C:\Windows\System32\drivers\etc\hosts）<br>将一下ip粘贴到hosts文件就可以了</p>
-<pre><code class="hljs plain">192.30.253.113 github.com
-192.30.253.113 github.com
-192.30.253.118 gist.github.com
-192.30.253.119 gist.github.com</code></pre>
-<p>与此同时问题就又来了，居然保存不了！他还给亲切的提示了你没有权限保存，请向管理员申请。自己管自己？<img src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>各种说通过右键属性更改权限的办法都试了，但是都没用。</p>
-<p>最后一个有效的办法就是右键win的图标，找到Windows PowerSheell（管理员）注意是<strong>管理员</strong>！然后输入”notepad hosts”即可编辑保存了。<br>到此这个问题就完美解决啦</p>
+              <h2 id="axios的基本使用"><a href="#axios的基本使用" class="headerlink" title="axios的基本使用"></a>axios的基本使用</h2><p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
+<p>最简单的axios写法如下</p>
+<pre><code class="hljs javascript">axios.get(<span class="hljs-string">'url'</span>)
+  .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(response);
+  &#125;)
+  .catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">console</span>.log(error);
+  &#125;);</code></pre>
+
+
+<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
+<h3 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h3><p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>最常见的就是当域名不同时（如下）</p>
+<pre><code class="hljs plain">www.abc.com 访问 www.def.com</code></pre>
+
+<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
+<h3 id="如何解决跨域问题"><a href="#如何解决跨域问题" class="headerlink" title="如何解决跨域问题"></a>如何解决跨域问题</h3><p>这里分为vue cli2与 vue cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
+<h4 id="STEP1"><a href="#STEP1" class="headerlink" title="STEP1"></a>STEP1</h4><p>修改/创建配置文件</p>
+<h5 id="vue-cli2"><a href="#vue-cli2" class="headerlink" title="vue cli2"></a>vue cli2</h5><p>将config文件夹下的index.js打开，写入代码如下</p>
+<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考</a></p>
+<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
+<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
+<pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = &#123;
+  devServer: &#123;
+    proxy: &#123;
+      <span class="hljs-string">'/api'</span>: &#123;
+        target: <span class="hljs-string">'https://url.com'</span>, <span class="hljs-comment">//对应自己的接口</span>
+        changeOrigin: <span class="hljs-literal">true</span>,
+        ws: <span class="hljs-literal">true</span>,
+        pathRewrite: &#123;
+          <span class="hljs-string">'^/api'</span>: <span class="hljs-string">''</span>
+        &#125;
+        <span class="hljs-comment">//这里的名字可以自定义（api）</span>
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre>
+
+<h5 id="vue-cli3-4"><a href="#vue-cli3-4" class="headerlink" title="vue cli3/4"></a>vue cli3/4</h5><p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
+<h4 id="STEP2"><a href="#STEP2" class="headerlink" title="STEP2"></a>STEP2</h4><p>创建一个js文件名字随意，大致代码如下</p>
+<p>axios更多的实例请求配置详见：<a href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明</a></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">"axios"</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">request</span>(<span class="hljs-params">config</span>) </span>&#123;
+  创建一个axios实例
+    <span class="hljs-keyword">var</span> instance = axios.create(&#123;
+        method: <span class="hljs-string">'get'</span>,<span class="hljs-comment">//传输方式（get/post）</span>
+        params: &#123;
+          <span class="hljs-comment">//需要传递的参数写在这里</span>
+          name:<span class="hljs-string">'jhao'</span>
+        &#125;,
+        headers: &#123;
+            <span class="hljs-string">'content-type'</span>: <span class="hljs-string">'text/plain:charset=UTF-8'</span>
+        &#125;
+    &#125;);
+
+    <span class="hljs-keyword">return</span> instance(config)<span class="hljs-comment">//返回参数</span>
+&#125;</code></pre>
+
+<h4 id="STEP3"><a href="#STEP3" class="headerlink" title="STEP3"></a>STEP3</h4><p>在main.js中导入STEP2的文件</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; request &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">'./api/request'</span>
+<span class="hljs-comment">//换成自己的js文件</span>
+
+request(<span class="hljs-string">'/api/cgi-bin/musicu.fcg'</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span>&#123;
+  <span class="hljs-built_in">console</span>.log(res);
+&#125;)</code></pre>
+
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
 
             </article>
             <hr>
@@ -212,7 +269,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/GitHub/">GitHub</a>
+                      <a class="hover-with-bg" href="/categories/vue/">vue</a>
                     
                   </div>
                 
@@ -220,7 +277,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/GitHub/">GitHub</a>
+                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
                     
                   </div>
                 
@@ -233,9 +290,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/02/02/git22%E7%AB%AF%E5%8F%A3/">
+                      <a href="/2020/01/31/github%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E9%97%AE%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Connecting to github.com [IP ADDRESS] port 22.</span>
+                        <span class="hidden-mobile">Github无法访问问题解决</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -243,8 +300,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/01/12/axios/">
-                        <span class="hidden-mobile">axios的基本使用</span>
+                      <a href="/2019/11/09/github/">
+                        <span class="hidden-mobile">Github使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -403,7 +460,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Github无法访问问题解决&nbsp;",
+        "axios的基本使用&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
