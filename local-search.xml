@@ -154,6 +154,31 @@
   
   
   <entry>
+    <title>axios get与post请求</title>
+    <link href="/2020/02/18/axios%20get%E4%B8%8Epost%E8%AF%B7%E6%B1%82/"/>
+    <url>/2020/02/18/axios%20get%E4%B8%8Epost%E8%AF%B7%E6%B1%82/</url>
+    
+    <content type="html"><![CDATA[<h2 id="axios-get与post请求"><a href="#axios-get与post请求" class="headerlink" title="axios get与post请求"></a>axios get与post请求</h2><h4 id="get请求"><a href="#get请求" class="headerlink" title="get请求"></a>get请求</h4><p><em>/api</em>:url地址</p><p><em>params</em>:{}中写参数</p><p><em>response</em>:处理返回结果</p><pre><code class="hljs javascript">axios.get(<span class="hljs-string">'/api'</span>, &#123;                params: &#123;                    content:<span class="hljs-string">''</span>                &#125;,            &#125;).then(                response =&gt; &#123;                    <span class="hljs-built_in">console</span>.log(response)                &#125;)</code></pre><h4 id="post请求"><a href="#post请求" class="headerlink" title="post请求"></a>post请求</h4><p>qs.stringify()将对象 序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p><pre><code class="hljs javascript">axios.post(<span class="hljs-string">'/api/api/login'</span>, qs.stringify(                                &#123;                                        content:<span class="hljs-string">""</span>                                &#125;),                                &#123;                                    headers: &#123;                                        <span class="hljs-string">"CSRF-token"</span>:<span class="hljs-string">""</span>                                        <span class="hljs-comment">//headers发送cookies信息</span>                                    &#125;                                &#125;, )                            .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;                                <span class="hljs-comment">//处理返回信息</span>                            &#125;);</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Connecting to github.com [IP ADDRESS] port 22.</title>
     <link href="/2020/02/02/git22%E7%AB%AF%E5%8F%A3/"/>
     <url>/2020/02/02/git22%E7%AB%AF%E5%8F%A3/</url>
