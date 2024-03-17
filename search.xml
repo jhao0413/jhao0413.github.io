@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>axios get与post请求</title>
+    <url>/posts/9143/</url>
+    <content><![CDATA[<h2 id="axios-get与post请求">axios get与post请求</h2>
+<h4 id="get请求">get请求</h4>
+<p><em>/api</em>:url地址</p>
+<p><em>params</em>:{}中写参数</p>
+<p><em>response</em>:处理返回结果</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'/api'</span>, {</span><br><span class="line">                <span class="attr">params</span>: {</span><br><span class="line">                    <span class="attr">content</span>:<span class="string">''</span></span><br><span class="line">                },</span><br><span class="line">            }).<span class="title function_">then</span>(</span><br><span class="line">                <span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">                })</span><br></pre></td></tr></table></figure></div>
+<h4 id="post请求">post请求</h4>
+<p>qs.stringify()将对象
+序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(<span class="string">'/api/api/login'</span>, qs.<span class="title function_">stringify</span>(</span><br><span class="line">                                {</span><br><span class="line">                                        <span class="attr">content</span>:<span class="string">""</span></span><br><span class="line">                                }),</span><br><span class="line">                                {</span><br><span class="line">                                    <span class="attr">headers</span>: {</span><br><span class="line">                                        <span class="string">"CSRF-token"</span>:<span class="string">""</span></span><br><span class="line">                                        <span class="comment">//headers发送cookies信息</span></span><br><span class="line">                                    }</span><br><span class="line">                                }, )</span><br><span class="line">                            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                                <span class="comment">//处理返回信息</span></span><br><span class="line">                            });</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github无法访问问题解决</title>
+    <url>/posts/47938/</url>
+    <content><![CDATA[<h1 id="github竟拒我于门外">Github竟拒我于门外</h1>
+<h3 id="手机可以访问但电脑不可以">手机可以访问但电脑不可以？</h3>
+<p>至于为什么有了这篇帖子咱们还得从一只蝙蝠说起...</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/17bf778d9f5e9a4eff93d7edc496dd1a.jpg"></p>
+<p>从过年之后就再也没踏出过家门一步，吃了睡睡了吃的日子到了今天发现有一丝丝的颓废，于是满心欢喜的打开vs
+code写写代码，git命令到git push却发现无法提交。</p>
+<p>于是我电脑尝试打开官网看看居然得到如下结果 <img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.webp">
+第一时间想到是不是要挂小飞机了，但是打开还是无济于事，抱着试一试的心态我用手机打开了GitHub的官网？？？手机没挂小飞机也能进？</p>
+<h3 id="解决办法">解决办法</h3>
+<p>于是在网上找了各种办法，最后看到了一个靠谱的办法就是修改host文件（文件路径：C:）
+将一下ip粘贴到hosts文件就可以了</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.118 gist.github.com</span><br><span class="line">192.30.253.119 gist.github.com</span><br></pre></td></tr></table></figure></div>
+<p>与此同时问题就又来了，居然保存不了！他还给亲切的提示了你没有权限保存，请向管理员申请。自己管自己？<img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.jpg"></p>
+<p>各种说通过右键属性更改权限的办法都试了，但是都没用。</p>
+<p>最后一个有效的办法就是右键win的图标，找到Windows
+PowerSheell（管理员）注意是<strong>管理员</strong>！然后输入"notepad
+hosts"即可编辑保存了。 到此这个问题就完美解决啦</p>
+]]></content>
+      <categories>
+        <category>github</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>WIFI杀手制作</title>
+    <url>/posts/3560/</url>
+    <content><![CDATA[<h1 id="wifi杀手">WIFI杀手！</h1>
+<p>高中十分喜欢的一个小玩意，拿出来记录一下，百度上教程比较少，也比较杂乱，那就自己写一个吧。</p>
+<h3 id="制作工具">制作工具</h3>
+<p>既然高中都能做，那也可想而知，制作成本很低，而且容易操作，手机也可以完成刷入WIFI杀手的一系列操作</p>
+<ol type="1">
+<li>esp8266开发板一个（4MB的版本，外接天线或者不外接天线的均可，但一定要是4Mb版本的）</li>
+<li>一台电脑或者手机（手机就在这里不讲了，手机也可以做但是比电脑麻烦一点</li>
+<li>一根可以数据线（有的线只支持充电，不支持传输数据，遇到这种情况换一根就好了，不过现在这种情况也很少了）</li>
+</ol>
+<p>准备好这些我们就可以开始WIFI杀手的制作啦</p>
+<h3 id="刷入wifi杀手固件">刷入WIFI杀手固件</h3>
+<p>做这些准备工作之前，先下载</p>
+<ol type="1">
+<li>首先，将esp8266连接电脑，这时esp8266会常亮蓝灯</li>
+<li>解压我发的文件，如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/1.png">
+<strong>安装烧录工具文件夹里的应用程序</strong>，现在的电脑一般是54位的，除了一些学校的机房可能还是32位，实在不清楚自己电脑的话，百度一下</li>
+</ol>
+<p><strong>注意一下另一个文件就是WIFI杀手的固件</strong></p>
+<ol start="3" type="1">
+<li>现在打开烧录工具，应该看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/2.png">可能你们的端口不是COM3，也可能时COM4，这个无所谓，只要是插esp8266的那个口就行，要是烧录失败了，就换另外一个口呗，或者自己查一下esp8266插的是哪个口</li>
+<li>现在点击Config，然后点击那个齿轮，选择刚刚的WIFI烧录固件<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/3.png"></li>
+<li>然后点击Advanced，将参数修改为如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/4.png"></li>
+<li>最后再点Operation，Flash刷入就ok（在刷入的过程中，esp8266会蓝灯闪烁为正常现象，刷完后，不闪烁）</li>
+</ol>
+<p>就此固件刷入成功！</p>
+<h3 id="wifi杀手的使用">WIFI杀手的使用</h3>
+<ol type="1">
+<li>下载我发的那个文件夹里的app安装</li>
+<li>打开app看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/5.jpg"></li>
+<li>汉化版的，我就讲一下大概过程吧，搜索WIFI-&gt;选定用户-&gt;选择攻击方式-&gt;攻击
+模拟信号的话直接在攻击目录下输入参数模拟即可
+esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
+</ol>
+]]></content>
+      <categories>
+        <category>esp8266</category>
+      </categories>
+      <tags>
+        <tag>esp8266</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github使用</title>
+    <url>/posts/60077/</url>
+    <content><![CDATA[<h1 id="github使用">GitHub使用</h1>
+<h3 id="什么是github">什么是GitHub</h3>
+<p>GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git
+作为唯一的版本库格式进行托管，故名GitHub。作为开源代码库以及版本控制系统，Github拥有超过900万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。
+如前所述，作为一个分布式的版本控制系统，在Git中并不存在主库这样的概念，每一份复制出的库都可以独立使用，任何两个库之间的不一致之处都可以进行合并。（论百度百科的重要性）</p>
+<h3 id="创建仓库">创建仓库</h3>
+<ol type="1">
+<li><a class="link" href="https://github.com">Github传送门 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，进入网站注册账号，进入主页后，点击New，如下图<img lazyload="" src="/images/loading.svg" data-src="/img/github/1.png"></li>
+<li>创建仓库，Repository name处写仓库名，然后创建即可</li>
+</ol>
+<h3 id="安装git">安装git</h3>
+<ol type="1">
+<li><a class="link" href="https://git-scm.com/downloads">git下载传送门 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,下载完成后一路next即可</li>
+<li>安装成功后，打开Git
+Bash会弹出一个类似于命令的窗口，安装成功后在窗口输入</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name "Your Name"</span><br><span class="line">$ git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure></div>
+<p>你的名字和邮箱</p>
+<h3 id="创建本地仓库">创建本地仓库</h3>
+<ol type="1">
+<li>创建一个空文件夹然后输入</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure></div>
+<p>learnfit就是你之前在GitHub创建的仓库名 2. 通过git
+init命令把这个目录变成Git可以管理的仓库</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure></div>
+<ol start="3" type="1">
+<li>这时候在空目录下创建一个readme.txt,内容随意，规范一下可以写成</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure></div>
+<ol start="4" type="1">
+<li>git add,把文件添加到仓库</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure></div>
+<p>5.git commit，将文件提交到仓库</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git commit -m "wrote a readme file"</span><br></pre></td></tr></table></figure></div>
+<p>-m后面输入的是本次提交的说明，可以输入任意内容</p>
+<h3 id="远程仓库">远程仓库</h3>
+<ol type="1">
+<li>创建ssh key</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure></div>
+<p>记得把邮箱改成自己的，然后再用户目录就应该可以找到.ssh的文件夹（主用户目录：C盘下用户的文件夹，然后打开你用户名的文件夹），里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH
+Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+<ol start="2" type="1">
+<li>填写ssh key 登陆GitHub，点击setting，打开“SSH
+Keys”页面：然后，点“New SSH
+Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。<img lazyload="" src="/images/loading.svg" data-src="/img/github/2.png">
+现在就可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
+3.现在在本地仓库运行命令</li>
+</ol>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@github.com:username/xxx.git</span><br></pre></td></tr></table></figure></div>
+<p>username改成自己的用户名，git就是你刚刚创建的仓库名（其实这些命令创建仓库后GitHub就会提示你）</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></div>
+<p>这样就推送完成了，以后的上传分为git add，git commit，git push</p>
+<p>我讲的没有那么详细也可以看看<a class="link" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰Git教程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+      <categories>
+        <category>GitHub</category>
+      </categories>
+      <tags>
+        <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo博客搭建</title>
+    <url>/posts/41646/</url>
+    <content><![CDATA[<h2 id="为什么选择hexo">为什么选择Hexo</h2>
+<p>之前我也试过其他的博客系统，例如：typecho，wordpress等等，但是因为之前是高中，
+也没有太多的精力去打理，这些博客都需要你有一台服务器或者是虚拟主机，还要一个域名。
+自己没钱一下买一两年（当时也没必要，也不写啥东西）但是后来准备写的时候发现已经过期了。
+重新买回来之后还是要重装一遍，而且之前的数据也没有了，但是hexo就不需要考虑这些啦。
+你只需要在GitHub上有一个账号就足以。</p>
+<h2 id="hexo是什么">Hexo是什么</h2>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用
+Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<h2 id="hexo搭建">Hexo搭建</h2>
+<h3 id="安装git">1、安装git</h3>
+<p>windows：到git官网下载安装即可，<a class="link" href="https://git-scm.com/downloads">Download git <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，
+下载安装成功后鼠标右键就可以看到有Git
+Bash的命令行工具，以后使用git都在这进行。 安装成功后可以使用git
+--version查看git版本。(别的系统我也没用过，就只讲windows啦)</p>
+<h3 id="安装nodejs">2、安装Nodejs</h3>
+<p><a class="link" href="http://nodejs.cn/download/">Node.js下载地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，根据需要下载安装即可，安装完成之后可以打开命令行</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure></div>
+<p>可以检查一下是否安装成功，安装成功会显示版本号</p>
+<h3 id="安装hexo">3、安装hexo</h3>
+<p>首先创建一个文件夹，名字随意我这里就文件夹的名字就以blog来说了，打开你创建的文件夹，
+右键点进git bash，输入以下命令</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div>
+<p>安装完后一样可以通过</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure></div>
+<p>查看是否安装成功</p>
+<p>初始化hexo</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure></div>
+<p>这里的blog是在你刚刚创建的blog文件夹的子文件夹，名字随意 接下来</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></div>
+<p>完成后大概会有以下文件，我的可能会多几个，不要在意，我后面又搞了其他东西</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161239.png"></p>
+<p>接着继续命令行里输入</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo -g</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure></div>
+<p>hexo -g意思是生成静态文件 hexo server启动服务 CTRL+c关闭服务
+这时候浏览器输入localhost:4000就可以看到博客啦</p>
+<h3 id="注册github创建仓库">4、注册GitHub创建仓库</h3>
+<p><a class="link" href="https://github.com/">GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>没有账号的话赶快去注册一个吧，
+注册成功后创建一个仓库</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227161927.png"></p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162056.png"></p>
+<p>仓库的名字不能随意写，username.github.io,username是你的用户名，写完后点击Create
+repository</p>
+<h3 id="将ssh添加到github">5、将SSh添加到GitHub</h3>
+<p>在命令行中输入以下内容（别照抄直接回车！）</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.name "name"</span><br><span class="line">git config --global user.email "email"</span><br></pre></td></tr></table></figure></div>
+<p>name是你GitHub的用户名，Email是你GitHub的邮箱
+然后创建ssh，一直回车就好了</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C"email"</span><br></pre></td></tr></table></figure></div>
+<p>这里的Email和上面的同理 现在你的电脑里就有一个.ssh的文件夹</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227162818.png"></p>
+<p>id_rsa是电脑的私人密钥，id_rsa.pub是公共密钥，当然是用公共密钥啦，现在将id_rsa.pub的内容复制到GitHub，
+GitHub中在右上角打开setting，里面有SSH and GPG
+keys点击后new一个，名字随意</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200227163223.png"></p>
+<p>在gitbash中检查是否安装成功</p>
+<h3 id="将hexo部署到github">6、将hexo部署到GitHub</h3>
+<p>这时候打开刚刚的文件夹找到配置文件_config.yml，文件的最后修改为如下内容</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/UserName/UserName.github.io.git //username是你的用户名</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></div>
+<p>这里有两种方式一种是https一种是.git的方式，第一种每次需要输入用户名密码，第二种不需要。
+现在安装部署命令</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></div>
+<p>现在只要依次执行以下命令即可</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></div>
+<p>hexo
+c(clean)清除你之前生成的东西，最好每次清理一下，以免发生不必要的错误
+hexo g(generate)生成静态文件 hexo d(deploy)部署文章 最后出现INFO Deploy
+done:git就是部署成功了。现在打开http://username.github.io
+（username是你的用户名）就可以看到你的博客啦 你的博客就成功部署了
+关于hexo的更多操作可以加我询问哈~</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios的基本使用</title>
+    <url>/posts/55319/</url>
+    <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js
+中。</p>
+<p>最简单的axios写法如下</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'url'</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  });</span><br></pre></td></tr></table></figure></div>
+<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
+<h3 id="什么是跨域">什么是跨域</h3>
+<p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>最常见的就是当域名不同时（如下）</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">www.abc.com 访问 www.def.com</span><br></pre></td></tr></table></figure></div>
+<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
+<h3 id="如何解决跨域问题">如何解决跨域问题</h3>
+<p>这里分为vue cli2与 vue
+cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
+<h4 id="step1">STEP1</h4>
+<p>修改/创建配置文件</p>
+<h5 id="vue-cli2">vue cli2</h5>
+<p>将config文件夹下的index.js打开，写入代码如下</p>
+<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a class="link" href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
+<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">'/api'</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">'https://url.com'</span>, <span class="comment">//对应自己的接口</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//这里的名字可以自定义（api）</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h5 id="vue-cli34">vue cli3/4</h5>
+<p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
+<h4 id="step2">STEP2</h4>
+<p>创建一个js文件名字随意，大致代码如下</p>
+<p>axios更多的实例请求配置详见：<a class="link" href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">config</span>) {</span><br><span class="line">  创建一个axios实例</span><br><span class="line">    <span class="keyword">var</span> instance = axios.<span class="title function_">create</span>({</span><br><span class="line">        <span class="attr">method</span>: <span class="string">'get'</span>,<span class="comment">//传输方式（get/post）</span></span><br><span class="line">        <span class="attr">params</span>: {</span><br><span class="line">          <span class="comment">//需要传递的参数写在这里</span></span><br><span class="line">          <span class="attr">name</span>:<span class="string">'jhao'</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">headers</span>: {</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'text/plain:charset=UTF-8'</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">instance</span>(config)<span class="comment">//返回参数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h4 id="step3">STEP3</h4>
+<p>在main.js中导入STEP2的文件</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { request } <span class="keyword">from</span> <span class="string">'./api/request'</span></span><br><span class="line"><span class="comment">//换成自己的js文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">request</span>(<span class="string">'/api/cgi-bin/musicu.fcg'</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>{</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h4 id="结束">结束</h4>
+<p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
+    <url>/posts/61269/</url>
+    <content><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置">vue cli 解决跨域 线上
+nginx 反向代理配置</h2>
+<h4 id="开发环境跨域">1、开发环境跨域</h4>
+<p>在<strong>vue
+cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
+<p>在<strong>vue
+cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
+<p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
+<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>信院成绩录入辅助系统使用教程</title>
+    <url>/posts/9495/</url>
+    <content><![CDATA[<h1 id="成绩表格式规范">成绩表格式规范</h1>
+<p>百分比成绩表与5档成绩表的excel文件有些许不同，请注意格式规范</p>
+<h2 id="百分比成绩表">百分比成绩表</h2>
+<p>一共四列从左至右依次为：学号、姓名、平时成绩、期末成绩。</p>
+<p>学生顺序最好以成绩录入网站的顺序为主，excel文件可随意命名。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20220609103323.png"></p>
+<h2 id="档成绩表">5档成绩表</h2>
+<p>一共四列从左至右依次为：学号、姓名、平时成绩、期末成绩。</p>
+<p>成绩录入为：优秀-良好-中等-及格-不及格。</p>
+<p>学生顺序最好以成绩录入网站的顺序为主，excel文件可随意命名。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20220616102626.png"></p>
+<h1 id="插件使用指南">插件使用指南</h1>
+<p>下图为成绩录入辅助系统的主页面，选择excel文件的成绩表（5档与百分比均可）</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20220616101811.png"></p>
+<p>上传成功后插件底部出现上传的文件名，请老师根据需求以及上传的文件选择录入方式，选择后成绩即录入成功。</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20220616101854.png"></p>
+<h1 id="注意事项">注意事项</h1>
+<ul>
+<li>excel文件不可打开多个工作表，请在上传前确认当前excel文件中只有一个工作表。
+<img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20220616102125.png"></li>
+<li>如遇到成绩录入无响应时，请刷新页面重试，若问题任未解决请联系作者反馈。</li>
+<li>请各位老师在编辑成绩表时，注意在文档前后不要出现合并单元格等非必要的格式，否则在读取时也会算作一行数据。（不会对录入成绩造成影响，仅在最后弹窗提醒时可能出现统计录入数据条数出错）</li>
+</ul>
+]]></content>
+      <categories>
+        <category>chrome</category>
+      </categories>
+      <tags>
+        <tag>Chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue+element+阿里云oss图片上传</title>
+    <url>/posts/63894/</url>
+    <content><![CDATA[<h3 id="vueelement阿里云oss图片上传">vue+element+阿里云oss图片上传</h3>
+<h4 id="npm安装ali-oss">1、npm安装ali-oss</h4>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install ali-oss</span><br></pre></td></tr></table></figure></div>
+<h4 id="使用element的-upload-组件进行上传">2、使用element的 upload
+组件进行上传</h4>
+<p><em>html部分如下</em></p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"home"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-upload</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"upload-demo"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">action</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:http-request</span>=<span class="string">"fnUploadRequest"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">list-type</span>=<span class="string">"picture-card"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:on-preview</span>=<span class="string">"handlePictureCardPreview"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:on-remove</span>=<span class="string">"handleRemove"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-plus"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-upload</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">:visible.sync</span>=<span class="string">"dialogVisible"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">:src</span>=<span class="string">"dialogImageUrl"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p><em>js部分如下</em></p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="variable constant_">OSS</span> <span class="keyword">from</span> <span class="string">"ali-oss"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> {</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">      <span class="attr">dialogImageUrl</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">dialogVisible</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">disabled</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">fileList</span>: [],</span><br><span class="line">    };</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">methods</span>: {</span><br><span class="line">    <span class="title function_">handleRemove</span>(<span class="params">file, fileList</span>) {</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(file, fileList);</span><br><span class="line">    },</span><br><span class="line">    <span class="title function_">handlePictureCardPreview</span>(<span class="params">file</span>) {</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">dialogImageUrl</span> = file.<span class="property">url</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">dialogVisible</span> = <span class="literal">true</span>;</span><br><span class="line">    },</span><br><span class="line">    <span class="keyword">async</span> <span class="title function_">fnUploadRequest</span>(<span class="params">option</span>) {</span><br><span class="line">      <span class="keyword">try</span> {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"参数"</span>, option);</span><br><span class="line">        <span class="comment">// 获取OSS配置信息</span></span><br><span class="line">        <span class="keyword">let</span> client = <span class="keyword">new</span> <span class="title function_">OSS</span>({</span><br><span class="line">          <span class="attr">secure</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">accessKeyId</span>: <span class="string">""</span>, <span class="comment">//阿里云AccessKey ID</span></span><br><span class="line">          <span class="attr">accessKeySecret</span>: <span class="string">""</span>, <span class="comment">//阿里云accessKeySecret</span></span><br><span class="line">          <span class="attr">bucket</span>: <span class="string">""</span>, <span class="comment">//bucket域名</span></span><br><span class="line">          <span class="attr">region</span>: <span class="string">""</span>, <span class="comment">//oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）</span></span><br><span class="line">        });</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">true</span>;</span><br><span class="line">          </span><br><span class="line">          <span class="comment">//获取当前时间（为了保证不出现重复文件名导致文件覆盖）</span></span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">getFormatDate</span>(<span class="params"></span>) {</span><br><span class="line">          <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">          <span class="keyword">var</span> month = date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span><br><span class="line">          <span class="keyword">var</span> strDate = date.<span class="title function_">getDate</span>();</span><br><span class="line">          <span class="keyword">if</span> (month &gt;= <span class="number">1</span> &amp;&amp; month &lt;= <span class="number">9</span>) {</span><br><span class="line">            month = <span class="string">"0"</span> + month;</span><br><span class="line">          }</span><br><span class="line">          <span class="keyword">if</span> (strDate &gt;= <span class="number">0</span> &amp;&amp; strDate &lt;= <span class="number">9</span>) {</span><br><span class="line">            strDate = <span class="string">"0"</span> + strDate;</span><br><span class="line">          }</span><br><span class="line">          <span class="keyword">var</span> currentDate =</span><br><span class="line">            date.<span class="title function_">getFullYear</span>() +</span><br><span class="line">            <span class="string">"-"</span> +</span><br><span class="line">            month +</span><br><span class="line">            <span class="string">"-"</span> +</span><br><span class="line">            strDate +</span><br><span class="line">            <span class="string">" "</span> +</span><br><span class="line">            date.<span class="title function_">getHours</span>() +</span><br><span class="line">            <span class="string">":"</span> +</span><br><span class="line">            date.<span class="title function_">getMinutes</span>() +</span><br><span class="line">            <span class="string">":"</span> +</span><br><span class="line">            date.<span class="title function_">getSeconds</span>();</span><br><span class="line">          <span class="keyword">return</span> currentDate;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> file = option.<span class="property">file</span>;</span><br><span class="line">        <span class="keyword">const</span> point = file.<span class="property">name</span>.<span class="title function_">lastIndexOf</span>(<span class="string">"."</span>);</span><br><span class="line">        <span class="keyword">let</span> suffix = file.<span class="property">name</span>.<span class="title function_">substr</span>(point);</span><br><span class="line">        <span class="keyword">let</span> fileName = file.<span class="property">name</span>.<span class="title function_">substr</span>(<span class="number">0</span>, point);</span><br><span class="line">        <span class="keyword">let</span> date = <span class="title function_">getFormatDate</span>();</span><br><span class="line">        <span class="keyword">let</span> fileNames = <span class="string">`<span class="subst">${fileName}</span>_<span class="subst">${date}</span><span class="subst">${suffix}</span>`</span>;</span><br><span class="line">        <span class="keyword">let</span> relativePath = <span class="string">"blog/"</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"oss客户端"</span>, client);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"文件"</span>, file);</span><br><span class="line">        <span class="comment">// 分片上传文件</span></span><br><span class="line">        <span class="keyword">let</span> ret = <span class="keyword">await</span> client.<span class="title function_">multipartUpload</span>(relativePath + fileNames, file, {</span><br><span class="line">          <span class="attr">progress</span>: <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">p</span>) {</span><br><span class="line">            <span class="keyword">let</span> e = {};</span><br><span class="line">            e.<span class="property">percent</span> = p * <span class="number">100</span>;</span><br><span class="line">            option.<span class="title function_">onProgress</span>(e);</span><br><span class="line">          },</span><br><span class="line">        });</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ret.<span class="property">res</span>.<span class="property">statusCode</span> === <span class="number">200</span>) {</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"上传成功"</span>, ret);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">          option.<span class="title function_">onError</span>(<span class="string">"上传失败"</span>);</span><br><span class="line">        }</span><br><span class="line">      } <span class="keyword">catch</span> (error) {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(error);</span><br><span class="line">        option.<span class="title function_">onError</span>(<span class="string">"上传失败"</span>);</span><br><span class="line">      }</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">false</span>;</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<p><strong>全部代码</strong></p>
+<div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"home"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-upload</span></span></span><br><span class="line"><span class="tag">      <span class="attr">class</span>=<span class="string">"upload-demo"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">action</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:http-request</span>=<span class="string">"fnUploadRequest"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">list-type</span>=<span class="string">"picture-card"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:on-preview</span>=<span class="string">"handlePictureCardPreview"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:on-remove</span>=<span class="string">"handleRemove"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-plus"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-upload</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">:visible.sync</span>=<span class="string">"dialogVisible"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">:src</span>=<span class="string">"dialogImageUrl"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="variable constant_">OSS</span> <span class="keyword">from</span> <span class="string">"ali-oss"</span>;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> {</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) {</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> {</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">dialogImageUrl</span>: <span class="string">""</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">dialogVisible</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">disabled</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">loading</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">fileList</span>: [],</span></span><br><span class="line"><span class="language-javascript">    };</span></span><br><span class="line"><span class="language-javascript">  },</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: {</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">handleRemove</span>(<span class="params">file, fileList</span>) {</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(file, fileList);</span></span><br><span class="line"><span class="language-javascript">    },</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">handlePictureCardPreview</span>(<span class="params">file</span>) {</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">dialogImageUrl</span> = file.<span class="property">url</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">dialogVisible</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">    },</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">async</span> <span class="title function_">fnUploadRequest</span>(<span class="params">option</span>) {</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">try</span> {</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"参数"</span>, option);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 获取OSS配置信息</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> client = <span class="keyword">new</span> <span class="title function_">OSS</span>({</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">secure</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">accessKeyId</span>: <span class="string">""</span>, <span class="comment">//阿里云AccessKey ID</span></span></span><br><span class="line"><span class="language-javascript">          <span class="attr">accessKeySecret</span>: <span class="string">""</span>, <span class="comment">//阿里云accessKeySecret</span></span></span><br><span class="line"><span class="language-javascript">          <span class="attr">bucket</span>: <span class="string">""</span>, <span class="comment">//bucket域名</span></span></span><br><span class="line"><span class="language-javascript">          <span class="attr">region</span>: <span class="string">""</span>, <span class="comment">//oss地区，如：oss-cn-beijing。（注：不用加.aliyun.com）</span></span></span><br><span class="line"><span class="language-javascript">        });</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">getFormatDate</span>(<span class="params"></span>) {</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">var</span> month = date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">var</span> strDate = date.<span class="title function_">getDate</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (month &gt;= <span class="number">1</span> &amp;&amp; month &lt;= <span class="number">9</span>) {</span></span><br><span class="line"><span class="language-javascript">            month = <span class="string">"0"</span> + month;</span></span><br><span class="line"><span class="language-javascript">          }</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">if</span> (strDate &gt;= <span class="number">0</span> &amp;&amp; strDate &lt;= <span class="number">9</span>) {</span></span><br><span class="line"><span class="language-javascript">            strDate = <span class="string">"0"</span> + strDate;</span></span><br><span class="line"><span class="language-javascript">          }</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">var</span> currentDate =</span></span><br><span class="line"><span class="language-javascript">            date.<span class="title function_">getFullYear</span>() +</span></span><br><span class="line"><span class="language-javascript">            <span class="string">"-"</span> +</span></span><br><span class="line"><span class="language-javascript">            month +</span></span><br><span class="line"><span class="language-javascript">            <span class="string">"-"</span> +</span></span><br><span class="line"><span class="language-javascript">            strDate +</span></span><br><span class="line"><span class="language-javascript">            <span class="string">" "</span> +</span></span><br><span class="line"><span class="language-javascript">            date.<span class="title function_">getHours</span>() +</span></span><br><span class="line"><span class="language-javascript">            <span class="string">":"</span> +</span></span><br><span class="line"><span class="language-javascript">            date.<span class="title function_">getMinutes</span>() +</span></span><br><span class="line"><span class="language-javascript">            <span class="string">":"</span> +</span></span><br><span class="line"><span class="language-javascript">            date.<span class="title function_">getSeconds</span>();</span></span><br><span class="line"><span class="language-javascript">          <span class="keyword">return</span> currentDate;</span></span><br><span class="line"><span class="language-javascript">        }</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> file = option.<span class="property">file</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">const</span> point = file.<span class="property">name</span>.<span class="title function_">lastIndexOf</span>(<span class="string">"."</span>);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> suffix = file.<span class="property">name</span>.<span class="title function_">substr</span>(point);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> fileName = file.<span class="property">name</span>.<span class="title function_">substr</span>(<span class="number">0</span>, point);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> date = <span class="title function_">getFormatDate</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> fileNames = <span class="string">`<span class="subst">${fileName}</span>_<span class="subst">${date}</span><span class="subst">${suffix}</span>`</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> relativePath = <span class="string">"blog/"</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"oss客户端"</span>, client);</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"文件"</span>, file);</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 分片上传文件</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">let</span> ret = <span class="keyword">await</span> client.<span class="title function_">multipartUpload</span>(relativePath + fileNames, file, {</span></span><br><span class="line"><span class="language-javascript">          <span class="attr">progress</span>: <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">p</span>) {</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">let</span> e = {};</span></span><br><span class="line"><span class="language-javascript">            e.<span class="property">percent</span> = p * <span class="number">100</span>;</span></span><br><span class="line"><span class="language-javascript">            option.<span class="title function_">onProgress</span>(e);</span></span><br><span class="line"><span class="language-javascript">          },</span></span><br><span class="line"><span class="language-javascript">        });</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (ret.<span class="property">res</span>.<span class="property">statusCode</span> === <span class="number">200</span>) {</span></span><br><span class="line"><span class="language-javascript">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"上传成功"</span>, ret);</span></span><br><span class="line"><span class="language-javascript">        } <span class="keyword">else</span> {</span></span><br><span class="line"><span class="language-javascript">          option.<span class="title function_">onError</span>(<span class="string">"上传失败"</span>);</span></span><br><span class="line"><span class="language-javascript">        }</span></span><br><span class="line"><span class="language-javascript">      } <span class="keyword">catch</span> (error) {</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">error</span>(error);</span></span><br><span class="line"><span class="language-javascript">        option.<span class="title function_">onError</span>(<span class="string">"上传失败"</span>);</span></span><br><span class="line"><span class="language-javascript">      }</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">loading</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">    },</span></span><br><span class="line"><span class="language-javascript">  },</span></span><br><span class="line"><span class="language-javascript">};</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.home</span> {</span></span><br><span class="line"><span class="language-css">  <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">}</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.upload-demo</span> {</span></span><br><span class="line"><span class="language-css">  <span class="attribute">width</span>: <span class="number">30%</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">height</span>: <span class="number">30%</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="language-css">}</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>wangeditor</title>
+    <url>/posts/28431/</url>
+    <content><![CDATA[<h2 id="wangeditor基本使用">wangeditor基本使用</h2>
+<p>最近做公安项目的时候需要做一个富文本编辑器实现文章编辑，图片上传等功能。一开始选择了quill，但是做到最后在图片上传的时候出现了跨域的问题（现在回想起来应该是当时后端接口没有写好），当时就想换个别的富文本编辑器试试，最后找到了wangeditor，主要看上了它的轻量，中文文档等等。</p>
+<h5 id="vue中安装wangeditor">1、vue中安装wangEditor</h5>
+<p>使用npm安装：npm install wangeditor --save</p>
+<h5 id="创建公共组件">2、创建公共组件</h5>
+<p>在components中创建wangEnduit.vue文件</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template lang="html"&gt;</span><br><span class="line">  &lt;div class="editor"&gt;</span><br><span class="line">    &lt;div ref="toolbar" class="toolbar"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div ref="editor" class="text"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import E from 'wangeditor'</span><br><span class="line">  export default {</span><br><span class="line">    name: 'editoritem',</span><br><span class="line">    data() {</span><br><span class="line">      return {</span><br><span class="line">        // uploadPath,</span><br><span class="line">        editor: null,</span><br><span class="line">        info_: null</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    model: {</span><br><span class="line">      prop: 'value',</span><br><span class="line">      event: 'change'</span><br><span class="line">    },</span><br><span class="line">    props: {</span><br><span class="line">      value: {</span><br><span class="line">        type: String,</span><br><span class="line">        default: ''</span><br><span class="line">      },</span><br><span class="line">      isClear: {</span><br><span class="line">        type: Boolean,</span><br><span class="line">        default: false</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    watch: {</span><br><span class="line">      isClear(val) {</span><br><span class="line">        // 触发清除文本域内容</span><br><span class="line">        if (val) {</span><br><span class="line">          this.editor.txt.clear()</span><br><span class="line">          this.info_ = null</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">      value: function(value) {</span><br><span class="line">        if (value !== this.editor.txt.html()) {</span><br><span class="line">          this.editor.txt.html(this.value)</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      //value为编辑框输入的内容，这里我监听了一下值，当父组件调用得时候，如果给value赋值了，子组件将会显示父组件赋给的值</span><br><span class="line">    },</span><br><span class="line">    mounted() {</span><br><span class="line">      this.seteditor()</span><br><span class="line">      this.editor.txt.html(this.value)</span><br><span class="line">    },</span><br><span class="line">    methods: {</span><br><span class="line">      seteditor() {</span><br><span class="line">        this.editor = new E(this.$refs.toolbar, this.$refs.editor)</span><br><span class="line">        console.log(this.editor);</span><br><span class="line">      //editor.config这里我使用的是wangeditor4，如果你使用的是wangeditor3将editor.config改为editor.customConfig即可</span><br><span class="line">        this.editor.config.uploadImgShowBase64 = false // base 64 存储图片</span><br><span class="line">        this.editor.config.uploadImgServer = 'http://127.0.0.1:8081/upload/img'// 配置服务器端地址</span><br><span class="line">        this.editor.config.uploadImgHeaders = { }// 自定义 header</span><br><span class="line">        this.editor.config.uploadFileName = 'img' // 后端接受上传文件的参数名</span><br><span class="line">        this.editor.config.uploadImgMaxSize = 2 * 1024 * 1024 // 将图片大小限制为 2M</span><br><span class="line">        this.editor.config.uploadImgMaxLength = 6 // 限制一次最多上传 3 张图片</span><br><span class="line">        this.editor.config.uploadImgTimeout = 3 * 60 * 1000 // 设置超时时间</span><br><span class="line"></span><br><span class="line">        // 配置菜单</span><br><span class="line">        this.editor.config.menus = [</span><br><span class="line">          'head', // 标题</span><br><span class="line">          'bold', // 粗体</span><br><span class="line">          'fontSize', // 字号</span><br><span class="line">          'fontName', // 字体</span><br><span class="line">          'italic', // 斜体</span><br><span class="line">          'underline', // 下划线</span><br><span class="line">          'strikeThrough', // 删除线</span><br><span class="line">          'foreColor', // 文字颜色</span><br><span class="line">          'backColor', // 背景颜色</span><br><span class="line">          'link', // 插入链接</span><br><span class="line">          'list', // 列表</span><br><span class="line">          'justify', // 对齐方式</span><br><span class="line">          'quote', // 引用</span><br><span class="line">          'emoticon', // 表情</span><br><span class="line">          'image', // 插入图片</span><br><span class="line">          'table', // 表格</span><br><span class="line">          'video', // 插入视频</span><br><span class="line">          'code', // 插入代码</span><br><span class="line">          'undo', // 撤销</span><br><span class="line">          'redo', // 重复</span><br><span class="line">          'fullscreen' // 全屏</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        this.editor.config.uploadImgHooks = {</span><br><span class="line">          fail: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 插入图片失败回调</span><br><span class="line">          },</span><br><span class="line">          success: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 图片上传成功回调</span><br><span class="line">          },</span><br><span class="line">          timeout: (xhr, editor) =&gt; {</span><br><span class="line">            // 网络超时的回调</span><br><span class="line">          },</span><br><span class="line">          error: (xhr, editor) =&gt; {</span><br><span class="line">            // 图片上传错误的回调</span><br><span class="line">          },</span><br><span class="line">          customInsert: (insertImg, result, editor) =&gt; {</span><br><span class="line">            // 图片上传成功，插入图片的回调</span><br><span class="line">            //result为上传图片成功的时候返回的数据，这里我打印了一下发现后台返回的是data：[{url:"路径的形式"},...]</span><br><span class="line">            // console.log(result.data[0].url)</span><br><span class="line">            //insertImg()为插入图片的函数</span><br><span class="line">             //循环插入图片</span><br><span class="line">            // for (let i = 0; i &lt; 1; i++) {</span><br><span class="line">              console.log(result.data.url)</span><br><span class="line">              let url = result.data.url</span><br><span class="line">              insertImg(url)</span><br><span class="line">            // }</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">        this.editor.config.onchange = (html) =&gt; {</span><br><span class="line">          this.info_ = html // 绑定当前逐渐地值</span><br><span class="line">          this.$emit('change', this.info_) // 将内容同步到父组件中</span><br><span class="line">        }</span><br><span class="line">        // 创建富文本编辑器</span><br><span class="line">        this.editor.create()</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang="css"&gt;</span><br><span class="line">  .editor {</span><br><span class="line">    width: 100%;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    position: relative;</span><br><span class="line">    z-index: 0;</span><br><span class="line">  }</span><br><span class="line">  .toolbar {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">  }</span><br><span class="line">  .text {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">    min-height: 500px;</span><br><span class="line">  }</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></div>
+<h5 id="在父组件中调用">3.在父组件中调用</h5>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;editor-bar v-model="detail" :isClear="isClear" @change="change"&gt;&lt;/editor-bar&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import EditorBar from '../components/wangEnduit'</span><br><span class="line">export default {</span><br><span class="line">components: { EditorBar },</span><br><span class="line">data() {</span><br><span class="line">      return {</span><br><span class="line">        isClear: false,</span><br><span class="line">        detail:""</span><br><span class="line">        }</span><br><span class="line">      },  </span><br><span class="line">methods: {</span><br><span class="line">  change(val) {</span><br><span class="line">      console.log(val)</span><br><span class="line">      </span><br><span class="line">    },</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>到这里前端代码就完成了，接下来是后端代码</p>
+<h5 id="nodejs代码">4、nodejs代码</h5>
+<p>下面是我所使用的包</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">"cors"</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">"body-parser"</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">var</span> bodyParse = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 设置图片存储路径</span></span><br><span class="line"><span class="keyword">var</span> storage = multer.<span class="title function_">diskStorage</span>({</span><br><span class="line">  <span class="attr">destination</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">'./images'</span>);</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">filename</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">`<span class="subst">${<span class="built_in">Date</span>.now()}</span>-<span class="subst">${file.originalname}</span>`</span>)</span><br><span class="line">  }</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加配置文件到muler对象。</span></span><br><span class="line"><span class="keyword">var</span> upload = <span class="title function_">multer</span>({</span><br><span class="line">  <span class="attr">storage</span>: storage</span><br><span class="line">});</span><br><span class="line"><span class="keyword">var</span> imgBaseUrl = <span class="string">'../'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 application/x-www-form-urlencoded 解析</span></span><br><span class="line"><span class="keyword">var</span> urlencodedParser = bodyParser.<span class="title function_">urlencoded</span>({</span><br><span class="line">  <span class="attr">extended</span>: <span class="literal">false</span>,</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.获取路由中间件对象</span></span><br><span class="line"><span class="keyword">let</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line">server.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">//图片，express设置文件相对路径</span></span><br><span class="line">server.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">'images'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解决跨域问题</span></span><br><span class="line">server.<span class="title function_">all</span>(<span class="string">'*'</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) {</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, POST, GET, DELETE, OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">method</span> == <span class="string">'OPTIONS'</span>) {</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="number">200</span>);</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="title function_">next</span>();</span><br><span class="line">  }</span><br><span class="line">});</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件上传请求处理，upload.array 支持多文件上传，第二个参数是上传文件数目</span></span><br><span class="line">.<span class="title function_">post</span>(<span class="string">'/upload/img'</span>, upload.<span class="title function_">array</span>(<span class="string">'img'</span>, <span class="number">2</span>), <span class="keyword">function</span> (<span class="params">req, res</span>) {</span><br><span class="line">    <span class="comment">// 读取上传的图片信息</span></span><br><span class="line">    <span class="keyword">var</span> files = req.<span class="property">files</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置返回结果</span></span><br><span class="line">    <span class="keyword">var</span> result = {};</span><br><span class="line">    <span class="keyword">if</span> (!files[<span class="number">0</span>]) {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">1</span>;</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传失败'</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">0</span>;</span><br><span class="line">      result.<span class="property">data</span> = {</span><br><span class="line">        <span class="attr">url</span>: <span class="string">"http://127.0.0.1:8081"</span> + files[<span class="number">0</span>].<span class="property">path</span>.<span class="title function_">split</span>(<span class="string">"images"</span>)[<span class="number">1</span>]</span><br><span class="line">      }</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传成功'</span>;</span><br><span class="line">    }</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(result));</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.<span class="title function_">use</span>(router);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8081</span>, <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"服务已运行在：http://127.0.0.1:8081/"</span>);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<p>大功告成~</p>
+<p>这里可以参考两篇文章：</p>
+<p>https://blog.csdn.net/qq_33594380/article/details/80164381</p>
+<p>https://blog.csdn.net/ciwei0605/article/details/104402138</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+</search>
