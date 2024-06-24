@@ -395,4 +395,34 @@ esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
         <tag>Chrome</tag>
       </tags>
   </entry>
+  <entry>
+    <title>frp更新后的配置文件写法变更</title>
+    <url>/posts/1/</url>
+    <content><![CDATA[<p>从 v0.52.0 版本开始，frp 开始支持 TOML、YAML 和 JSON
+作为配置文件格式</p>
+<p>v0.52.0版本前，frp使用.ini作为配置文件的格式，基本配置如下：</p>
+<div class="highlight-container" data-rel="Ini"><figure class="iseeu highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = &lt;server_host&gt;</span><br><span class="line"><span class="attr">server_port</span> = &lt;server_port&gt;</span><br><span class="line"><span class="attr">token</span> = &lt;password&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务名称，在服务器端不能重复</span></span><br><span class="line"><span class="section">[app_http]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="comment"># 需要转发的本地ip，可以改成局域网的ip做转发</span></span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment"># 需要转发的本地端口</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">80</span></span><br><span class="line"><span class="attr">remote_port</span> = &lt;remort_port_1&gt;</span><br><span class="line"></span><br><span class="line"><span class="section">[app_https]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="attr">local_ip</span>=<span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> =<span class="number">443</span></span><br><span class="line"><span class="attr">remote_port</span>=&lt;remort_port_2&gt;</span><br></pre></td></tr></table></figure></div>
+<p>由于更新后ini文件被弃用，但网上依旧有很多的文章在写之前的配置，没有标注版本，导致出现配置文件在不同版本间混用的情况，导致莫名的bug（大多会提示ini文件已被弃用的提示）</p>
+<p>如果在 v0.52.0
+以后的版本中，使用如[common]的这种写法，即使文件为.toml文件，也会被frp当作ini文件进行处理</p>
+<p>所以按照按照官方文档的示例，以后的版本配置文件应如以下代码所示</p>
+<div class="highlight-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="attr">serverAddr</span> = <span class="string">"x.x.x.x"</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"ssh"</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">"tcp"</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">6000</span></span><br><span class="line"><span class="attr">auth.token</span> = <span class="string">"xxxxx"</span></span><br></pre></td></tr></table></figure></div>
+<p>参考链接</p>
+<blockquote>
+<p><a class="link" href="https://gofrp.org/zh-cn/docs/features/common/configure/">frp官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<blockquote>
+<p><a class="link" href="https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml">frpc_full_example.toml <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+<blockquote>
+<p><a class="link" href="https://github.com/fatedier/frp/issues/3724">toml配置问题 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>frp</tag>
+      </tags>
+  </entry>
 </search>

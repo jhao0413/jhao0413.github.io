@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://jhao.me/posts/1/</loc>
+        <lastmod>2024-06-24T15:22:20.925Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/9495/</loc>
         <lastmod>2024-03-17T16:04:52.641Z</lastmod>
         <changefreq>weekly</changefreq>
