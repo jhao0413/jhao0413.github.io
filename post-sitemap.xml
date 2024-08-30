@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://jhao.me/posts/promise-usage/</loc>
+        <lastmod>2024-08-30T15:12:19.345Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/2/</loc>
         <lastmod>2024-08-27T00:51:04.288Z</lastmod>
         <changefreq>weekly</changefreq>
