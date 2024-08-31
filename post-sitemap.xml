@@ -10,79 +10,7 @@
 
     <url>
         <loc>https://jhao.me/posts/promise-usage/</loc>
-        <lastmod>2024-08-30T15:12:19.345Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/2/</loc>
-        <lastmod>2024-08-27T00:51:04.288Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/1/</loc>
-        <lastmod>2024-06-24T15:22:20.925Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/9495/</loc>
-        <lastmod>2024-03-17T16:04:52.641Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/28431/</loc>
-        <lastmod>2024-03-17T14:19:58.874Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/63894/</loc>
-        <lastmod>2024-03-17T14:19:53.843Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/61269/</loc>
-        <lastmod>2024-03-17T14:19:50.062Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/41646/</loc>
-        <lastmod>2024-03-17T14:19:44.935Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/47938/</loc>
-        <lastmod>2024-03-17T14:19:40.566Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/60077/</loc>
-        <lastmod>2024-03-17T14:19:36.262Z</lastmod>
+        <lastmod>2024-08-31T09:12:50.966Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -90,15 +18,55 @@
 
     <url>
         <loc>https://jhao.me/posts/3560/</loc>
-        <lastmod>2024-03-17T14:19:32.071Z</lastmod>
+        <lastmod>2024-08-31T08:58:51.442Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/55319/</loc>
-        <lastmod>2024-03-17T14:19:27.452Z</lastmod>
+        <loc>https://jhao.me/posts/promise-usage/</loc>
+        <lastmod>2024-08-31T08:58:47.518Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/2/</loc>
+        <lastmod>2024-08-31T08:58:25.339Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/9495/</loc>
+        <lastmod>2024-08-31T08:58:18.319Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/28431/</loc>
+        <lastmod>2024-08-31T08:58:14.137Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/63894/</loc>
+        <lastmod>2024-08-31T08:58:06.969Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/61269/</loc>
+        <lastmod>2024-08-31T08:57:57.502Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -106,7 +74,47 @@
 
     <url>
         <loc>https://jhao.me/posts/9143/</loc>
-        <lastmod>2024-03-17T14:19:21.104Z</lastmod>
+        <lastmod>2024-08-31T08:57:41.387Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/55319/</loc>
+        <lastmod>2024-08-31T08:57:32.079Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/60077/</loc>
+        <lastmod>2024-08-31T08:57:00.405Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/47938/</loc>
+        <lastmod>2024-08-31T08:56:46.108Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/41646/</loc>
+        <lastmod>2024-08-31T08:56:41.753Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/1/</loc>
+        <lastmod>2024-08-31T08:56:24.368Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
