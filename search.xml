@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>axios get与post请求</title>
-    <url>/posts/9143/</url>
-    <content><![CDATA[<h2 id="axios-get与post请求">axios get与post请求</h2>
-<h4 id="get请求">get请求</h4>
-<p><em>/api</em>:url地址</p>
-<p><em>params</em>:{}中写参数</p>
-<p><em>response</em>:处理返回结果</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'/api'</span>, {</span><br><span class="line">                <span class="attr">params</span>: {</span><br><span class="line">                    <span class="attr">content</span>:<span class="string">''</span></span><br><span class="line">                },</span><br><span class="line">            }).<span class="title function_">then</span>(</span><br><span class="line">                <span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">                })</span><br></pre></td></tr></table></figure></div>
-<h4 id="post请求">post请求</h4>
-<p>qs.stringify()将对象
-序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(<span class="string">'/api/api/login'</span>, qs.<span class="title function_">stringify</span>(</span><br><span class="line">                                {</span><br><span class="line">                                        <span class="attr">content</span>:<span class="string">""</span></span><br><span class="line">                                }),</span><br><span class="line">                                {</span><br><span class="line">                                    <span class="attr">headers</span>: {</span><br><span class="line">                                        <span class="string">"CSRF-token"</span>:<span class="string">""</span></span><br><span class="line">                                        <span class="comment">//headers发送cookies信息</span></span><br><span class="line">                                    }</span><br><span class="line">                                }, )</span><br><span class="line">                            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                                <span class="comment">//处理返回信息</span></span><br><span class="line">                            });</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Promise用法详解</title>
     <url>/posts/promise-usage/</url>
     <content><![CDATA[<h2 id="什么是promise">什么是Promise</h2>
@@ -89,6 +68,27 @@ then 方法的对象或函数</p>
       </tags>
   </entry>
   <entry>
+    <title>axios get与post请求</title>
+    <url>/posts/9143/</url>
+    <content><![CDATA[<h2 id="axios-get与post请求">axios get与post请求</h2>
+<h4 id="get请求">get请求</h4>
+<p><em>/api</em>:url地址</p>
+<p><em>params</em>:{}中写参数</p>
+<p><em>response</em>:处理返回结果</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'/api'</span>, {</span><br><span class="line">                <span class="attr">params</span>: {</span><br><span class="line">                    <span class="attr">content</span>:<span class="string">''</span></span><br><span class="line">                },</span><br><span class="line">            }).<span class="title function_">then</span>(</span><br><span class="line">                <span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">                })</span><br></pre></td></tr></table></figure></div>
+<h4 id="post请求">post请求</h4>
+<p>qs.stringify()将对象
+序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(<span class="string">'/api/api/login'</span>, qs.<span class="title function_">stringify</span>(</span><br><span class="line">                                {</span><br><span class="line">                                        <span class="attr">content</span>:<span class="string">""</span></span><br><span class="line">                                }),</span><br><span class="line">                                {</span><br><span class="line">                                    <span class="attr">headers</span>: {</span><br><span class="line">                                        <span class="string">"CSRF-token"</span>:<span class="string">""</span></span><br><span class="line">                                        <span class="comment">//headers发送cookies信息</span></span><br><span class="line">                                    }</span><br><span class="line">                                }, )</span><br><span class="line">                            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                                <span class="comment">//处理返回信息</span></span><br><span class="line">                            });</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>axios的基本使用</title>
     <url>/posts/55319/</url>
     <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
@@ -130,50 +130,6 @@ cli3/4的解决方法，因为配置文件发生了相应的改变所以有一�
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WIFI杀手制作</title>
-    <url>/posts/3560/</url>
-    <content><![CDATA[<h1 id="wifi杀手">WIFI杀手！</h1>
-<p>高中十分喜欢的一个小玩意，拿出来记录一下，百度上教程比较少，也比较杂乱，那就自己写一个吧。</p>
-<h3 id="制作工具">制作工具</h3>
-<p>既然高中都能做，那也可想而知，制作成本很低，而且容易操作，手机也可以完成刷入WIFI杀手的一系列操作</p>
-<ol type="1">
-<li>esp8266开发板一个（4MB的版本，外接天线或者不外接天线的均可，但一定要是4Mb版本的）</li>
-<li>一台电脑或者手机（手机就在这里不讲了，手机也可以做但是比电脑麻烦一点</li>
-<li>一根可以数据线（有的线只支持充电，不支持传输数据，遇到这种情况换一根就好了，不过现在这种情况也很少了）</li>
-</ol>
-<p>准备好这些我们就可以开始WIFI杀手的制作啦</p>
-<h3 id="刷入wifi杀手固件">刷入WIFI杀手固件</h3>
-<p>做这些准备工作之前，先下载</p>
-<ol type="1">
-<li>首先，将esp8266连接电脑，这时esp8266会常亮蓝灯</li>
-<li>解压我发的文件，如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/1.png">
-<strong>安装烧录工具文件夹里的应用程序</strong>，现在的电脑一般是54位的，除了一些学校的机房可能还是32位，实在不清楚自己电脑的话，百度一下</li>
-</ol>
-<p><strong>注意一下另一个文件就是WIFI杀手的固件</strong></p>
-<ol start="3" type="1">
-<li>现在打开烧录工具，应该看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/2.png">可能你们的端口不是COM3，也可能时COM4，这个无所谓，只要是插esp8266的那个口就行，要是烧录失败了，就换另外一个口呗，或者自己查一下esp8266插的是哪个口</li>
-<li>现在点击Config，然后点击那个齿轮，选择刚刚的WIFI烧录固件<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/3.png"></li>
-<li>然后点击Advanced，将参数修改为如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/4.png"></li>
-<li>最后再点Operation，Flash刷入就ok（在刷入的过程中，esp8266会蓝灯闪烁为正常现象，刷完后，不闪烁）</li>
-</ol>
-<p>就此固件刷入成功！</p>
-<h3 id="wifi杀手的使用">WIFI杀手的使用</h3>
-<ol type="1">
-<li>下载我发的那个文件夹里的app安装</li>
-<li>打开app看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/5.jpg"></li>
-<li>汉化版的，我就讲一下大概过程吧，搜索WIFI-&gt;选定用户-&gt;选择攻击方式-&gt;攻击
-模拟信号的话直接在攻击目录下输入参数模拟即可
-esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
-</ol>
-]]></content>
-      <categories>
-        <category>esp8266</category>
-      </categories>
-      <tags>
-        <tag>esp8266</tag>
       </tags>
   </entry>
   <entry>
@@ -274,6 +230,50 @@ Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容�
       </tags>
   </entry>
   <entry>
+    <title>WIFI杀手制作</title>
+    <url>/posts/3560/</url>
+    <content><![CDATA[<h1 id="wifi杀手">WIFI杀手！</h1>
+<p>高中十分喜欢的一个小玩意，拿出来记录一下，百度上教程比较少，也比较杂乱，那就自己写一个吧。</p>
+<h3 id="制作工具">制作工具</h3>
+<p>既然高中都能做，那也可想而知，制作成本很低，而且容易操作，手机也可以完成刷入WIFI杀手的一系列操作</p>
+<ol type="1">
+<li>esp8266开发板一个（4MB的版本，外接天线或者不外接天线的均可，但一定要是4Mb版本的）</li>
+<li>一台电脑或者手机（手机就在这里不讲了，手机也可以做但是比电脑麻烦一点</li>
+<li>一根可以数据线（有的线只支持充电，不支持传输数据，遇到这种情况换一根就好了，不过现在这种情况也很少了）</li>
+</ol>
+<p>准备好这些我们就可以开始WIFI杀手的制作啦</p>
+<h3 id="刷入wifi杀手固件">刷入WIFI杀手固件</h3>
+<p>做这些准备工作之前，先下载</p>
+<ol type="1">
+<li>首先，将esp8266连接电脑，这时esp8266会常亮蓝灯</li>
+<li>解压我发的文件，如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/1.png">
+<strong>安装烧录工具文件夹里的应用程序</strong>，现在的电脑一般是54位的，除了一些学校的机房可能还是32位，实在不清楚自己电脑的话，百度一下</li>
+</ol>
+<p><strong>注意一下另一个文件就是WIFI杀手的固件</strong></p>
+<ol start="3" type="1">
+<li>现在打开烧录工具，应该看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/2.png">可能你们的端口不是COM3，也可能时COM4，这个无所谓，只要是插esp8266的那个口就行，要是烧录失败了，就换另外一个口呗，或者自己查一下esp8266插的是哪个口</li>
+<li>现在点击Config，然后点击那个齿轮，选择刚刚的WIFI烧录固件<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/3.png"></li>
+<li>然后点击Advanced，将参数修改为如下图所示<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/4.png"></li>
+<li>最后再点Operation，Flash刷入就ok（在刷入的过程中，esp8266会蓝灯闪烁为正常现象，刷完后，不闪烁）</li>
+</ol>
+<p>就此固件刷入成功！</p>
+<h3 id="wifi杀手的使用">WIFI杀手的使用</h3>
+<ol type="1">
+<li>下载我发的那个文件夹里的app安装</li>
+<li>打开app看到如下界面<img lazyload="" src="/images/loading.svg" data-src="/img/esp8266/5.jpg"></li>
+<li>汉化版的，我就讲一下大概过程吧，搜索WIFI-&gt;选定用户-&gt;选择攻击方式-&gt;攻击
+模拟信号的话直接在攻击目录下输入参数模拟即可
+esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
+</ol>
+]]></content>
+      <categories>
+        <category>esp8266</category>
+      </categories>
+      <tags>
+        <tag>esp8266</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github无法访问问题解决</title>
     <url>/posts/47938/</url>
     <content><![CDATA[<h1 id="github竟拒我于门外">Github竟拒我于门外</h1>
@@ -299,31 +299,6 @@ hosts"即可编辑保存了。 到此这个问题就完美解决啦</p>
       </categories>
       <tags>
         <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
-    <url>/posts/61269/</url>
-    <content><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置">vue cli 解决跨域 线上
-nginx 反向代理配置</h2>
-<h4 id="开发环境跨域">1、开发环境跨域</h4>
-<p>在<strong>vue
-cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
-<p>在<strong>vue
-cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
-<p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
-<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -408,6 +383,31 @@ done:git就是部署成功了。现在打开http://username.github.io
       </tags>
   </entry>
   <entry>
+    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
+    <url>/posts/61269/</url>
+    <content><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置">vue cli 解决跨域 线上
+nginx 反向代理配置</h2>
+<h4 id="开发环境跨域">1、开发环境跨域</h4>
+<p>在<strong>vue
+cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
+<p>在<strong>vue
+cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
+<p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
+<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
+<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>wangeditor</title>
     <url>/posts/28431/</url>
     <content><![CDATA[<h2 id="wangeditor基本使用">wangeditor基本使用</h2>
@@ -460,7 +460,7 @@ done:git就是部署成功了。现在打开http://username.github.io
   </entry>
   <entry>
     <title>【LeetCode】构造相同颜色的正方形</title>
-    <url>/posts/promise-usage/</url>
+    <url>/posts/make-a-square-with-the-same-color/</url>
     <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">【题目链接】3127.
 构造相同颜色的正方形 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h3 id="题目描述">题目描述</h3>
