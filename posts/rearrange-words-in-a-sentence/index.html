@@ -26,7 +26,7 @@
 <meta property="og:description" content="【题目链接】3127. 重新排列句子中的单词  题目描述 「句子」是一个用空格分隔单词的字符串。给你一个满足下述格式的句子 text : 句子的首字母大写 text 中的每个单词都用单个空格分隔。 请你重新排列 text 中的单词，使所有单词按其长度的升序排列。如果两个单词的长度相同，则保留其在原句子中的相对顺序。 请同样按上述格式返回新的句子。 实现思路  将句子按照空格分">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-09-01T06:07:00.000Z">
-<meta property="article:modified_time" content="2024-09-01T08:40:44.500Z">
+<meta property="article:modified_time" content="2024-09-01T08:47:57.995Z">
 <meta property="article:author" content="九號">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary">
@@ -676,8 +676,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-09-01 16:40:44</span>
-            <span class="mobile">2024-09-01 16:40:44</span>
+            <span class="desktop">2024-09-01 16:47:57</span>
+            <span class="mobile">2024-09-01 16:47:57</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -777,6 +777,12 @@ text
 </ul>
 <p>使用桶排序</p>
 <div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrangeWords = <span class="keyword">function</span>(<span class="params">text</span>) {</span><br><span class="line">  <span class="keyword">const</span> textArr = text.<span class="title function_">toLowerCase</span>().<span class="title function_">split</span>(<span class="string">' '</span>)</span><br><span class="line">  <span class="keyword">const</span> buckets = {}</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> textArr) {</span><br><span class="line">    <span class="keyword">if</span> (buckets[item.<span class="property">length</span>]) {</span><br><span class="line">      buckets[item.<span class="property">length</span>].<span class="title function_">push</span>(item)</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      buckets[item.<span class="property">length</span>] = [item]</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> result = []</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(buckets).<span class="title function_">forEach</span>(<span class="function"><span class="params">keys</span> =&gt;</span> {</span><br><span class="line">    result = result.<span class="title function_">concat</span>(buckets[keys])</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line">  result[<span class="number">0</span>] = result[<span class="number">0</span>][<span class="number">0</span>].<span class="title function_">toUpperCase</span>() + result[<span class="number">0</span>].<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> result.<span class="title function_">join</span>(<span class="string">' '</span>);</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<p><a class="link" target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort()
+- JavaScript | MDN <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://v8.dev/blog/array-sort#timsort">Getting things
+sorted in V8 · V8 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Timsort">Timsort -
+维基百科，自由的百科全书 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
         </div>
 
@@ -791,7 +797,7 @@ text
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-09-01 16:40:44
+                    :</strong> 2024-09-01 16:47:57
             </li>
         
         <li>
