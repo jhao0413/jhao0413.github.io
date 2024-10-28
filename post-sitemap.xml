@@ -9,8 +9,8 @@
 
 
     <url>
-        <loc>https://jhao.me/posts/rearrange-words-in-a-sentence/</loc>
-        <lastmod>2024-09-01T08:47:57.995Z</lastmod>
+        <loc>https://jhao.me/posts/check-if-it-is-a-straight-line/</loc>
+        <lastmod>2024-10-28T08:45:21.846Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,7 +18,15 @@
 
     <url>
         <loc>https://jhao.me/posts/make-a-square-with-the-same-color/</loc>
-        <lastmod>2024-08-31T09:37:26.804Z</lastmod>
+        <lastmod>2024-10-28T08:28:05.207Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/rearrange-words-in-a-sentence/</loc>
+        <lastmod>2024-09-01T08:47:57.995Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
