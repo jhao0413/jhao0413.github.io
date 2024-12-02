@@ -18,6 +18,9 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
+    
+    
+        
         <meta name="description" content="vue cli 解决跨域 线上 nginx 反向代理配置 1、开发环境跨域 在vue cli2中，在&#x2F;config&#x2F;index.js里找到proxyTable开启代理changeOrigin:ture; 1234567891011proxyTable: {    &#x2F;&#x2F;解决    publicPath: &quot;.&#x2F;&quot;,      &#39;&#x2F;api&#39;:{        target:&#39;http:&#x2F;&#x2F;x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue cli 解决跨域 线上 nginx 反向代理配置">
@@ -70,7 +73,7 @@
 
     
         
-<link rel="stylesheet" href="/build/css/tailwind.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
@@ -88,13 +91,13 @@
     
     
         
-<script src="/build/js/libs/anime.min.js"></script>
+<script src="/js/build/libs/anime.min.js"></script>
 
     
 
     <script id="hexo-configurations">
     window.config = {"hostname":"jhao.me","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg","dark":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg"},"title":"Jhao's Blog","subtitle":{"text":["诚实地面对自己内心的想法，比正确的答案更加重要。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/jhao0413","instagram":null,"zhihu":null,"twitter":null,"email":"jhao041319@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.0","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://us.umami.is/share/zvs3gjgeX1TzdKnl/jhao.me","icon":"fa-regular fa-chart-bar"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Essays":{"path":"/essays","icon":"fa-regular fa-comment"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2019/11/8 10:00:00"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg","dark":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg"},"title":"Jhao's Blog","subtitle":{"text":["诚实地面对自己内心的想法，比正确的答案更加重要。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/jhao0413","instagram":null,"zhihu":null,"twitter":null,"email":"jhao041319@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://us.umami.is/share/zvs3gjgeX1TzdKnl/jhao.me","icon":"fa-regular fa-chart-bar"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Essays":{"path":"/essays","icon":"fa-regular fa-comment"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2019/11/8 10:00:00"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -802,15 +805,15 @@ nginx 反向代理配置</h2>
 <h4 id="开发环境跨域">1、开发环境跨域</h4>
 <p>在<strong>vue
 cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
 <p>在<strong>vue
 cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
 <h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
 <p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
 <p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
 <p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
 
 		</div>
 
@@ -1011,7 +1014,7 @@ nginx 反向代理配置</span></a></li></ol>
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.0</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
         </div>
         
         
@@ -1141,17 +1144,17 @@ nginx 反向代理配置</span></a></li></ol>
 
 
 
-<script src="/build/js/libs/Swup.min.js"></script>
+<script src="/js/build/libs/Swup.min.js"></script>
 
-<script src="/build/js/libs/SwupSlideTheme.min.js"></script>
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-<script src="/build/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupPreloadPlugin.min.js"></script>
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
     const swup = new Swup({
@@ -1176,45 +1179,45 @@ nginx 反向代理配置</span></a></li></ol>
 
 
 	
-<script src="/build/js/tools/imageViewer.js" type="module"></script>
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
-<script src="/build/js/utils.js" type="module"></script>
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/build/js/main.js" type="module"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/build/js/layouts/navbarShrink.js" type="module"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/build/js/tools/scrollTopBottom.js" type="module"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script src="/build/js/tools/lightDarkSwitch.js" type="module"></script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-<script src="/build/js/layouts/categoryList.js" type="module"></script>
-
-
-
-    
-<script src="/build/js/tools/localSearch.js" type="module"></script>
-
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
 
 
     
-<script src="/build/js/tools/codeBlock.js" type="module"></script>
+<script src="/js/build/tools/localSearch.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/layouts/lazyload.js" type="module"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/tools/runtime.js"></script>
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
 
     
-<script src="/build/js/libs/odometer.min.js"></script>
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
@@ -1223,10 +1226,10 @@ nginx 反向代理配置</span></a></li></ol>
 
 
   
-<script src="/build/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/build/js/plugins/typed.js" type="module"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
@@ -1239,19 +1242,19 @@ nginx 反向代理配置</span></a></li></ol>
 
 
     
-<script src="/build/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
-
-
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
 
 
 

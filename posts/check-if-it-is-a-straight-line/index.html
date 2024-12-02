@@ -18,6 +18,9 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
+    
+    
+        
         <meta name="description" content="【题目链接】1232. 缀点成线 题目描述 给定一个数组 coordinates ，其中 coordinates[i] &#x3D; [x, y] ， [x, y] 表示横坐标为 x、纵坐标为 y 的点。请你来判断，这些点是否在该坐标系中属于同一条直线上。 实现思路一  如果每两个点的斜率相同，那么就能确定属于同一条直线上 从前两个点开始依次计算斜率并存入数组 所有斜率存入数组后，判断数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【LeetCode】缀点成线">
@@ -68,7 +71,7 @@
 
     
         
-<link rel="stylesheet" href="/build/css/tailwind.css">
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
     
 
@@ -86,13 +89,13 @@
     
     
         
-<script src="/build/js/libs/anime.min.js"></script>
+<script src="/js/build/libs/anime.min.js"></script>
 
     
 
     <script id="hexo-configurations">
     window.config = {"hostname":"jhao.me","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg","dark":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg"},"title":"Jhao's Blog","subtitle":{"text":["诚实地面对自己内心的想法，比正确的答案更加重要。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/jhao0413","instagram":null,"zhihu":null,"twitter":null,"email":"jhao041319@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.0","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://us.umami.is/share/zvs3gjgeX1TzdKnl/jhao.me","icon":"fa-regular fa-chart-bar"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Essays":{"path":"/essays","icon":"fa-regular fa-comment"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2019/11/8 10:00:00"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg","dark":"https://jhao413.oss-cn-beijing.aliyuncs.com/blog/wallhaven-m3pvy8.jpg"},"title":"Jhao's Blog","subtitle":{"text":["诚实地面对自己内心的想法，比正确的答案更加重要。"],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/jhao0413","instagram":null,"zhihu":null,"twitter":null,"email":"jhao041319@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Status":{"path":"https://us.umami.is/share/zvs3gjgeX1TzdKnl/jhao.me","icon":"fa-regular fa-chart-bar"},"About":{"path":"/about","icon":"fa-regular fa-user"},"Essays":{"path":"/essays","icon":"fa-regular fa-comment"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2019/11/8 10:00:00"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -767,7 +770,7 @@ mjx-container[display="true"] + br {
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<p><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-if-it-is-a-straight-line/description/">【题目链接】1232.
-缀点成线<i class="fa-sharp fa-regular fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em]"></i></a></p>
+缀点成线<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h3 id="题目描述">题目描述</h3>
 <p>给定一个数组 coordinates ，其中 coordinates[i] = [x, y] ， [x, y]
 表示横坐标为 x、纵坐标为 y
@@ -779,14 +782,14 @@ mjx-container[display="true"] + br {
 <li>所有斜率存入数组后，判断数组中的斜率是否相等，如果全部相等则属于同一条直线</li>
 </ol>
 <h3 id="具体代码">具体代码</h3>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
 <h2 id="实现思路二">实现思路二</h2>
 <ol type="1">
 <li>通过前两个点算出斜率后，再根据直线方程y = ax + b取得截距b</li>
 <li>代入后续的其他点判断是否满足y = ax + b</li>
 </ol>
 <h2 id="具体代码-1">具体代码</h2>
-<div class="highlight-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
 		</div>
 
@@ -986,7 +989,7 @@ mjx-container[display="true"] + br {
         
         <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
             <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
-            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.0</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
         </div>
         
         
@@ -1116,17 +1119,17 @@ mjx-container[display="true"] + br {
 
 
 
-<script src="/build/js/libs/Swup.min.js"></script>
+<script src="/js/build/libs/Swup.min.js"></script>
 
-<script src="/build/js/libs/SwupSlideTheme.min.js"></script>
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
 
-<script src="/build/js/libs/SwupScriptsPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupProgressPlugin.min.js"></script>
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupScrollPlugin.min.js"></script>
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
 
-<script src="/build/js/libs/SwupPreloadPlugin.min.js"></script>
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
 
 <script>
     const swup = new Swup({
@@ -1151,45 +1154,45 @@ mjx-container[display="true"] + br {
 
 
 	
-<script src="/build/js/tools/imageViewer.js" type="module"></script>
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
 
-<script src="/build/js/utils.js" type="module"></script>
+<script src="/js/build/utils.js" type="module"></script>
 
-<script src="/build/js/main.js" type="module"></script>
+<script src="/js/build/main.js" type="module"></script>
 
-<script src="/build/js/layouts/navbarShrink.js" type="module"></script>
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
 
-<script src="/build/js/tools/scrollTopBottom.js" type="module"></script>
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
 
-<script src="/build/js/tools/lightDarkSwitch.js" type="module"></script>
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
 
-<script src="/build/js/layouts/categoryList.js" type="module"></script>
-
-
-
-    
-<script src="/build/js/tools/localSearch.js" type="module"></script>
-
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
 
 
 
     
-<script src="/build/js/tools/codeBlock.js" type="module"></script>
+<script src="/js/build/tools/localSearch.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/layouts/lazyload.js" type="module"></script>
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
 
 
 
 
     
-<script src="/build/js/tools/runtime.js"></script>
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
 
     
-<script src="/build/js/libs/odometer.min.js"></script>
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
 
     
 <link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
@@ -1198,10 +1201,10 @@ mjx-container[display="true"] + br {
 
 
   
-<script src="/build/js/libs/Typed.min.js"></script>
+<script src="/js/build/libs/Typed.min.js"></script>
 
   
-<script src="/build/js/plugins/typed.js" type="module"></script>
+<script src="/js/build/plugins/typed.js" type="module"></script>
 
 
 
@@ -1214,19 +1217,19 @@ mjx-container[display="true"] + br {
 
 
     
-<script src="/build/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
 
-<script src="/build/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
-
-
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
 
 
-<script src="/build/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
 
 
 
