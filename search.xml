@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>EPUB文件结构</title>
+    <url>/posts/epub-structure/</url>
+    <content><![CDATA[<p>EPUB 是一种广泛使用的电子书格式。实际上是一个 ZIP
+压缩包，包含了一系列文件和目录，可以任何 ZIP 解压工具解压缩。</p>
+<p>以下是常见的文件结构：</p>
+<blockquote>
+<p>虽然 EPUB
+格式有一定的规范，但并没有严格要求必须使用特定的目录名。出版商或开发者可以根据需要自定义目录结构，只要在<code>container.xml</code>文件中正确引用这些路径即可。开发者可能会在
+epub 文件中添加一些图片或脚本文件等，可能会导致结构看起来不同。</p>
+</blockquote>
+<ol type="1">
+<li><p><strong>MIME Type 文件</strong></p>
+<ul>
+<li>文件名：<code>mimetype</code></li>
+<li>内容：<code>application/epub+zip</code></li>
+<li>说明：这是一个文本文件，必须是压缩包中的第一个文件。它声明了文件的
+MIME 类型。</li>
+</ul></li>
+<li><p><strong>META-INF 目录</strong></p>
+<ul>
+<li><p>目录名：<code>META-INF</code></p></li>
+<li><p>说明：这个目录包含了元数据文件。</p>
+<ul>
+<li><code>container.xml</code>：定义了内容文件的路径，<code>container.xml</code>
+文件是 EPUB 文件结构中的关键文件，通过解析 <code>container.xml</code>
+文件中的 <code>full-path</code>
+属性，可以找到并加载电子书的内容文件（<code>opf</code>
+文件）。只要这个文件存在并且路径正确，电子书阅读器就能正确解析和显示电子书内容。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>OEBPS 目录</strong></p>
+<ul>
+<li><p>目录名：<code>OEBPS</code>（或其他名称，这个目录也可能不存在）</p></li>
+<li><p>说明：这个目录包含了电子书的主要内容。</p>
+<ul>
+<li><code>package.opf</code>（或<code>content.opf</code>）：定义了电子书的结构和内容的元数据。</li>
+<li><code>toc.xhtml/toc.ncx</code>：定义了电子书的目录结构。</li>
+<li>各种 XHTML 文件：电子书的主要内容。</li>
+<li>资源文件：如图像、CSS 样式表、JavaScript 文件等。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>toc.ncx</strong></p>
+<blockquote>
+<p>Table of Contents 的缩写，定义电子书的目录和导航结构</p>
+</blockquote>
+<p>application/x-dtbncx+xml 是一种 MIME 类型，通常用于表示一种特定格式的
+XML 文件，称为 NCX（Navigation Center eXtended），通常包含以下元素</p>
+<ul>
+<li><code>&lt;navMap&gt;</code>：包含所有导航点的容器。</li>
+<li><code>&lt;navPoint&gt;</code>：表示一个导航点（例如章节或节）。</li>
+<li><code>&lt;navLabel&gt;</code>：包含导航点的可读文本。</li>
+<li><code>&lt;content&gt;</code>指定导航点对应的内容文件和位置</li>
+</ul></li>
+</ol>
+<h3 id="epub-解析">Epub 解析</h3>
+<p>本质上我们都是在解析 xml 或者 html
+文件，所以第一种方法比较直观，在获取到 Dom 并解析后，直接通过
+querySelector 找到相应的元素并获取内容即可。这种方法存在的问题是，Epub
+文件结构与指定的结构相同，部分 Epub
+文件由于制作时间过早，或者制作者的规范问题，可能会导致解析失败。</p>
+<p>第二种方法是使用 xpath 解析，这种方法的优点是，可以解析出 epub
+文件中的所有元素，而且可以根据具体的命名空间直接查找到想要的内容（这就需要对
+Epub 文件有更深的认知，同时需要了解 xpath 的使用方法，这里也是我看了部分
+Epub Cfi 解析的项目代码后，才了解到）。</p>
+<h2 id="cfi">CFI</h2>
+<p>CFI 是 Content Fragment Identifier
+的缩写，是一种用于标识电子书内容片段的标识符。CFI
+可以用于在电子书中定位特定的内容，例如在电子书中跳转到特定的页面或章节，在保存阅读进度或者书签时经常使用。</p>
+<p>但个人了解下来，可能因为制作规范一直没有变更的原因，很多库停留在
+jQuery
+的时代，部分近几年的库也是根据之前的库修改而来，也没有相对详细的文档，不同项目解析的结构也差距甚远，对于解析结果没有明确的说明，需要对照
+Epub 文件内容和源码才能知道表示的意思。</p>
+<p><a class="link" href="https://www.pen2publishing.com/difference-between-epub-and-epub3/">epub2
+与 epub3 的区别<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Promise用法详解</title>
+    <url>/posts/promise-usage/</url>
+    <content><![CDATA[<h2 id="什么是promise">什么是Promise</h2>
+<p>Promise是一个对象，代表了异步操作的最终完成或者失败。</p>
+<p>下图为MDN中的Promise流程图</p>
+<p>Promise存在三种状态分别为：</p>
+<blockquote>
+<p>其中fulfill和reject状态也被称之为已敲定（settled），即非pending状态</p>
+</blockquote>
+<ul>
+<li>pending（等待中）：初始状态，还没有确定的结果</li>
+<li>fulfill（已兑现）：成功状态，操作已完成</li>
+<li>reject（已拒绝）：失败状态，操作未完成</li>
+</ul>
+<p>‍</p>
+<p>​<img lazyload="" src="/images/loading.svg" data-src="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png" alt="image">​</p>
+<h2 id="thenable">thenable</h2>
+<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>对于thenable的定义是：一个定义
+then 方法的对象或函数</p>
+<p>例如：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">thenableFn</span> = (<span class="params"></span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">        <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> [</span><br><span class="line">            <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thenableobj = {</span><br><span class="line">    <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">thenableFn</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">thenableobj.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h2 id="promise中的方法有哪些">Promise中的方法有哪些</h2>
+<h3 id="实例方法">实例方法</h3>
+<h4 id="then">then</h4>
+<p><strong>then</strong>方法接受两个参数，分别用于Promise在fulfilled与reject情况下的回调函数，then也会返回一个promise对象，这也就是为什么可以实现链式调用的原因</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">'resolved1'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved1</span></span><br><span class="line">  <span class="comment">// 即使返回的是一个字符串，then也会将其包裹在一个promise中返回</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved2'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved2</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved3'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved3</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="catch">catch</h4>
+<p><strong>catch</strong>是在promise被拒绝时使用的一个函数，它也会返回一个promise对象。</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h4 id="finally">finally</h4>
+<p><strong>finally</strong>在promise敲定（settled，无论是resolve还是reject）后执行,同时它也返回一个promise，在后面依旧可以进行链式调用。</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">}).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'finally'</span>); <span class="comment">//finally</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'third then:'</span>, res); <span class="comment">//third then:undefined</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h3 id="静态方法">静态方法</h3>
+<h4 id="reslove">reslove</h4>
+<p>返回一个promise对象，并附带兑现的值</p>
+<h4 id="reject">reject</h4>
+<p>返回一个promise对象，并附带拒绝的原因</p>
+<h4 id="all">all</h4>
+<p>接收一个promise可迭代对象，并返回一个promise。在所有传入的promise兑现后，返回一个包含所有promise对象兑现值的数组；如果其中有promise被拒绝，那么返回第一个promise被拒绝的原因</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//全都fulfilled时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">// [ 'successA', 'successB', 'successC' ]</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中有一个reject时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// errorB</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="allsettled">allSettled</h4>
+<p>接收一个promise的可迭代对象，返回每个promise结果描述的数组</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">//[</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successA' },</span></span><br><span class="line"><span class="comment">//  { status: 'rejected', reason: 'errorB' },</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successC' }</span></span><br><span class="line"><span class="comment">//]</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="race">race</h4>
+<p>接收一个promise可迭代对象，返回一个promise，哪个promise先敲定就先返回哪个（无论是resolve还是reject）</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里就用mdn的例子了</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">  <span class="comment">// 这里两个promise都被兑现了，但promise2的兑现时间更快</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果reject先执行，那么就会先返回reject</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(reject, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">200</span>, <span class="string">'three'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2, promise3]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// two</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="any">any</h4>
+<p>接收一个promise可迭代对象，返回第一个被兑现（resolve）promise的兑现值（会忽略之前的reject），如果所有promise都被拒绝，那么以数组的形式返回所有被拒绝的原因。</p>
+<blockquote>
+<p>如果文中有任何错误欢迎指正~还是建议直接看官网理解可能会更好</p>
+</blockquote>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise
+- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://github.com/LinDaiDai/niubility-coding-js/blob/master/JavaScript/%E5%BC%82%E6%AD%A5/%E8%A6%81%E5%B0%B1%E6%9D%A545%E9%81%93Promise%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E6%AC%A1%E7%88%BD%E5%88%B0%E5%BA%95.md">45道Promise题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>‍</p>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Sunshine + Moonlight 串流操作记录（一）</title>
     <url>/posts/sunshine-and-moonlight-streaming/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
@@ -107,70 +257,47 @@ Moonlight
       </tags>
   </entry>
   <entry>
-    <title>Promise用法详解</title>
-    <url>/posts/promise-usage/</url>
-    <content><![CDATA[<h2 id="什么是promise">什么是Promise</h2>
-<p>Promise是一个对象，代表了异步操作的最终完成或者失败。</p>
-<p>下图为MDN中的Promise流程图</p>
-<p>Promise存在三种状态分别为：</p>
-<blockquote>
-<p>其中fulfill和reject状态也被称之为已敲定（settled），即非pending状态</p>
-</blockquote>
-<ul>
-<li>pending（等待中）：初始状态，还没有确定的结果</li>
-<li>fulfill（已兑现）：成功状态，操作已完成</li>
-<li>reject（已拒绝）：失败状态，操作未完成</li>
-</ul>
-<p>‍</p>
-<p>​<img lazyload="" src="/images/loading.svg" data-src="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png" alt="image">​</p>
-<h2 id="thenable">thenable</h2>
-<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>对于thenable的定义是：一个定义
-then 方法的对象或函数</p>
-<p>例如：</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">thenableFn</span> = (<span class="params"></span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">        <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> [</span><br><span class="line">            <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thenableobj = {</span><br><span class="line">    <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">thenableFn</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">thenableobj.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h2 id="promise中的方法有哪些">Promise中的方法有哪些</h2>
-<h3 id="实例方法">实例方法</h3>
-<h4 id="then">then</h4>
-<p><strong>then</strong>方法接受两个参数，分别用于Promise在fulfilled与reject情况下的回调函数，then也会返回一个promise对象，这也就是为什么可以实现链式调用的原因</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">'resolved1'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved1</span></span><br><span class="line">  <span class="comment">// 即使返回的是一个字符串，then也会将其包裹在一个promise中返回</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved2'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved2</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved3'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved3</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="catch">catch</h4>
-<p><strong>catch</strong>是在promise被拒绝时使用的一个函数，它也会返回一个promise对象。</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h4 id="finally">finally</h4>
-<p><strong>finally</strong>在promise敲定（settled，无论是resolve还是reject）后执行,同时它也返回一个promise，在后面依旧可以进行链式调用。</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">}).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'finally'</span>); <span class="comment">//finally</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'third then:'</span>, res); <span class="comment">//third then:undefined</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h3 id="静态方法">静态方法</h3>
-<h4 id="reslove">reslove</h4>
-<p>返回一个promise对象，并附带兑现的值</p>
-<h4 id="reject">reject</h4>
-<p>返回一个promise对象，并附带拒绝的原因</p>
-<h4 id="all">all</h4>
-<p>接收一个promise可迭代对象，并返回一个promise。在所有传入的promise兑现后，返回一个包含所有promise对象兑现值的数组；如果其中有promise被拒绝，那么返回第一个promise被拒绝的原因</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//全都fulfilled时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">// [ 'successA', 'successB', 'successC' ]</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中有一个reject时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// errorB</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="allsettled">allSettled</h4>
-<p>接收一个promise的可迭代对象，返回每个promise结果描述的数组</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">//[</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successA' },</span></span><br><span class="line"><span class="comment">//  { status: 'rejected', reason: 'errorB' },</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successC' }</span></span><br><span class="line"><span class="comment">//]</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="race">race</h4>
-<p>接收一个promise可迭代对象，返回一个promise，哪个promise先敲定就先返回哪个（无论是resolve还是reject）</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里就用mdn的例子了</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">  <span class="comment">// 这里两个promise都被兑现了，但promise2的兑现时间更快</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果reject先执行，那么就会先返回reject</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(reject, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">200</span>, <span class="string">'three'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2, promise3]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// two</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="any">any</h4>
-<p>接收一个promise可迭代对象，返回第一个被兑现（resolve）promise的兑现值（会忽略之前的reject），如果所有promise都被拒绝，那么以数组的形式返回所有被拒绝的原因。</p>
-<blockquote>
-<p>如果文中有任何错误欢迎指正~还是建议直接看官网理解可能会更好</p>
-</blockquote>
-<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise
-- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://github.com/LinDaiDai/niubility-coding-js/blob/master/JavaScript/%E5%BC%82%E6%AD%A5/%E8%A6%81%E5%B0%B1%E6%9D%A545%E9%81%93Promise%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E6%AC%A1%E7%88%BD%E5%88%B0%E5%BA%95.md">45道Promise题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>‍</p>
+    <title>axios的基本使用</title>
+    <url>/posts/55319/</url>
+    <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js
+中。</p>
+<p>最简单的axios写法如下</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'url'</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  });</span><br></pre></td></tr></table></figure></div>
+<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
+<h3 id="什么是跨域">什么是跨域</h3>
+<p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>最常见的就是当域名不同时（如下）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">www.abc.com 访问 www.def.com</span><br></pre></td></tr></table></figure></div>
+<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
+<h3 id="如何解决跨域问题">如何解决跨域问题</h3>
+<p>这里分为vue cli2与 vue
+cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
+<h4 id="step1">STEP1</h4>
+<p>修改/创建配置文件</p>
+<h5 id="vue-cli2">vue cli2</h5>
+<p>将config文件夹下的index.js打开，写入代码如下</p>
+<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a class="link" href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
+<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">'/api'</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">'https://url.com'</span>, <span class="comment">//对应自己的接口</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//这里的名字可以自定义（api）</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h5 id="vue-cli34">vue cli3/4</h5>
+<p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
+<h4 id="step2">STEP2</h4>
+<p>创建一个js文件名字随意，大致代码如下</p>
+<p>axios更多的实例请求配置详见：<a class="link" href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">config</span>) {</span><br><span class="line">  创建一个axios实例</span><br><span class="line">    <span class="keyword">var</span> instance = axios.<span class="title function_">create</span>({</span><br><span class="line">        <span class="attr">method</span>: <span class="string">'get'</span>,<span class="comment">//传输方式（get/post）</span></span><br><span class="line">        <span class="attr">params</span>: {</span><br><span class="line">          <span class="comment">//需要传递的参数写在这里</span></span><br><span class="line">          <span class="attr">name</span>:<span class="string">'jhao'</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">headers</span>: {</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'text/plain:charset=UTF-8'</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">instance</span>(config)<span class="comment">//返回参数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h4 id="step3">STEP3</h4>
+<p>在main.js中导入STEP2的文件</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { request } <span class="keyword">from</span> <span class="string">'./api/request'</span></span><br><span class="line"><span class="comment">//换成自己的js文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">request</span>(<span class="string">'/api/cgi-bin/musicu.fcg'</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>{</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h4 id="结束">结束</h4>
+<p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
 ]]></content>
       <categories>
-        <category>Frontnd</category>
+        <category>Vue</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -245,98 +372,6 @@ esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
       </categories>
       <tags>
         <tag>frp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>axios的基本使用</title>
-    <url>/posts/55319/</url>
-    <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
-<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js
-中。</p>
-<p>最简单的axios写法如下</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'url'</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  });</span><br></pre></td></tr></table></figure></div>
-<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
-<h3 id="什么是跨域">什么是跨域</h3>
-<p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
-<p>最常见的就是当域名不同时（如下）</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">www.abc.com 访问 www.def.com</span><br></pre></td></tr></table></figure></div>
-<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
-<h3 id="如何解决跨域问题">如何解决跨域问题</h3>
-<p>这里分为vue cli2与 vue
-cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
-<h4 id="step1">STEP1</h4>
-<p>修改/创建配置文件</p>
-<h5 id="vue-cli2">vue cli2</h5>
-<p>将config文件夹下的index.js打开，写入代码如下</p>
-<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a class="link" href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
-<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">'/api'</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">'https://url.com'</span>, <span class="comment">//对应自己的接口</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//这里的名字可以自定义（api）</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
-<h5 id="vue-cli34">vue cli3/4</h5>
-<p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
-<h4 id="step2">STEP2</h4>
-<p>创建一个js文件名字随意，大致代码如下</p>
-<p>axios更多的实例请求配置详见：<a class="link" href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">config</span>) {</span><br><span class="line">  创建一个axios实例</span><br><span class="line">    <span class="keyword">var</span> instance = axios.<span class="title function_">create</span>({</span><br><span class="line">        <span class="attr">method</span>: <span class="string">'get'</span>,<span class="comment">//传输方式（get/post）</span></span><br><span class="line">        <span class="attr">params</span>: {</span><br><span class="line">          <span class="comment">//需要传递的参数写在这里</span></span><br><span class="line">          <span class="attr">name</span>:<span class="string">'jhao'</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">headers</span>: {</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'text/plain:charset=UTF-8'</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">instance</span>(config)<span class="comment">//返回参数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
-<h4 id="step3">STEP3</h4>
-<p>在main.js中导入STEP2的文件</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { request } <span class="keyword">from</span> <span class="string">'./api/request'</span></span><br><span class="line"><span class="comment">//换成自己的js文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">request</span>(<span class="string">'/api/cgi-bin/musicu.fcg'</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>{</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h4 id="结束">结束</h4>
-<p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EPUB文件结构</title>
-    <url>/posts/epub-structure/</url>
-    <content><![CDATA[<p>EPUB是一种广泛使用的电子书格式。实际上是一个ZIP压缩包，包含了一系列文件和目录，可以任何ZIP解压工具解压缩。</p>
-<p>以下是常见的文件结构：</p>
-<blockquote>
-<p>虽然EPUB格式有一定的规范，但并没有严格要求必须使用特定的目录名。出版商或开发者可以根据需要自定义目录结构，只要在<code>container.xml</code>文件中正确引用这些路径即可。开发者可能会在epub文件中添加一些图片或脚本文件等，可能会导致结构看起来不同。</p>
-</blockquote>
-<ol type="1">
-<li><p><strong>MIME Type 文件</strong></p>
-<ul>
-<li>文件名：<code>mimetype</code></li>
-<li>内容：<code>application/epub+zip</code></li>
-<li>说明：这是一个文本文件，必须是压缩包中的第一个文件。它声明了文件的MIME类型。</li>
-</ul></li>
-<li><p><strong>META-INF 目录</strong></p>
-<ul>
-<li><p>目录名：<code>META-INF</code></p></li>
-<li><p>说明：这个目录包含了元数据文件。</p>
-<ul>
-<li><code>container.xml</code>：定义了内容文件的路径，<code>container.xml</code>
-文件是EPUB文件结构中的关键文件，通过解析 <code>container.xml</code>
-文件中的 <code>full-path</code>
-属性，可以找到并加载电子书的内容文件（<code>opf</code>
-文件）。只要这个文件存在并且路径正确，电子书阅读器就能正确解析和显示电子书内容。</li>
-</ul></li>
-</ul></li>
-<li><p><strong>OEBPS 目录</strong></p>
-<ul>
-<li><p>目录名：<code>OEBPS</code>（或其他名称，这个目录也可能不存在）</p></li>
-<li><p>说明：这个目录包含了电子书的主要内容。</p>
-<ul>
-<li><code>package.opf</code>（或<code>content.opf</code>）：定义了电子书的结构和内容的元数据。</li>
-<li><code>toc.xhtml/toc.ncx</code>：定义了电子书的目录结构。</li>
-<li>各种XHTML文件：电子书的主要内容。</li>
-<li>资源文件：如图像、CSS样式表、JavaScript文件等。</li>
-</ul></li>
-</ul></li>
-</ol>
-<p><a class="link" href="https://www.pen2publishing.com/difference-between-epub-and-epub3/">epub2与epub3的区别<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-      <categories>
-        <category>杂谈</category>
-      </categories>
-      <tags>
-        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
@@ -563,38 +598,6 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </tags>
   </entry>
   <entry>
-    <title>【LeetCode】缀点成线</title>
-    <url>/posts/check-if-it-is-a-straight-line/</url>
-    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/check-if-it-is-a-straight-line/description/">【题目链接】1232.
-缀点成线<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="题目描述">题目描述</h3>
-<p>给定一个数组 coordinates ，其中 coordinates[i] = [x, y] ， [x, y]
-表示横坐标为 x、纵坐标为 y
-的点。请你来判断，这些点是否在该坐标系中属于同一条直线上。</p>
-<h3 id="实现思路一">实现思路一</h3>
-<ol type="1">
-<li>如果每两个点的斜率相同，那么就能确定属于同一条直线上</li>
-<li>从前两个点开始依次计算斜率并存入数组</li>
-<li>所有斜率存入数组后，判断数组中的斜率是否相等，如果全部相等则属于同一条直线</li>
-</ol>
-<h3 id="具体代码">具体代码</h3>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<h2 id="实现思路二">实现思路二</h2>
-<ol type="1">
-<li>通过前两个点算出斜率后，再根据直线方程y = ax + b取得截距b</li>
-<li>代入后续的其他点判断是否满足y = ax + b</li>
-</ol>
-<h2 id="具体代码-1">具体代码</h2>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Frontnd</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>wangeditor</title>
     <url>/posts/28431/</url>
     <content><![CDATA[<h2 id="wangeditor基本使用">wangeditor基本使用</h2>
@@ -621,70 +624,6 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【LeetCode】重新排列句子中的单词</title>
-    <url>/posts/rearrange-words-in-a-sentence/</url>
-    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/rearrange-words-in-a-sentence/description/">【题目链接】3127.
-重新排列句子中的单词<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="题目描述">题目描述</h3>
-<p>「句子」是一个用空格分隔单词的字符串。给你一个满足下述格式的句子 text
-:</p>
-<p>句子的首字母大写 text 中的每个单词都用单个空格分隔。 请你重新排列
-text
-中的单词，使所有单词按其长度的升序排列。<strong>如果两个单词的长度相同，则保留其在原句子中的相对顺序。</strong></p>
-<p>请同样按上述格式返回新的句子。</p>
-<h3 id="实现思路">实现思路</h3>
-<ol type="1">
-<li>将句子按照空格分割为数组</li>
-<li>根据每个单词的长度进行升序排序</li>
-<li>将第一项的首字母大写</li>
-<li>将数组转换为字符串的格式返回</li>
-</ol>
-<h3 id="具体代码">具体代码</h3>
-<p><strong>方法一</strong></p>
-<p>这种是目前想出来最简单的解决方案，直接使用 js 的 sort 方法</p>
-<blockquote>
-<p>这里不同的 JavaScript 引擎实现的方法会有所不同，V8 引擎（Chrome 和
-Node.js 使用的引擎）中使用的是 Timsort 算法，是一种稳定的排序算法。</p>
-</blockquote>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrangeWords = <span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">  <span class="keyword">const</span> textArr = text.<span class="title function_">toLowerCase</span>().<span class="title function_">split</span>(<span class="string">" "</span>);</span><br><span class="line">  <span class="comment">// 直接使用sort方法进行排序</span></span><br><span class="line">  textArr.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.<span class="property">length</span> - b.<span class="property">length</span>);</span><br><span class="line">  textArr[<span class="number">0</span>] = textArr[<span class="number">0</span>][<span class="number">0</span>].<span class="title function_">toUpperCase</span>() + textArr[<span class="number">0</span>].<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> textArr.<span class="title function_">join</span>(<span class="string">" "</span>);</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<p><strong>方法二</strong></p>
-<p>上面提到了稳定的排序算法，起因是一开始打算使用选择排序，发现不符合题目中“如果两个单词的长度相同，则保留其在原句子中的相对顺序。”的要求。</p>
-<p>排序算法分为非稳定排序和稳定排序。</p>
-<ul>
-<li><strong>非稳定性排序</strong>
-指在排序过程中，相等元素的相对位置可能会发生改变的排序算法。如果序列中有两个元素相等，经过非稳定排序后，它们的相对顺序可能与排序前不同。常见的非稳定性排序有：
-<ul>
-<li>快速排序</li>
-<li>选择排序</li>
-<li>堆排序</li>
-</ul></li>
-<li><strong>稳定性排序</strong>指在排序过程中，相等元素的相对位置保持不变的排序算法。如果序列中有两个元素相等，经过稳定排序后，它们的相对顺序与排序前相同。常见的稳定性排序有：
-<ul>
-<li>冒泡排序</li>
-<li>插入排序</li>
-<li>归并排序</li>
-<li>计数排序</li>
-<li>基数排序</li>
-<li>桶排序</li>
-</ul></li>
-</ul>
-<p>使用桶排序</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrangeWords = <span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">  <span class="keyword">const</span> textArr = text.<span class="title function_">toLowerCase</span>().<span class="title function_">split</span>(<span class="string">" "</span>);</span><br><span class="line">  <span class="keyword">const</span> buckets = {};</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> textArr) {</span><br><span class="line">    <span class="keyword">if</span> (buckets[item.<span class="property">length</span>]) {</span><br><span class="line">      buckets[item.<span class="property">length</span>].<span class="title function_">push</span>(item);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      buckets[item.<span class="property">length</span>] = [item];</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> result = [];</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(buckets).<span class="title function_">forEach</span>(<span class="function">(<span class="params">keys</span>) =&gt;</span> {</span><br><span class="line">    result = result.<span class="title function_">concat</span>(buckets[keys]);</span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  result[<span class="number">0</span>] = result[<span class="number">0</span>][<span class="number">0</span>].<span class="title function_">toUpperCase</span>() + result[<span class="number">0</span>].<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> result.<span class="title function_">join</span>(<span class="string">" "</span>);</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort()
-- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://v8.dev/blog/array-sort#timsort">Getting things
-sorted in V8 · V8<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://zh.wikipedia.org/wiki/Timsort">Timsort -
-维基百科，自由的百科全书<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-      <categories>
-        <category>Frontnd</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -759,6 +698,38 @@ false 。</p>
       </tags>
   </entry>
   <entry>
+    <title>【LeetCode】缀点成线</title>
+    <url>/posts/check-if-it-is-a-straight-line/</url>
+    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/check-if-it-is-a-straight-line/description/">【题目链接】1232.
+缀点成线<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="题目描述">题目描述</h3>
+<p>给定一个数组 coordinates ，其中 coordinates[i] = [x, y] ， [x, y]
+表示横坐标为 x、纵坐标为 y
+的点。请你来判断，这些点是否在该坐标系中属于同一条直线上。</p>
+<h3 id="实现思路一">实现思路一</h3>
+<ol type="1">
+<li>如果每两个点的斜率相同，那么就能确定属于同一条直线上</li>
+<li>从前两个点开始依次计算斜率并存入数组</li>
+<li>所有斜率存入数组后，判断数组中的斜率是否相等，如果全部相等则属于同一条直线</li>
+</ol>
+<h3 id="具体代码">具体代码</h3>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h2 id="实现思路二">实现思路二</h2>
+<ol type="1">
+<li>通过前两个点算出斜率后，再根据直线方程y = ax + b取得截距b</li>
+<li>代入后续的其他点判断是否满足y = ax + b</li>
+</ol>
+<h2 id="具体代码-1">具体代码</h2>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>避免 Day.js 与 UTC 时区的常见陷阱</title>
     <url>/posts/2/</url>
     <content><![CDATA[<p>在前端开发中，我们通常使用 Day.js
@@ -790,6 +761,70 @@ false 。</p>
       </categories>
       <tags>
         <tag>Frontnd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【LeetCode】重新排列句子中的单词</title>
+    <url>/posts/rearrange-words-in-a-sentence/</url>
+    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/rearrange-words-in-a-sentence/description/">【题目链接】3127.
+重新排列句子中的单词<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="题目描述">题目描述</h3>
+<p>「句子」是一个用空格分隔单词的字符串。给你一个满足下述格式的句子 text
+:</p>
+<p>句子的首字母大写 text 中的每个单词都用单个空格分隔。 请你重新排列
+text
+中的单词，使所有单词按其长度的升序排列。<strong>如果两个单词的长度相同，则保留其在原句子中的相对顺序。</strong></p>
+<p>请同样按上述格式返回新的句子。</p>
+<h3 id="实现思路">实现思路</h3>
+<ol type="1">
+<li>将句子按照空格分割为数组</li>
+<li>根据每个单词的长度进行升序排序</li>
+<li>将第一项的首字母大写</li>
+<li>将数组转换为字符串的格式返回</li>
+</ol>
+<h3 id="具体代码">具体代码</h3>
+<p><strong>方法一</strong></p>
+<p>这种是目前想出来最简单的解决方案，直接使用 js 的 sort 方法</p>
+<blockquote>
+<p>这里不同的 JavaScript 引擎实现的方法会有所不同，V8 引擎（Chrome 和
+Node.js 使用的引擎）中使用的是 Timsort 算法，是一种稳定的排序算法。</p>
+</blockquote>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrangeWords = <span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">  <span class="keyword">const</span> textArr = text.<span class="title function_">toLowerCase</span>().<span class="title function_">split</span>(<span class="string">" "</span>);</span><br><span class="line">  <span class="comment">// 直接使用sort方法进行排序</span></span><br><span class="line">  textArr.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.<span class="property">length</span> - b.<span class="property">length</span>);</span><br><span class="line">  textArr[<span class="number">0</span>] = textArr[<span class="number">0</span>][<span class="number">0</span>].<span class="title function_">toUpperCase</span>() + textArr[<span class="number">0</span>].<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> textArr.<span class="title function_">join</span>(<span class="string">" "</span>);</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<p><strong>方法二</strong></p>
+<p>上面提到了稳定的排序算法，起因是一开始打算使用选择排序，发现不符合题目中“如果两个单词的长度相同，则保留其在原句子中的相对顺序。”的要求。</p>
+<p>排序算法分为非稳定排序和稳定排序。</p>
+<ul>
+<li><strong>非稳定性排序</strong>
+指在排序过程中，相等元素的相对位置可能会发生改变的排序算法。如果序列中有两个元素相等，经过非稳定排序后，它们的相对顺序可能与排序前不同。常见的非稳定性排序有：
+<ul>
+<li>快速排序</li>
+<li>选择排序</li>
+<li>堆排序</li>
+</ul></li>
+<li><strong>稳定性排序</strong>指在排序过程中，相等元素的相对位置保持不变的排序算法。如果序列中有两个元素相等，经过稳定排序后，它们的相对顺序与排序前相同。常见的稳定性排序有：
+<ul>
+<li>冒泡排序</li>
+<li>插入排序</li>
+<li>归并排序</li>
+<li>计数排序</li>
+<li>基数排序</li>
+<li>桶排序</li>
+</ul></li>
+</ul>
+<p>使用桶排序</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrangeWords = <span class="keyword">function</span> (<span class="params">text</span>) {</span><br><span class="line">  <span class="keyword">const</span> textArr = text.<span class="title function_">toLowerCase</span>().<span class="title function_">split</span>(<span class="string">" "</span>);</span><br><span class="line">  <span class="keyword">const</span> buckets = {};</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> textArr) {</span><br><span class="line">    <span class="keyword">if</span> (buckets[item.<span class="property">length</span>]) {</span><br><span class="line">      buckets[item.<span class="property">length</span>].<span class="title function_">push</span>(item);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      buckets[item.<span class="property">length</span>] = [item];</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> result = [];</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(buckets).<span class="title function_">forEach</span>(<span class="function">(<span class="params">keys</span>) =&gt;</span> {</span><br><span class="line">    result = result.<span class="title function_">concat</span>(buckets[keys]);</span><br><span class="line">  });</span><br><span class="line"></span><br><span class="line">  result[<span class="number">0</span>] = result[<span class="number">0</span>][<span class="number">0</span>].<span class="title function_">toUpperCase</span>() + result[<span class="number">0</span>].<span class="title function_">slice</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> result.<span class="title function_">join</span>(<span class="string">" "</span>);</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort()
+- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://v8.dev/blog/array-sort#timsort">Getting things
+sorted in V8 · V8<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://zh.wikipedia.org/wiki/Timsort">Timsort -
+维基百科，自由的百科全书<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
 </search>
