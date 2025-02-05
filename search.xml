@@ -84,50 +84,6 @@ Epub 文件内容和源码才能知道表示的意思。</p>
       </tags>
   </entry>
   <entry>
-    <title>axios的基本使用</title>
-    <url>/posts/55319/</url>
-    <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
-<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js
-中。</p>
-<p>最简单的axios写法如下</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'url'</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  });</span><br></pre></td></tr></table></figure></div>
-<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
-<h3 id="什么是跨域">什么是跨域</h3>
-<p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
-<p>最常见的就是当域名不同时（如下）</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">www.abc.com 访问 www.def.com</span><br></pre></td></tr></table></figure></div>
-<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
-<h3 id="如何解决跨域问题">如何解决跨域问题</h3>
-<p>这里分为vue cli2与 vue
-cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
-<h4 id="step1">STEP1</h4>
-<p>修改/创建配置文件</p>
-<h5 id="vue-cli2">vue cli2</h5>
-<p>将config文件夹下的index.js打开，写入代码如下</p>
-<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a class="link" href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
-<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">'/api'</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">'https://url.com'</span>, <span class="comment">//对应自己的接口</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//这里的名字可以自定义（api）</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
-<h5 id="vue-cli34">vue cli3/4</h5>
-<p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
-<h4 id="step2">STEP2</h4>
-<p>创建一个js文件名字随意，大致代码如下</p>
-<p>axios更多的实例请求配置详见：<a class="link" href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">config</span>) {</span><br><span class="line">  创建一个axios实例</span><br><span class="line">    <span class="keyword">var</span> instance = axios.<span class="title function_">create</span>({</span><br><span class="line">        <span class="attr">method</span>: <span class="string">'get'</span>,<span class="comment">//传输方式（get/post）</span></span><br><span class="line">        <span class="attr">params</span>: {</span><br><span class="line">          <span class="comment">//需要传递的参数写在这里</span></span><br><span class="line">          <span class="attr">name</span>:<span class="string">'jhao'</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">headers</span>: {</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'text/plain:charset=UTF-8'</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">instance</span>(config)<span class="comment">//返回参数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
-<h4 id="step3">STEP3</h4>
-<p>在main.js中导入STEP2的文件</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { request } <span class="keyword">from</span> <span class="string">'./api/request'</span></span><br><span class="line"><span class="comment">//换成自己的js文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">request</span>(<span class="string">'/api/cgi-bin/musicu.fcg'</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>{</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h4 id="结束">结束</h4>
-<p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Sunshine + Moonlight 串流操作记录（一）</title>
     <url>/posts/sunshine-and-moonlight-streaming/</url>
     <content><![CDATA[<h2 id="前言">前言</h2>
@@ -301,6 +257,80 @@ then 方法的对象或函数</p>
       </tags>
   </entry>
   <entry>
+    <title>axios的基本使用</title>
+    <url>/posts/55319/</url>
+    <content><![CDATA[<h2 id="axios的基本使用">axios的基本使用</h2>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js
+中。</p>
+<p>最简单的axios写法如下</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'url'</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  })</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(error);</span><br><span class="line">  });</span><br></pre></td></tr></table></figure></div>
+<p>这样我们就可以完成一个简单的get请求，但是在大多数情况下，我们总是会遇到跨域相关的问题。</p>
+<h3 id="什么是跨域">什么是跨域</h3>
+<p>跨域，指的是浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器施加的安全限制。</p>
+<p>最常见的就是当域名不同时（如下）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">www.abc.com 访问 www.def.com</span><br></pre></td></tr></table></figure></div>
+<p>有的网站会在服务端写好，这样我们请求接口时就不会遇到跨域的问题，但是大多数并不会，也就是为什么在看相关教程时看着老师可以直接请求数据，但是自己照着写时却突然蹦出来了跨域的问题（老师自己写的接口，在服务端就解决了跨域的问题）。</p>
+<h3 id="如何解决跨域问题">如何解决跨域问题</h3>
+<p>这里分为vue cli2与 vue
+cli3/4的解决方法，因为配置文件发生了相应的改变所以有一些小的变动，网上大多数的解决方法都是cli2放在cli3/4是不可行的。</p>
+<h4 id="step1">STEP1</h4>
+<p>修改/创建配置文件</p>
+<h5 id="vue-cli2">vue cli2</h5>
+<p>将config文件夹下的index.js打开，写入代码如下</p>
+<p>注意这里不要改成es6语法，具体为啥我还不是特别清楚，官方文档是这样写的，我改成es6是没法正常运行的。。。详情见：<a class="link" href="https://cli.vuejs.org/zh/config/">Vue官方文档：配置参考<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>注意devServe，也就是说只能在开发环境下实现跨域，打包后在生产环境下无法实现跨域</p>
+<p>为什么这样写可以实现跨域？上面的链接中devServer.proxy有详细说到~</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">'/api'</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">'https://url.com'</span>, <span class="comment">//对应自己的接口</span></span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">        }</span><br><span class="line">        <span class="comment">//这里的名字可以自定义（api）</span></span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h5 id="vue-cli34">vue cli3/4</h5>
+<p>直接在根目录下修改或者创建vue.config.js（名字是固定的！官方就是这么规定的，其他名字不会生效），写入的代码同上</p>
+<h4 id="step2">STEP2</h4>
+<p>创建一个js文件名字随意，大致代码如下</p>
+<p>axios更多的实例请求配置详见：<a class="link" href="https://www.kancloud.cn/yunye/axios/234845">Axios中文说明<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">request</span>(<span class="params">config</span>) {</span><br><span class="line">  创建一个axios实例</span><br><span class="line">    <span class="keyword">var</span> instance = axios.<span class="title function_">create</span>({</span><br><span class="line">        <span class="attr">method</span>: <span class="string">'get'</span>,<span class="comment">//传输方式（get/post）</span></span><br><span class="line">        <span class="attr">params</span>: {</span><br><span class="line">          <span class="comment">//需要传递的参数写在这里</span></span><br><span class="line">          <span class="attr">name</span>:<span class="string">'jhao'</span></span><br><span class="line">        },</span><br><span class="line">        <span class="attr">headers</span>: {</span><br><span class="line">            <span class="string">'content-type'</span>: <span class="string">'text/plain:charset=UTF-8'</span></span><br><span class="line">        }</span><br><span class="line">    });</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">instance</span>(config)<span class="comment">//返回参数</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
+<h4 id="step3">STEP3</h4>
+<p>在main.js中导入STEP2的文件</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { request } <span class="keyword">from</span> <span class="string">'./api/request'</span></span><br><span class="line"><span class="comment">//换成自己的js文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">request</span>(<span class="string">'/api/cgi-bin/musicu.fcg'</span>).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span>{</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h4 id="结束">结束</h4>
+<p>到这里在开发环境中的跨域请求就解决了，要在生产环境中使用还需要一点其他的配置，以后再写。小白个人的学习总结，可能会存在一些技术知识上的认知错误，欢迎指出，大佬轻喷、轻喷~</p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>frp更新后的配置文件写法变更</title>
+    <url>/posts/1/</url>
+    <content><![CDATA[<p>从 v0.52.0 版本开始，frp 开始支持 TOML、YAML 和 JSON
+作为配置文件格式</p>
+<p>v0.52.0版本前，frp使用.ini作为配置文件的格式，基本配置如下：</p>
+<div class="code-container" data-rel="Ini"><figure class="iseeu highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = &lt;server_host&gt;</span><br><span class="line"><span class="attr">server_port</span> = &lt;server_port&gt;</span><br><span class="line"><span class="attr">token</span> = &lt;password&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务名称，在服务器端不能重复</span></span><br><span class="line"><span class="section">[app_http]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="comment"># 需要转发的本地ip，可以改成局域网的ip做转发</span></span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment"># 需要转发的本地端口</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">80</span></span><br><span class="line"><span class="attr">remote_port</span> = &lt;remort_port_1&gt;</span><br><span class="line"></span><br><span class="line"><span class="section">[app_https]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="attr">local_ip</span>=<span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> =<span class="number">443</span></span><br><span class="line"><span class="attr">remote_port</span>=&lt;remort_port_2&gt;</span><br></pre></td></tr></table></figure></div>
+<p>由于更新后ini文件被弃用，但网上依旧有很多的文章在写之前的配置，没有标注版本，导致出现配置文件在不同版本间混用的情况，导致莫名的bug（大多会提示ini文件已被弃用的提示）</p>
+<p>如果在 v0.52.0
+以后的版本中，使用如[common]的这种写法，即使文件为.toml文件，也会被frp当作ini文件进行处理</p>
+<p>所以按照按照官方文档的示例，以后的版本配置文件应如以下代码所示</p>
+<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="attr">serverAddr</span> = <span class="string">"x.x.x.x"</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"ssh"</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">"tcp"</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">6000</span></span><br><span class="line"><span class="attr">auth.token</span> = <span class="string">"xxxxx"</span></span><br></pre></td></tr></table></figure></div>
+<p>参考链接</p>
+<blockquote>
+<p><a class="link" href="https://gofrp.org/zh-cn/docs/features/common/configure/">frp官方文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+<blockquote>
+<p><a class="link" href="https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml">frpc_full_example.toml<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+<blockquote>
+<p><a class="link" href="https://github.com/fatedier/frp/issues/3724">toml配置问题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>frp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>WIFI杀手制作</title>
     <url>/posts/3560/</url>
     <content><![CDATA[<h1 id="wifi杀手">WIFI杀手！</h1>
@@ -342,36 +372,6 @@ esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
       </categories>
       <tags>
         <tag>esp8266</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>frp更新后的配置文件写法变更</title>
-    <url>/posts/1/</url>
-    <content><![CDATA[<p>从 v0.52.0 版本开始，frp 开始支持 TOML、YAML 和 JSON
-作为配置文件格式</p>
-<p>v0.52.0版本前，frp使用.ini作为配置文件的格式，基本配置如下：</p>
-<div class="code-container" data-rel="Ini"><figure class="iseeu highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">server_addr</span> = &lt;server_host&gt;</span><br><span class="line"><span class="attr">server_port</span> = &lt;server_port&gt;</span><br><span class="line"><span class="attr">token</span> = &lt;password&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务名称，在服务器端不能重复</span></span><br><span class="line"><span class="section">[app_http]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="comment"># 需要转发的本地ip，可以改成局域网的ip做转发</span></span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment"># 需要转发的本地端口</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">80</span></span><br><span class="line"><span class="attr">remote_port</span> = &lt;remort_port_1&gt;</span><br><span class="line"></span><br><span class="line"><span class="section">[app_https]</span></span><br><span class="line"><span class="attr">type</span>=tcp</span><br><span class="line"><span class="attr">local_ip</span>=<span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">local_port</span> =<span class="number">443</span></span><br><span class="line"><span class="attr">remote_port</span>=&lt;remort_port_2&gt;</span><br></pre></td></tr></table></figure></div>
-<p>由于更新后ini文件被弃用，但网上依旧有很多的文章在写之前的配置，没有标注版本，导致出现配置文件在不同版本间混用的情况，导致莫名的bug（大多会提示ini文件已被弃用的提示）</p>
-<p>如果在 v0.52.0
-以后的版本中，使用如[common]的这种写法，即使文件为.toml文件，也会被frp当作ini文件进行处理</p>
-<p>所以按照按照官方文档的示例，以后的版本配置文件应如以下代码所示</p>
-<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="attr">serverAddr</span> = <span class="string">"x.x.x.x"</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"ssh"</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">"tcp"</span></span><br><span class="line"><span class="attr">localIP</span> = <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">22</span></span><br><span class="line"><span class="attr">remotePort</span> = <span class="number">6000</span></span><br><span class="line"><span class="attr">auth.token</span> = <span class="string">"xxxxx"</span></span><br></pre></td></tr></table></figure></div>
-<p>参考链接</p>
-<blockquote>
-<p><a class="link" href="https://gofrp.org/zh-cn/docs/features/common/configure/">frp官方文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-<blockquote>
-<p><a class="link" href="https://github.com/fatedier/frp/blob/dev/conf/frpc_full_example.toml">frpc_full_example.toml<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-<blockquote>
-<p><a class="link" href="https://github.com/fatedier/frp/issues/3724">toml配置问题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>frp</tag>
       </tags>
   </entry>
   <entry>
@@ -576,38 +576,6 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </tags>
   </entry>
   <entry>
-    <title>【LeetCode】缀点成线</title>
-    <url>/posts/check-if-it-is-a-straight-line/</url>
-    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/check-if-it-is-a-straight-line/description/">【题目链接】1232.
-缀点成线<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="题目描述">题目描述</h3>
-<p>给定一个数组 coordinates ，其中 coordinates[i] = [x, y] ， [x, y]
-表示横坐标为 x、纵坐标为 y
-的点。请你来判断，这些点是否在该坐标系中属于同一条直线上。</p>
-<h3 id="实现思路一">实现思路一</h3>
-<ol type="1">
-<li>如果每两个点的斜率相同，那么就能确定属于同一条直线上</li>
-<li>从前两个点开始依次计算斜率并存入数组</li>
-<li>所有斜率存入数组后，判断数组中的斜率是否相等，如果全部相等则属于同一条直线</li>
-</ol>
-<h3 id="具体代码">具体代码</h3>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<h2 id="实现思路二">实现思路二</h2>
-<ol type="1">
-<li>通过前两个点算出斜率后，再根据直线方程y = ax + b取得截距b</li>
-<li>代入后续的其他点判断是否满足y = ax + b</li>
-</ol>
-<h2 id="具体代码-1">具体代码</h2>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Frontnd</category>
-      </categories>
-      <tags>
-        <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue+element+阿里云oss图片上传</title>
     <url>/posts/63894/</url>
     <content><![CDATA[<h3 id="vueelement阿里云oss图片上传">vue+element+阿里云oss图片上传</h3>
@@ -659,34 +627,29 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </tags>
   </entry>
   <entry>
-    <title>【LeetCode】构造相同颜色的正方形</title>
-    <url>/posts/make-a-square-with-the-same-color/</url>
-    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">【题目链接】3127.
-构造相同颜色的正方形<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+    <title>【LeetCode】缀点成线</title>
+    <url>/posts/check-if-it-is-a-straight-line/</url>
+    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/check-if-it-is-a-straight-line/description/">【题目链接】1232.
+缀点成线<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h3 id="题目描述">题目描述</h3>
-<p>给你一个二维 3 x 3 的矩阵 grid ，每个格子都是一个字符，要么是 'B'
-，要么是 'W' 。字符 'W' 表示白色，字符 'B' 表示黑色。</p>
-<p>你的任务是改变 至多一个 格子的颜色，使得矩阵中存在一个 2 x 2
-颜色完全相同的正方形。</p>
-<p>如果可以得到一个相同颜色的 2 x 2 正方形，那么返回 true ，否则返回
-false 。</p>
-<h3 id="实现思路">实现思路</h3>
+<p>给定一个数组 coordinates ，其中 coordinates[i] = [x, y] ， [x, y]
+表示横坐标为 x、纵坐标为 y
+的点。请你来判断，这些点是否在该坐标系中属于同一条直线上。</p>
+<h3 id="实现思路一">实现思路一</h3>
 <ol type="1">
-<li><strong>遍历所有可能的 2x2 正方形</strong></li>
+<li>如果每两个点的斜率相同，那么就能确定属于同一条直线上</li>
+<li>从前两个点开始依次计算斜率并存入数组</li>
+<li>所有斜率存入数组后，判断数组中的斜率是否相等，如果全部相等则属于同一条直线</li>
 </ol>
-<ul>
-<li>(0,0) 到 (1,1)</li>
-<li>(0,1) 到 (1,2)</li>
-<li>(1,0) 到 (2,1)</li>
-<li>(1,1) 到 (2,2)</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>统计每个 2x2 正方形中'B'和'W'的数量</strong></li>
-</ol>
-<p>如果 B 或 W 的数量大于等于 3（因为测试案例中还有 4
-格都是'B'或'W'的情况）那么就符合条件</p>
 <h3 id="具体代码">具体代码</h3>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 辅助函数：检查给定的 2x2 正方形是否可以通过改变一个格子来使其颜色完全相同</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">checkSquare</span> = (<span class="params">x, y</span>) =&gt; {</span><br><span class="line">  <span class="keyword">let</span> countB = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> countW = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 统计 2x2 正方形中 'B' 和 'W' 的数量</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = x; i &lt; x + <span class="number">2</span>; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = y; j &lt; y + <span class="number">2</span>; j++) {</span><br><span class="line">      <span class="keyword">if</span> (grid[i][j] === <span class="string">"B"</span>) {</span><br><span class="line">        countB++;</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        countW++;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// 判断是否可以通过改变一个格子来满足条件,大于3是因为有可能</span></span><br><span class="line">  <span class="keyword">return</span> countB &gt;= <span class="number">3</span> || countW &gt;= <span class="number">3</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历所有可能的 2x2 正方形</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) {</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkSquare</span>(i, j)) {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果没有找到符合条件的 2x2 正方形，返回 false</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> slopeArr = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; coordinates.<span class="property">length</span> - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="keyword">let</span> dx = coordinates[i + <span class="number">1</span>][<span class="number">0</span>] - coordinates[i][<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">let</span> dy = coordinates[i + <span class="number">1</span>][<span class="number">1</span>] - coordinates[i][<span class="number">1</span>]</span><br><span class="line">        <span class="comment">// 考虑如果x为零的情况，代表垂直的直线</span></span><br><span class="line">        <span class="keyword">let</span> slope = dx === <span class="number">0</span> ? <span class="string">'vertical'</span> : dy/dx</span><br><span class="line">        <span class="comment">// 将结果存入数组</span></span><br><span class="line">        slopeArr.<span class="title function_">push</span>(slope)</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 如果所有值相等则为一条直线</span></span><br><span class="line">    <span class="keyword">return</span> slopeArr.<span class="title function_">every</span>(<span class="function"><span class="params">item</span> =&gt;</span> item === slopeArr[<span class="number">0</span>])</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h2 id="实现思路二">实现思路二</h2>
+<ol type="1">
+<li>通过前两个点算出斜率后，再根据直线方程y = ax + b取得截距b</li>
+<li>代入后续的其他点判断是否满足y = ax + b</li>
+</ol>
+<h2 id="具体代码-1">具体代码</h2>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> checkStraightLine = <span class="keyword">function</span>(<span class="params">coordinates</span>) {</span><br><span class="line">    <span class="keyword">const</span> [x1, y1] = coordinates[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> [x2, y2] = coordinates[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查是否为垂直线</span></span><br><span class="line">    <span class="keyword">if</span> (x1 === x2) {</span><br><span class="line">        <span class="comment">// 检查后续点的 x 坐标是否与前两个点相同</span></span><br><span class="line">        <span class="keyword">return</span> coordinates.<span class="title function_">every</span>(<span class="function"><span class="params">point</span> =&gt;</span> point[<span class="number">0</span>] === x1);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是垂直线，计算斜率 a 和截距 b</span></span><br><span class="line">    <span class="keyword">const</span> a = (y2 - y1) / (x2 - x1); <span class="comment">// 斜率</span></span><br><span class="line">    <span class="keyword">const</span> b = y1 - a * x1; <span class="comment">// 截距</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查后续点是否满足 y = ax + b</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; coordinates.<span class="property">length</span>; i++) {</span><br><span class="line">        <span class="keyword">const</span> [x, y] = coordinates[i];</span><br><span class="line">        <span class="keyword">if</span> (y !== a * x + b) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果有任何一点不满足直线方程，返回 false</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">};</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>Frontnd</category>
@@ -760,37 +723,40 @@ sorted in V8 · V8<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light ali
       </tags>
   </entry>
   <entry>
-    <title>避免 Day.js 与 UTC 时区的常见陷阱</title>
-    <url>/posts/2/</url>
-    <content><![CDATA[<p>在前端开发中，我们通常使用 Day.js
-来格式化从后端传递过来的时间数据。后端传来的时间通常是标准的 UTC
-格式，例如：</p>
+    <title>【LeetCode】构造相同颜色的正方形</title>
+    <url>/posts/make-a-square-with-the-same-color/</url>
+    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">【题目链接】3127.
+构造相同颜色的正方形<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="题目描述">题目描述</h3>
+<p>给你一个二维 3 x 3 的矩阵 grid ，每个格子都是一个字符，要么是 'B'
+，要么是 'W' 。字符 'W' 表示白色，字符 'B' 表示黑色。</p>
+<p>你的任务是改变 至多一个 格子的颜色，使得矩阵中存在一个 2 x 2
+颜色完全相同的正方形。</p>
+<p>如果可以得到一个相同颜色的 2 x 2 正方形，那么返回 true ，否则返回
+false 。</p>
+<h3 id="实现思路">实现思路</h3>
+<ol type="1">
+<li><strong>遍历所有可能的 2x2 正方形</strong></li>
+</ol>
 <ul>
-<li>2015-09-01T14:55:00+00:00
-<ul>
-<li>2015-09-01 表示日期，格式为 YYYY-MM-DD</li>
-<li>T 是日期和时间的分隔符</li>
-<li>14:55:00 表示时间，格式为 HH:MM:SS</li>
-<li>+00:00 表示时区偏移，+00:00 代表 UTC 时间
-因为之前公司一直都是把本地时间直接存UTC时区+00:00，但这种做法存在不规范之处——在不同的时区查看时间时可能会出现错误。实际上，更为标准的做法是将本地时间按照当地时区（如
-+08:00）存储。</li>
-</ul></li>
+<li>(0,0) 到 (1,1)</li>
+<li>(0,1) 到 (1,2)</li>
+<li>(1,0) 到 (2,1)</li>
+<li>(1,1) 到 (2,2)</li>
 </ul>
-<p>由于之前的习惯，前端代码通常是这样来格式化时间的：</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">dayjs.<span class="title function_">utc</span>(item.<span class="property">filledOn</span>).<span class="title function_">format</span>(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</span><br></pre></td></tr></table></figure></div>
-<p>这段代码的假设前提是所有存储的时间都是 UTC
-时间。因此，当我们遇到如下时间格式时：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2024-08-26T09:56:45.403258+08:00</span><br></pre></td></tr></table></figure></div>
-<p>这时使用 dayjs.utc() 进行格式化，就会导致时间被错误地减去 8
-小时。这种错误应该在时间存储时统一规避，以避免前端展示错误的时间信息。当然在前端处理时间信息时，也应该多注意时区的格式和时区问题。</p>
-<p><a class="link" href="https://day.js.org/docs/zh-CN/parse/utc">UTC·Day.js<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6">协调世界时·维基百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<ol start="2" type="1">
+<li><strong>统计每个 2x2 正方形中'B'和'W'的数量</strong></li>
+</ol>
+<p>如果 B 或 W 的数量大于等于 3（因为测试案例中还有 4
+格都是'B'或'W'的情况）那么就符合条件</p>
+<h3 id="具体代码">具体代码</h3>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 辅助函数：检查给定的 2x2 正方形是否可以通过改变一个格子来使其颜色完全相同</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">checkSquare</span> = (<span class="params">x, y</span>) =&gt; {</span><br><span class="line">  <span class="keyword">let</span> countB = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> countW = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 统计 2x2 正方形中 'B' 和 'W' 的数量</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = x; i &lt; x + <span class="number">2</span>; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = y; j &lt; y + <span class="number">2</span>; j++) {</span><br><span class="line">      <span class="keyword">if</span> (grid[i][j] === <span class="string">"B"</span>) {</span><br><span class="line">        countB++;</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        countW++;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// 判断是否可以通过改变一个格子来满足条件,大于3是因为有可能</span></span><br><span class="line">  <span class="keyword">return</span> countB &gt;= <span class="number">3</span> || countW &gt;= <span class="number">3</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历所有可能的 2x2 正方形</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) {</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkSquare</span>(i, j)) {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果没有找到符合条件的 2x2 正方形，返回 false</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>Frontnd</category>
       </categories>
       <tags>
-        <tag>Frontnd</tag>
+        <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
@@ -825,6 +791,40 @@ sorted in V8 · V8<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light ali
       </categories>
       <tags>
         <tag>Chrome</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>避免 Day.js 与 UTC 时区的常见陷阱</title>
+    <url>/posts/2/</url>
+    <content><![CDATA[<p>在前端开发中，我们通常使用 Day.js
+来格式化从后端传递过来的时间数据。后端传来的时间通常是标准的 UTC
+格式，例如：</p>
+<ul>
+<li>2015-09-01T14:55:00+00:00
+<ul>
+<li>2015-09-01 表示日期，格式为 YYYY-MM-DD</li>
+<li>T 是日期和时间的分隔符</li>
+<li>14:55:00 表示时间，格式为 HH:MM:SS</li>
+<li>+00:00 表示时区偏移，+00:00 代表 UTC 时间
+因为之前公司一直都是把本地时间直接存UTC时区+00:00，但这种做法存在不规范之处——在不同的时区查看时间时可能会出现错误。实际上，更为标准的做法是将本地时间按照当地时区（如
++08:00）存储。</li>
+</ul></li>
+</ul>
+<p>由于之前的习惯，前端代码通常是这样来格式化时间的：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">dayjs.<span class="title function_">utc</span>(item.<span class="property">filledOn</span>).<span class="title function_">format</span>(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</span><br></pre></td></tr></table></figure></div>
+<p>这段代码的假设前提是所有存储的时间都是 UTC
+时间。因此，当我们遇到如下时间格式时：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2024-08-26T09:56:45.403258+08:00</span><br></pre></td></tr></table></figure></div>
+<p>这时使用 dayjs.utc() 进行格式化，就会导致时间被错误地减去 8
+小时。这种错误应该在时间存储时统一规避，以避免前端展示错误的时间信息。当然在前端处理时间信息时，也应该多注意时区的格式和时区问题。</p>
+<p><a class="link" href="https://day.js.org/docs/zh-CN/parse/utc">UTC·Day.js<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6">协调世界时·维基百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>Frontnd</tag>
       </tags>
   </entry>
   <entry>
