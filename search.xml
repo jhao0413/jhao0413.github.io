@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>axios get与post请求</title>
-    <url>/posts/9143/</url>
-    <content><![CDATA[<h2 id="axios-get与post请求">axios get与post请求</h2>
-<h4 id="get请求">get请求</h4>
-<p><em>/api</em>:url地址</p>
-<p><em>params</em>:{}中写参数</p>
-<p><em>response</em>:处理返回结果</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'/api'</span>, {</span><br><span class="line">                <span class="attr">params</span>: {</span><br><span class="line">                    <span class="attr">content</span>:<span class="string">''</span></span><br><span class="line">                },</span><br><span class="line">            }).<span class="title function_">then</span>(</span><br><span class="line">                <span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">                })</span><br></pre></td></tr></table></figure></div>
-<h4 id="post请求">post请求</h4>
-<p>qs.stringify()将对象
-序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(<span class="string">'/api/api/login'</span>, qs.<span class="title function_">stringify</span>(</span><br><span class="line">                                {</span><br><span class="line">                                        <span class="attr">content</span>:<span class="string">""</span></span><br><span class="line">                                }),</span><br><span class="line">                                {</span><br><span class="line">                                    <span class="attr">headers</span>: {</span><br><span class="line">                                        <span class="string">"CSRF-token"</span>:<span class="string">""</span></span><br><span class="line">                                        <span class="comment">//headers发送cookies信息</span></span><br><span class="line">                                    }</span><br><span class="line">                                }, )</span><br><span class="line">                            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                                <span class="comment">//处理返回信息</span></span><br><span class="line">                            });</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Promise用法详解</title>
-    <url>/posts/promise-usage/</url>
-    <content><![CDATA[<h2 id="什么是promise">什么是Promise</h2>
-<p>Promise是一个对象，代表了异步操作的最终完成或者失败。</p>
-<p>下图为MDN中的Promise流程图</p>
-<p>Promise存在三种状态分别为：</p>
+    <title>EPUB文件结构</title>
+    <url>/posts/epub-structure/</url>
+    <content><![CDATA[<p>EPUB 是一种广泛使用的电子书格式。实际上是一个 ZIP
+压缩包，包含了一系列文件和目录，可以任何 ZIP 解压工具解压缩。</p>
+<p>以下是常见的文件结构：</p>
 <blockquote>
-<p>其中fulfill和reject状态也被称之为已敲定（settled），即非pending状态</p>
+<p>虽然 EPUB
+格式有一定的规范，但并没有严格要求必须使用特定的目录名。出版商或开发者可以根据需要自定义目录结构，只要在<code>container.xml</code>文件中正确引用这些路径即可。开发者可能会在
+epub 文件中添加一些图片或脚本文件等，可能会导致结构看起来不同。</p>
 </blockquote>
+<ol type="1">
+<li><p><strong>MIME Type 文件</strong></p>
 <ul>
-<li>pending（等待中）：初始状态，还没有确定的结果</li>
-<li>fulfill（已兑现）：成功状态，操作已完成</li>
-<li>reject（已拒绝）：失败状态，操作未完成</li>
-</ul>
-<p>‍</p>
-<p>​<img lazyload="" src="/images/loading.svg" data-src="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png" alt="image">​</p>
-<h2 id="thenable">thenable</h2>
-<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>对于thenable的定义是：一个定义
-then 方法的对象或函数</p>
-<p>例如：</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">thenableFn</span> = (<span class="params"></span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">        <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> [</span><br><span class="line">            <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thenableobj = {</span><br><span class="line">    <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">thenableFn</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">thenableobj.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h2 id="promise中的方法有哪些">Promise中的方法有哪些</h2>
-<h3 id="实例方法">实例方法</h3>
-<h4 id="then">then</h4>
-<p><strong>then</strong>方法接受两个参数，分别用于Promise在fulfilled与reject情况下的回调函数，then也会返回一个promise对象，这也就是为什么可以实现链式调用的原因</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">'resolved1'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved1</span></span><br><span class="line">  <span class="comment">// 即使返回的是一个字符串，then也会将其包裹在一个promise中返回</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved2'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved2</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved3'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved3</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="catch">catch</h4>
-<p><strong>catch</strong>是在promise被拒绝时使用的一个函数，它也会返回一个promise对象。</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
-<h4 id="finally">finally</h4>
-<p><strong>finally</strong>在promise敲定（settled，无论是resolve还是reject）后执行,同时它也返回一个promise，在后面依旧可以进行链式调用。</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">}).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'finally'</span>); <span class="comment">//finally</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'third then:'</span>, res); <span class="comment">//third then:undefined</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h3 id="静态方法">静态方法</h3>
-<h4 id="reslove">reslove</h4>
-<p>返回一个promise对象，并附带兑现的值</p>
-<h4 id="reject">reject</h4>
-<p>返回一个promise对象，并附带拒绝的原因</p>
-<h4 id="all">all</h4>
-<p>接收一个promise可迭代对象，并返回一个promise。在所有传入的promise兑现后，返回一个包含所有promise对象兑现值的数组；如果其中有promise被拒绝，那么返回第一个promise被拒绝的原因</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//全都fulfilled时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">// [ 'successA', 'successB', 'successC' ]</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中有一个reject时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// errorB</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="allsettled">allSettled</h4>
-<p>接收一个promise的可迭代对象，返回每个promise结果描述的数组</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">//[</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successA' },</span></span><br><span class="line"><span class="comment">//  { status: 'rejected', reason: 'errorB' },</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successC' }</span></span><br><span class="line"><span class="comment">//]</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="race">race</h4>
-<p>接收一个promise可迭代对象，返回一个promise，哪个promise先敲定就先返回哪个（无论是resolve还是reject）</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里就用mdn的例子了</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">  <span class="comment">// 这里两个promise都被兑现了，但promise2的兑现时间更快</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果reject先执行，那么就会先返回reject</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(reject, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">200</span>, <span class="string">'three'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2, promise3]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// two</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<h4 id="any">any</h4>
-<p>接收一个promise可迭代对象，返回第一个被兑现（resolve）promise的兑现值（会忽略之前的reject），如果所有promise都被拒绝，那么以数组的形式返回所有被拒绝的原因。</p>
+<li>文件名：<code>mimetype</code></li>
+<li>内容：<code>application/epub+zip</code></li>
+<li>说明：这是一个文本文件，必须是压缩包中的第一个文件。它声明了文件的
+MIME 类型。</li>
+</ul></li>
+<li><p><strong>META-INF 目录</strong></p>
+<ul>
+<li><p>目录名：<code>META-INF</code></p></li>
+<li><p>说明：这个目录包含了元数据文件。</p>
+<ul>
+<li><code>container.xml</code>：定义了内容文件的路径，<code>container.xml</code>
+文件是 EPUB 文件结构中的关键文件，通过解析 <code>container.xml</code>
+文件中的 <code>full-path</code>
+属性，可以找到并加载电子书的内容文件（<code>opf</code>
+文件）。只要这个文件存在并且路径正确，电子书阅读器就能正确解析和显示电子书内容。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>OEBPS 目录</strong></p>
+<ul>
+<li><p>目录名：<code>OEBPS</code>（或其他名称，这个目录也可能不存在）</p></li>
+<li><p>说明：这个目录包含了电子书的主要内容。</p>
+<ul>
+<li><code>package.opf</code>（或<code>content.opf</code>）：定义了电子书的结构和内容的元数据。</li>
+<li><code>toc.xhtml/toc.ncx</code>：定义了电子书的目录结构。</li>
+<li>各种 XHTML 文件：电子书的主要内容。</li>
+<li>资源文件：如图像、CSS 样式表、JavaScript 文件等。</li>
+</ul></li>
+</ul></li>
+<li><p><strong>toc.ncx</strong></p>
 <blockquote>
-<p>如果文中有任何错误欢迎指正~还是建议直接看官网理解可能会更好</p>
+<p>Table of Contents 的缩写，定义电子书的目录和导航结构</p>
 </blockquote>
-<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise
-- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://github.com/LinDaiDai/niubility-coding-js/blob/master/JavaScript/%E5%BC%82%E6%AD%A5/%E8%A6%81%E5%B0%B1%E6%9D%A545%E9%81%93Promise%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E6%AC%A1%E7%88%BD%E5%88%B0%E5%BA%95.md">45道Promise题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>‍</p>
+<p>application/x-dtbncx+xml 是一种 MIME 类型，通常用于表示一种特定格式的
+XML 文件，称为 NCX（Navigation Center eXtended），通常包含以下元素</p>
+<ul>
+<li><code>&lt;navMap&gt;</code>：包含所有导航点的容器。</li>
+<li><code>&lt;navPoint&gt;</code>：表示一个导航点（例如章节或节）。</li>
+<li><code>&lt;navLabel&gt;</code>：包含导航点的可读文本。</li>
+<li><code>&lt;content&gt;</code>指定导航点对应的内容文件和位置</li>
+</ul></li>
+</ol>
+<h3 id="epub-解析">Epub 解析</h3>
+<p>本质上我们都是在解析 xml 或者 html
+文件，所以第一种方法比较直观，在获取到 Dom 并解析后，直接通过
+querySelector 找到相应的元素并获取内容即可。这种方法存在的问题是，Epub
+文件结构与指定的结构相同，部分 Epub
+文件由于制作时间过早，或者制作者的规范问题，可能会导致解析失败。</p>
+<p>第二种方法是使用 xpath 解析，这种方法的优点是，可以解析出 epub
+文件中的所有元素，而且可以根据具体的命名空间直接查找到想要的内容（这就需要对
+Epub 文件有更深的认知，同时需要了解 xpath 的使用方法，这里也是我看了部分
+Epub Cfi 解析的项目代码后，才了解到）。</p>
+<h3 id="cfi">CFI</h3>
+<p>CFI 是 Content Fragment Identifier
+的缩写，是一种用于标识电子书内容片段的标识符。CFI
+可以用于在电子书中定位特定的内容，例如在电子书中跳转到特定的页面或章节，在保存阅读进度或者书签时经常使用。</p>
+<p>但个人了解下来，可能因为制作规范一直没有变更的原因，很多库停留在
+jQuery
+的时代，部分近几年的库也是根据之前的库修改而来，也没有相对详细的文档，不同项目解析的结构也差距甚远，对于解析结果没有明确的说明，需要对照
+Epub 文件内容和源码才能知道表示的意思。</p>
+<p><a class="link" href="https://www.pen2publishing.com/difference-between-epub-and-epub3/">epub2
+与 epub3 的区别<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 ]]></content>
       <categories>
-        <category>Frontnd</category>
+        <category>杂谈</category>
       </categories>
       <tags>
-        <tag>JavaScript</tag>
+        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
@@ -171,6 +166,94 @@ Moonlight
       </categories>
       <tags>
         <tag>Software</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Promise用法详解</title>
+    <url>/posts/promise-usage/</url>
+    <content><![CDATA[<h2 id="什么是promise">什么是Promise</h2>
+<p>Promise是一个对象，代表了异步操作的最终完成或者失败。</p>
+<p>下图为MDN中的Promise流程图</p>
+<p>Promise存在三种状态分别为：</p>
+<blockquote>
+<p>其中fulfill和reject状态也被称之为已敲定（settled），即非pending状态</p>
+</blockquote>
+<ul>
+<li>pending（等待中）：初始状态，还没有确定的结果</li>
+<li>fulfill（已兑现）：成功状态，操作已完成</li>
+<li>reject（已拒绝）：失败状态，操作未完成</li>
+</ul>
+<p>‍</p>
+<p>​<img lazyload="" src="/images/loading.svg" data-src="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/promises.png" alt="image">​</p>
+<h2 id="thenable">thenable</h2>
+<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>对于thenable的定义是：一个定义
+then 方法的对象或函数</p>
+<p>例如：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">thenableFn</span> = (<span class="params"></span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> {</span><br><span class="line">        <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> [</span><br><span class="line">            <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">        ]</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thenableobj = {</span><br><span class="line">    <span class="attr">then</span>: <span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">        <span class="title function_">resolve</span>(<span class="string">'thenableFn Success'</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">thenableFn</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">thenableobj.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">//thenableFn Success</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h2 id="promise中的方法有哪些">Promise中的方法有哪些</h2>
+<h3 id="实例方法">实例方法</h3>
+<h4 id="then">then</h4>
+<p><strong>then</strong>方法接受两个参数，分别用于Promise在fulfilled与reject情况下的回调函数，then也会返回一个promise对象，这也就是为什么可以实现链式调用的原因</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="title function_">resolve</span>(<span class="string">'resolved1'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved1</span></span><br><span class="line">  <span class="comment">// 即使返回的是一个字符串，then也会将其包裹在一个promise中返回</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved2'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved2</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">'resolved3'</span>;</span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// resolved3</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="catch">catch</h4>
+<p><strong>catch</strong>是在promise被拒绝时使用的一个函数，它也会返回一个promise对象。</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">})</span><br></pre></td></tr></table></figure></div>
+<h4 id="finally">finally</h4>
+<p><strong>finally</strong>在promise敲定（settled，无论是resolve还是reject）后执行,同时它也返回一个promise，在后面依旧可以进行链式调用。</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'error'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'first then:'</span>, res); <span class="comment">//因为reject，所以此处的代码不会执行</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">//error</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'second then:'</span>, res); <span class="comment">//second then:undefined</span></span><br><span class="line">}).<span class="title function_">finally</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'finally'</span>); <span class="comment">//finally</span></span><br><span class="line">}).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'third then:'</span>, res); <span class="comment">//third then:undefined</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h3 id="静态方法">静态方法</h3>
+<h4 id="reslove">reslove</h4>
+<p>返回一个promise对象，并附带兑现的值</p>
+<h4 id="reject">reject</h4>
+<p>返回一个promise对象，并附带拒绝的原因</p>
+<h4 id="all">all</h4>
+<p>接收一个promise可迭代对象，并返回一个promise。在所有传入的promise兑现后，返回一个包含所有promise对象兑现值的数组；如果其中有promise被拒绝，那么返回第一个promise被拒绝的原因</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//全都fulfilled时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res); <span class="comment">// [ 'successA', 'successB', 'successC' ]</span></span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//其中有一个reject时</span></span><br><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">all</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// errorB</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="allsettled">allSettled</h4>
+<p>接收一个promise的可迭代对象，返回每个promise结果描述的数组</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successA'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseB = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">reject</span>(<span class="string">'errorB'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promiseC = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">	<span class="title function_">resolve</span>(<span class="string">'successC'</span>);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">allSettled</span>([promiseA, promiseB, promiseC]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res);</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">//[</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successA' },</span></span><br><span class="line"><span class="comment">//  { status: 'rejected', reason: 'errorB' },</span></span><br><span class="line"><span class="comment">//  { status: 'fulfilled', value: 'successC' }</span></span><br><span class="line"><span class="comment">//]</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="race">race</h4>
+<p>接收一个promise可迭代对象，返回一个promise，哪个promise先敲定就先返回哪个（无论是resolve还是reject）</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这里就用mdn的例子了</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">  <span class="comment">// 这里两个promise都被兑现了，但promise2的兑现时间更快</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如果reject先执行，那么就会先返回reject</span></span><br><span class="line"><span class="keyword">const</span> promise1 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">500</span>, <span class="string">'one'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise2 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(reject, <span class="number">100</span>, <span class="string">'two'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> promise3 = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">  <span class="built_in">setTimeout</span>(resolve, <span class="number">200</span>, <span class="string">'three'</span>);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="title class_">Promise</span>.<span class="title function_">race</span>([promise1, promise2, promise3]).<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">}).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(err); <span class="comment">// two</span></span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<h4 id="any">any</h4>
+<p>接收一个promise可迭代对象，返回第一个被兑现（resolve）promise的兑现值（会忽略之前的reject），如果所有promise都被拒绝，那么以数组的形式返回所有被拒绝的原因。</p>
+<blockquote>
+<p>如果文中有任何错误欢迎指正~还是建议直接看官网理解可能会更好</p>
+</blockquote>
+<p><a class="link" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise
+- JavaScript | MDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://promisesaplus.com/">Promises/A+<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://github.com/LinDaiDai/niubility-coding-js/blob/master/JavaScript/%E5%BC%82%E6%AD%A5/%E8%A6%81%E5%B0%B1%E6%9D%A545%E9%81%93Promise%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B8%80%E6%AC%A1%E7%88%BD%E5%88%B0%E5%BA%95.md">45道Promise题<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>‍</p>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>axios get与post请求</title>
+    <url>/posts/9143/</url>
+    <content><![CDATA[<h2 id="axios-get与post请求">axios get与post请求</h2>
+<h4 id="get请求">get请求</h4>
+<p><em>/api</em>:url地址</p>
+<p><em>params</em>:{}中写参数</p>
+<p><em>response</em>:处理返回结果</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">get</span>(<span class="string">'/api'</span>, {</span><br><span class="line">                <span class="attr">params</span>: {</span><br><span class="line">                    <span class="attr">content</span>:<span class="string">''</span></span><br><span class="line">                },</span><br><span class="line">            }).<span class="title function_">then</span>(</span><br><span class="line">                <span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                    <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">                })</span><br></pre></td></tr></table></figure></div>
+<h4 id="post请求">post请求</h4>
+<p>qs.stringify()将对象
+序列化成URL的形式，以&amp;进行拼接（需要导入qs模块）</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">axios.<span class="title function_">post</span>(<span class="string">'/api/api/login'</span>, qs.<span class="title function_">stringify</span>(</span><br><span class="line">                                {</span><br><span class="line">                                        <span class="attr">content</span>:<span class="string">""</span></span><br><span class="line">                                }),</span><br><span class="line">                                {</span><br><span class="line">                                    <span class="attr">headers</span>: {</span><br><span class="line">                                        <span class="string">"CSRF-token"</span>:<span class="string">""</span></span><br><span class="line">                                        <span class="comment">//headers发送cookies信息</span></span><br><span class="line">                                    }</span><br><span class="line">                                }, )</span><br><span class="line">                            .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> {</span><br><span class="line">                                <span class="comment">//处理返回信息</span></span><br><span class="line">                            });</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -262,6 +345,34 @@ esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
       </tags>
   </entry>
   <entry>
+    <title>Github无法访问问题解决</title>
+    <url>/posts/47938/</url>
+    <content><![CDATA[<h1 id="github竟拒我于门外">Github竟拒我于门外</h1>
+<h3 id="手机可以访问但电脑不可以">手机可以访问但电脑不可以？</h3>
+<p>至于为什么有了这篇帖子咱们还得从一只蝙蝠说起...</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/17bf778d9f5e9a4eff93d7edc496dd1a.jpg"></p>
+<p>从过年之后就再也没踏出过家门一步，吃了睡睡了吃的日子到了今天发现有一丝丝的颓废，于是满心欢喜的打开vs
+code写写代码，git命令到git push却发现无法提交。</p>
+<p>于是我电脑尝试打开官网看看居然得到如下结果 <img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.webp">
+第一时间想到是不是要挂小飞机了，但是打开还是无济于事，抱着试一试的心态我用手机打开了GitHub的官网？？？手机没挂小飞机也能进？</p>
+<h3 id="解决办法">解决办法</h3>
+<p>于是在网上找了各种办法，最后看到了一个靠谱的办法就是修改host文件（文件路径：C:）
+将一下ip粘贴到hosts文件就可以了</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.118 gist.github.com</span><br><span class="line">192.30.253.119 gist.github.com</span><br></pre></td></tr></table></figure></div>
+<p>与此同时问题就又来了，居然保存不了！他还给亲切的提示了你没有权限保存，请向管理员申请。自己管自己？<img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.jpg"></p>
+<p>各种说通过右键属性更改权限的办法都试了，但是都没用。</p>
+<p>最后一个有效的办法就是右键win的图标，找到Windows
+PowerSheell（管理员）注意是<strong>管理员</strong>！然后输入"notepad
+hosts"即可编辑保存了。 到此这个问题就完美解决啦</p>
+]]></content>
+      <categories>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>frp更新后的配置文件写法变更</title>
     <url>/posts/1/</url>
     <content><![CDATA[<p>从 v0.52.0 版本开始，frp 开始支持 TOML、YAML 和 JSON
@@ -292,181 +403,57 @@ esp8266很强大，其他有趣的固件和做法可以自己尝试一下~</li>
       </tags>
   </entry>
   <entry>
-    <title>Github使用</title>
-    <url>/posts/60077/</url>
-    <content><![CDATA[<h1 id="github使用">GitHub使用</h1>
-<h3 id="什么是github">什么是GitHub</h3>
-<p>GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git
-作为唯一的版本库格式进行托管，故名GitHub。作为开源代码库以及版本控制系统，Github拥有超过900万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。
-如前所述，作为一个分布式的版本控制系统，在Git中并不存在主库这样的概念，每一份复制出的库都可以独立使用，任何两个库之间的不一致之处都可以进行合并。（论百度百科的重要性）</p>
-<h3 id="创建仓库">创建仓库</h3>
+    <title>mini-zustand</title>
+    <url>/posts/mini-zustand/</url>
+    <content><![CDATA[<h3 id="什么是-zustand">什么是 Zustand</h3>
+<p><a class="link" href="https://zustand-demo.pmnd.rs/">Zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+是一个轻量级的状态管理库，在写<a class="link" href="https://leaf-nest.vercel.app/">Leaf
+Nest<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>时需要使用到状态管理库所以了解了一下，相比于 Redux，Zustand
+更加轻量和简单，一个简单的 demo
+就能立刻明白如何使用了。（官网做的也真好看呐）</p>
+<p>Zustand 在近年来所有新兴的状态管理库中算是最流行的之一，目前 Github
+star 数已经超过了 50k，在 React 状态管理库中应该是仅次于
+Redux（61k）。</p>
+<p>所以花了点时间简单学习了一下 zustand，写了<a class="link" href="https://github.com/jhao0413/mini-zustand">mini-zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+实现核心功能。</p>
+<h3 id="mini-zustand">mini-zustand</h3>
+<p>在 zustand 中核心功能代码主要在两个文件中：</p>
 <ol type="1">
-<li><a class="link" href="https://github.com">Github传送门<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，进入网站注册账号，进入主页后，点击New，如下图<img lazyload="" src="/images/loading.svg" data-src="/img/github/1.png"></li>
-<li>创建仓库，Repository name处写仓库名，然后创建即可</li>
+<li><a class="link" href="https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts">vanilla.ts<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+<ul>
+<li>createStoreImpl
+的具体实现，包含了核心的状态管理逻辑，如：getState、setState、subscribe
+等。</li>
+</ul></li>
+<li><a class="link" href="https://github.com/pmndrs/zustand/blob/main/src/react.ts">react.ts<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+<ul>
+<li>主要是 React 相关的逻辑，包含了 useStore 的具体实现。</li>
+<li>使用了 React 的 useSyncExternalStore 来订阅 store 的变化。 &gt;
+这里扩展一下，<a class="link" href="https://zh-hans.react.dev/reference/react/useSyncExternalStore">useSyncExternalStore<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
+是 <a class="link" href="https://react.dev/blog/2022/03/29/react-v18#usesyncexternalstore">React
+18 新增的一个
+Hook<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，用于订阅外部数据源的变化。它的主要作用是让我们可以在组件中订阅外部数据源（如：Redux、Zustand
+等）的变化，并在数据源发生变化时自动更新组件。</li>
+</ul></li>
 </ol>
-<h3 id="安装git">安装git</h3>
-<ol type="1">
-<li><a class="link" href="https://git-scm.com/downloads">git下载传送门<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>,下载完成后一路next即可</li>
-<li>安装成功后，打开Git
-Bash会弹出一个类似于命令的窗口，安装成功后在窗口输入</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name "Your Name"</span><br><span class="line">$ git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure></div>
-<p>你的名字和邮箱</p>
-<h3 id="创建本地仓库">创建本地仓库</h3>
-<ol type="1">
-<li>创建一个空文件夹然后输入</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure></div>
-<p>learnfit就是你之前在GitHub创建的仓库名 2. 通过git
-init命令把这个目录变成Git可以管理的仓库</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure></div>
-<ol start="3" type="1">
-<li>这时候在空目录下创建一个readme.txt,内容随意，规范一下可以写成</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure></div>
-<ol start="4" type="1">
-<li>git add,把文件添加到仓库</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure></div>
-<p>5.git commit，将文件提交到仓库</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git commit -m "wrote a readme file"</span><br></pre></td></tr></table></figure></div>
-<p>-m后面输入的是本次提交的说明，可以输入任意内容</p>
-<h3 id="远程仓库">远程仓库</h3>
-<ol type="1">
-<li>创建ssh key</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure></div>
-<p>记得把邮箱改成自己的，然后再用户目录就应该可以找到.ssh的文件夹（主用户目录：C盘下用户的文件夹，然后打开你用户名的文件夹），里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH
-Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<ol start="2" type="1">
-<li>填写ssh key 登陆GitHub，点击setting，打开“SSH
-Keys”页面：然后，点“New SSH
-Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。<img lazyload="" src="/images/loading.svg" data-src="/img/github/2.png">
-现在就可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
-3.现在在本地仓库运行命令</li>
-</ol>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@github.com:username/xxx.git</span><br></pre></td></tr></table></figure></div>
-<p>username改成自己的用户名，git就是你刚刚创建的仓库名（其实这些命令创建仓库后GitHub就会提示你）</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></div>
-<p>这样就推送完成了，以后的上传分为git add，git commit，git push</p>
-<p>我讲的没有那么详细也可以看看<a class="link" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰Git教程<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-      <categories>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EPUB文件结构</title>
-    <url>/posts/epub-structure/</url>
-    <content><![CDATA[<p>EPUB 是一种广泛使用的电子书格式。实际上是一个 ZIP
-压缩包，包含了一系列文件和目录，可以任何 ZIP 解压工具解压缩。</p>
-<p>以下是常见的文件结构：</p>
+<h4 id="vanilla.ts">vanilla.ts</h4>
+<div class="code-container" data-rel="Ts"><figure class="iseeu highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">createStoreImpl</span> = (<span class="params">createState</span>) =&gt; {</span><br><span class="line">  <span class="comment">// 获取 createState 返回值类型</span></span><br><span class="line">  <span class="keyword">type</span> <span class="title class_">TState</span> = <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> createState&gt;;</span><br><span class="line">  <span class="comment">// 使用set存储监听器</span></span><br><span class="line">  <span class="keyword">type</span> <span class="title class_">Listener</span> = <span class="function">(<span class="params">state: TState, prevState: TState</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">state</span>: <span class="title class_">TState</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="attr">listeners</span>: <span class="title class_">Set</span>&lt;<span class="title class_">Listener</span>&gt; = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">setState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"setState"</span>] = <span class="function">(<span class="params">partial, replace</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// 如果partial是一个函数，则先执行partial函数，然后再赋值给nextState</span></span><br><span class="line">    <span class="keyword">const</span> nextState = <span class="keyword">typeof</span> partial === <span class="string">"function"</span> ? <span class="title function_">partial</span>(state) : partial;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断nextState和state是否是同一个对象，如果不是则更新state</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="title function_">is</span>(nextState, state)) {</span><br><span class="line">      <span class="keyword">const</span> prevState = state;</span><br><span class="line"></span><br><span class="line">      state =</span><br><span class="line">        <span class="comment">// 如果replace为true，则直接赋值给nextState</span></span><br><span class="line">        <span class="comment">// 如果replace为false，则将nextState和state合并</span></span><br><span class="line">        replace ?? (<span class="keyword">typeof</span> nextState !== <span class="string">"object"</span> || nextState === <span class="literal">null</span>)</span><br><span class="line">          ? (nextState <span class="keyword">as</span> <span class="title class_">TState</span>)</span><br><span class="line">          : <span class="title class_">Object</span>.<span class="title function_">assign</span>({}, state, nextState);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 遍历listeners，执行每个listener</span></span><br><span class="line">      listeners.<span class="title function_">forEach</span>(<span class="function">(<span class="params">listener</span>) =&gt;</span> <span class="title function_">listener</span>(state, prevState));</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">getState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"getState"</span>] = <span class="function">() =&gt;</span> state;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">subscribe</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"subscribe"</span>] = <span class="function">(<span class="params">listener</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// 添加监听器</span></span><br><span class="line">    listeners.<span class="title function_">add</span>(listener);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回取消订阅功能</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> listeners.<span class="title function_">delete</span>(listener);</span><br><span class="line">  };</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">getInitialState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"getInitialState"</span>] = <span class="function">() =&gt;</span> initialState;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> api = { setState, getState, subscribe, getInitialState };</span><br><span class="line">  <span class="comment">// 初始化state</span></span><br><span class="line">  <span class="keyword">const</span> initialState = (state = <span class="title function_">createState</span>(setState, getState, api));</span><br><span class="line">  <span class="keyword">return</span> api;</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h4 id="react.ts">react.ts</h4>
+<div class="code-container" data-rel="Ts"><figure class="iseeu highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> { createStore } <span class="keyword">from</span> <span class="string">"./vanilla.ts"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> { <span class="title class_">StoreApi</span> } <span class="keyword">from</span> <span class="string">"./vanilla.ts"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">ReadonlyStoreApi</span>&lt;T&gt; = <span class="title class_">Pick</span>&lt;<span class="title class_">StoreApi</span>&lt;T&gt;, <span class="string">"getState"</span> | <span class="string">"getInitialState"</span> | <span class="string">"subscribe"</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> identity = &lt;T&gt;(<span class="attr">arg</span>: T): <span class="function"><span class="params">T</span> =&gt;</span> arg;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useStore</span>(<span class="params">api</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useStore</span>(<span class="params">api, selector</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> useStore&lt;<span class="title class_">TState</span>, <span class="title class_">StateSlice</span>&gt;(</span><br><span class="line">  <span class="attr">api</span>: <span class="title class_">ReadonlyStoreApi</span>&lt;<span class="title class_">TState</span>&gt;,</span><br><span class="line">  <span class="attr">selector</span>: <span class="function">(<span class="params">state: TState</span>) =&gt;</span> <span class="title class_">StateSlice</span> = identity <span class="keyword">as</span> <span class="built_in">any</span></span><br><span class="line">) {</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * useSyncExternalStore 订阅外部 store 的 React Hook</span></span><br><span class="line"><span class="comment">   * useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)</span></span><br><span class="line"><span class="comment">   * subscribe：一个函数，接收一个单独的 callback 参数并把它订阅到 store 上。</span></span><br><span class="line"><span class="comment">   * getSnapshot：一个函数，返回组件需要的 store 中的数据快照。</span></span><br><span class="line"><span class="comment">   * 可选 getServerSnapshot：一个函数，返回 store 中数据的初始快照。</span></span><br><span class="line"><span class="comment">   * React 会用这些函数来保持组件订阅到 store 并在它改变时重新渲染</span></span><br><span class="line"><span class="comment">   * https://zh-hans.react.dev/reference/react/useSyncExternalStore</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> slice = <span class="title class_">React</span>.<span class="title function_">useSyncExternalStore</span>(</span><br><span class="line">    api.<span class="property">subscribe</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> <span class="title function_">selector</span>(api.<span class="title function_">getState</span>()),</span><br><span class="line">    <span class="function">() =&gt;</span> <span class="title function_">selector</span>(api.<span class="title function_">getInitialState</span>())</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// 为自定义 Hook 添加调试信息，方便 React DevTools 显示</span></span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">useDebugValue</span>(slice);</span><br><span class="line">  <span class="keyword">return</span> slice;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createImpl</span> = (<span class="params">createState</span>) =&gt; {</span><br><span class="line">  <span class="keyword">const</span> api = <span class="title function_">createStore</span>(createState);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绑定 store api 到 useBoundStore</span></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">useBoundStore</span>: <span class="built_in">any</span> = <span class="function">(<span class="params">selector?: <span class="built_in">any</span></span>) =&gt;</span> <span class="title function_">useStore</span>(api, selector);</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">assign</span>(useBoundStore, api);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> useBoundStore;</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
 <blockquote>
-<p>虽然 EPUB
-格式有一定的规范，但并没有严格要求必须使用特定的目录名。出版商或开发者可以根据需要自定义目录结构，只要在<code>container.xml</code>文件中正确引用这些路径即可。开发者可能会在
-epub 文件中添加一些图片或脚本文件等，可能会导致结构看起来不同。</p>
+<p>参考链接</p>
 </blockquote>
-<ol type="1">
-<li><p><strong>MIME Type 文件</strong></p>
 <ul>
-<li>文件名：<code>mimetype</code></li>
-<li>内容：<code>application/epub+zip</code></li>
-<li>说明：这是一个文本文件，必须是压缩包中的第一个文件。它声明了文件的
-MIME 类型。</li>
-</ul></li>
-<li><p><strong>META-INF 目录</strong></p>
-<ul>
-<li><p>目录名：<code>META-INF</code></p></li>
-<li><p>说明：这个目录包含了元数据文件。</p>
-<ul>
-<li><code>container.xml</code>：定义了内容文件的路径，<code>container.xml</code>
-文件是 EPUB 文件结构中的关键文件，通过解析 <code>container.xml</code>
-文件中的 <code>full-path</code>
-属性，可以找到并加载电子书的内容文件（<code>opf</code>
-文件）。只要这个文件存在并且路径正确，电子书阅读器就能正确解析和显示电子书内容。</li>
-</ul></li>
-</ul></li>
-<li><p><strong>OEBPS 目录</strong></p>
-<ul>
-<li><p>目录名：<code>OEBPS</code>（或其他名称，这个目录也可能不存在）</p></li>
-<li><p>说明：这个目录包含了电子书的主要内容。</p>
-<ul>
-<li><code>package.opf</code>（或<code>content.opf</code>）：定义了电子书的结构和内容的元数据。</li>
-<li><code>toc.xhtml/toc.ncx</code>：定义了电子书的目录结构。</li>
-<li>各种 XHTML 文件：电子书的主要内容。</li>
-<li>资源文件：如图像、CSS 样式表、JavaScript 文件等。</li>
-</ul></li>
-</ul></li>
-<li><p><strong>toc.ncx</strong></p>
-<blockquote>
-<p>Table of Contents 的缩写，定义电子书的目录和导航结构</p>
-</blockquote>
-<p>application/x-dtbncx+xml 是一种 MIME 类型，通常用于表示一种特定格式的
-XML 文件，称为 NCX（Navigation Center eXtended），通常包含以下元素</p>
-<ul>
-<li><code>&lt;navMap&gt;</code>：包含所有导航点的容器。</li>
-<li><code>&lt;navPoint&gt;</code>：表示一个导航点（例如章节或节）。</li>
-<li><code>&lt;navLabel&gt;</code>：包含导航点的可读文本。</li>
-<li><code>&lt;content&gt;</code>指定导航点对应的内容文件和位置</li>
-</ul></li>
-</ol>
-<h3 id="epub-解析">Epub 解析</h3>
-<p>本质上我们都是在解析 xml 或者 html
-文件，所以第一种方法比较直观，在获取到 Dom 并解析后，直接通过
-querySelector 找到相应的元素并获取内容即可。这种方法存在的问题是，Epub
-文件结构与指定的结构相同，部分 Epub
-文件由于制作时间过早，或者制作者的规范问题，可能会导致解析失败。</p>
-<p>第二种方法是使用 xpath 解析，这种方法的优点是，可以解析出 epub
-文件中的所有元素，而且可以根据具体的命名空间直接查找到想要的内容（这就需要对
-Epub 文件有更深的认知，同时需要了解 xpath 的使用方法，这里也是我看了部分
-Epub Cfi 解析的项目代码后，才了解到）。</p>
-<h3 id="cfi">CFI</h3>
-<p>CFI 是 Content Fragment Identifier
-的缩写，是一种用于标识电子书内容片段的标识符。CFI
-可以用于在电子书中定位特定的内容，例如在电子书中跳转到特定的页面或章节，在保存阅读进度或者书签时经常使用。</p>
-<p>但个人了解下来，可能因为制作规范一直没有变更的原因，很多库停留在
-jQuery
-的时代，部分近几年的库也是根据之前的库修改而来，也没有相对详细的文档，不同项目解析的结构也差距甚远，对于解析结果没有明确的说明，需要对照
-Epub 文件内容和源码才能知道表示的意思。</p>
-<p><a class="link" href="https://www.pen2publishing.com/difference-between-epub-and-epub3/">epub2
-与 epub3 的区别<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<li><a class="link" href="https://github.com/pmndrs/zustand">Zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li><a class="link" href="https://www.shymean.com/article/zustand%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90">zustand
+使用和源码分析<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>杂谈</category>
+        <category>Frontnd</category>
       </categories>
       <tags>
-        <tag>杂谈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github无法访问问题解决</title>
-    <url>/posts/47938/</url>
-    <content><![CDATA[<h1 id="github竟拒我于门外">Github竟拒我于门外</h1>
-<h3 id="手机可以访问但电脑不可以">手机可以访问但电脑不可以？</h3>
-<p>至于为什么有了这篇帖子咱们还得从一只蝙蝠说起...</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/17bf778d9f5e9a4eff93d7edc496dd1a.jpg"></p>
-<p>从过年之后就再也没踏出过家门一步，吃了睡睡了吃的日子到了今天发现有一丝丝的颓废，于是满心欢喜的打开vs
-code写写代码，git命令到git push却发现无法提交。</p>
-<p>于是我电脑尝试打开官网看看居然得到如下结果 <img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.webp">
-第一时间想到是不是要挂小飞机了，但是打开还是无济于事，抱着试一试的心态我用手机打开了GitHub的官网？？？手机没挂小飞机也能进？</p>
-<h3 id="解决办法">解决办法</h3>
-<p>于是在网上找了各种办法，最后看到了一个靠谱的办法就是修改host文件（文件路径：C:）
-将一下ip粘贴到hosts文件就可以了</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.113 github.com</span><br><span class="line">192.30.253.118 gist.github.com</span><br><span class="line">192.30.253.119 gist.github.com</span><br></pre></td></tr></table></figure></div>
-<p>与此同时问题就又来了，居然保存不了！他还给亲切的提示了你没有权限保存，请向管理员申请。自己管自己？<img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/1.jpg"></p>
-<p>各种说通过右键属性更改权限的办法都试了，但是都没用。</p>
-<p>最后一个有效的办法就是右键win的图标，找到Windows
-PowerSheell（管理员）注意是<strong>管理员</strong>！然后输入"notepad
-hosts"即可编辑保存了。 到此这个问题就完美解决啦</p>
-]]></content>
-      <categories>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>Github</tag>
+        <tag>Frontnd</tag>
       </tags>
   </entry>
   <entry>
@@ -551,85 +538,6 @@ done:git就是部署成功了。现在打开http://username.github.io
       </tags>
   </entry>
   <entry>
-    <title>mini-zustand</title>
-    <url>/posts/mini-zustand/</url>
-    <content><![CDATA[<h3 id="什么是-zustand">什么是 Zustand</h3>
-<p><a class="link" href="https://zustand-demo.pmnd.rs/">Zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
-是一个轻量级的状态管理库，在写<a class="link" href="https://leaf-nest.vercel.app/">Leaf
-Nest<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>时需要使用到状态管理库所以了解了一下，相比于 Redux，Zustand
-更加轻量和简单，一个简单的 demo
-就能立刻明白如何使用了。（官网做的也真好看呐）</p>
-<p>Zustand 在近年来所有新兴的状态管理库中算是最流行的之一，目前 Github
-star 数已经超过了 50k，在 React 状态管理库中应该是仅次于
-Redux（61k）。</p>
-<p>所以花了点时间简单学习了一下 zustand，写了<a class="link" href="https://github.com/jhao0413/mini-zustand">mini-zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
-实现核心功能。</p>
-<h3 id="mini-zustand">mini-zustand</h3>
-<p>在 zustand 中核心功能代码主要在两个文件中：</p>
-<ol type="1">
-<li><a class="link" href="https://github.com/pmndrs/zustand/blob/main/src/vanilla.ts">vanilla.ts<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
-<ul>
-<li>createStoreImpl
-的具体实现，包含了核心的状态管理逻辑，如：getState、setState、subscribe
-等。</li>
-</ul></li>
-<li><a class="link" href="https://github.com/pmndrs/zustand/blob/main/src/react.ts">react.ts<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
-<ul>
-<li>主要是 React 相关的逻辑，包含了 useStore 的具体实现。</li>
-<li>使用了 React 的 useSyncExternalStore 来订阅 store 的变化。 &gt;
-这里扩展一下，<a class="link" href="https://zh-hans.react.dev/reference/react/useSyncExternalStore">useSyncExternalStore<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>
-是 <a class="link" href="https://react.dev/blog/2022/03/29/react-v18#usesyncexternalstore">React
-18 新增的一个
-Hook<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，用于订阅外部数据源的变化。它的主要作用是让我们可以在组件中订阅外部数据源（如：Redux、Zustand
-等）的变化，并在数据源发生变化时自动更新组件。</li>
-</ul></li>
-</ol>
-<h4 id="vanilla.ts">vanilla.ts</h4>
-<div class="code-container" data-rel="Ts"><figure class="iseeu highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">createStoreImpl</span> = (<span class="params">createState</span>) =&gt; {</span><br><span class="line">  <span class="comment">// 获取 createState 返回值类型</span></span><br><span class="line">  <span class="keyword">type</span> <span class="title class_">TState</span> = <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> createState&gt;;</span><br><span class="line">  <span class="comment">// 使用set存储监听器</span></span><br><span class="line">  <span class="keyword">type</span> <span class="title class_">Listener</span> = <span class="function">(<span class="params">state: TState, prevState: TState</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">  <span class="keyword">let</span> <span class="attr">state</span>: <span class="title class_">TState</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="attr">listeners</span>: <span class="title class_">Set</span>&lt;<span class="title class_">Listener</span>&gt; = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">setState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"setState"</span>] = <span class="function">(<span class="params">partial, replace</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// 如果partial是一个函数，则先执行partial函数，然后再赋值给nextState</span></span><br><span class="line">    <span class="keyword">const</span> nextState = <span class="keyword">typeof</span> partial === <span class="string">"function"</span> ? <span class="title function_">partial</span>(state) : partial;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断nextState和state是否是同一个对象，如果不是则更新state</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="title class_">Object</span>.<span class="title function_">is</span>(nextState, state)) {</span><br><span class="line">      <span class="keyword">const</span> prevState = state;</span><br><span class="line"></span><br><span class="line">      state =</span><br><span class="line">        <span class="comment">// 如果replace为true，则直接赋值给nextState</span></span><br><span class="line">        <span class="comment">// 如果replace为false，则将nextState和state合并</span></span><br><span class="line">        replace ?? (<span class="keyword">typeof</span> nextState !== <span class="string">"object"</span> || nextState === <span class="literal">null</span>)</span><br><span class="line">          ? (nextState <span class="keyword">as</span> <span class="title class_">TState</span>)</span><br><span class="line">          : <span class="title class_">Object</span>.<span class="title function_">assign</span>({}, state, nextState);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 遍历listeners，执行每个listener</span></span><br><span class="line">      listeners.<span class="title function_">forEach</span>(<span class="function">(<span class="params">listener</span>) =&gt;</span> <span class="title function_">listener</span>(state, prevState));</span><br><span class="line">    }</span><br><span class="line">  };</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">getState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"getState"</span>] = <span class="function">() =&gt;</span> state;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">subscribe</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"subscribe"</span>] = <span class="function">(<span class="params">listener</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// 添加监听器</span></span><br><span class="line">    listeners.<span class="title function_">add</span>(listener);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回取消订阅功能</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> listeners.<span class="title function_">delete</span>(listener);</span><br><span class="line">  };</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">getInitialState</span>: <span class="title class_">StoreApi</span>&lt;<span class="title class_">TState</span>&gt;[<span class="string">"getInitialState"</span>] = <span class="function">() =&gt;</span> initialState;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> api = { setState, getState, subscribe, getInitialState };</span><br><span class="line">  <span class="comment">// 初始化state</span></span><br><span class="line">  <span class="keyword">const</span> initialState = (state = <span class="title function_">createState</span>(setState, getState, api));</span><br><span class="line">  <span class="keyword">return</span> api;</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<h4 id="react.ts">react.ts</h4>
-<div class="code-container" data-rel="Ts"><figure class="iseeu highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> { createStore } <span class="keyword">from</span> <span class="string">"./vanilla.ts"</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> { <span class="title class_">StoreApi</span> } <span class="keyword">from</span> <span class="string">"./vanilla.ts"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">ReadonlyStoreApi</span>&lt;T&gt; = <span class="title class_">Pick</span>&lt;<span class="title class_">StoreApi</span>&lt;T&gt;, <span class="string">"getState"</span> | <span class="string">"getInitialState"</span> | <span class="string">"subscribe"</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> identity = &lt;T&gt;(<span class="attr">arg</span>: T): <span class="function"><span class="params">T</span> =&gt;</span> arg;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useStore</span>(<span class="params">api</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useStore</span>(<span class="params">api, selector</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> useStore&lt;<span class="title class_">TState</span>, <span class="title class_">StateSlice</span>&gt;(</span><br><span class="line">  <span class="attr">api</span>: <span class="title class_">ReadonlyStoreApi</span>&lt;<span class="title class_">TState</span>&gt;,</span><br><span class="line">  <span class="attr">selector</span>: <span class="function">(<span class="params">state: TState</span>) =&gt;</span> <span class="title class_">StateSlice</span> = identity <span class="keyword">as</span> <span class="built_in">any</span></span><br><span class="line">) {</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * useSyncExternalStore 订阅外部 store 的 React Hook</span></span><br><span class="line"><span class="comment">   * useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)</span></span><br><span class="line"><span class="comment">   * subscribe：一个函数，接收一个单独的 callback 参数并把它订阅到 store 上。</span></span><br><span class="line"><span class="comment">   * getSnapshot：一个函数，返回组件需要的 store 中的数据快照。</span></span><br><span class="line"><span class="comment">   * 可选 getServerSnapshot：一个函数，返回 store 中数据的初始快照。</span></span><br><span class="line"><span class="comment">   * React 会用这些函数来保持组件订阅到 store 并在它改变时重新渲染</span></span><br><span class="line"><span class="comment">   * https://zh-hans.react.dev/reference/react/useSyncExternalStore</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> slice = <span class="title class_">React</span>.<span class="title function_">useSyncExternalStore</span>(</span><br><span class="line">    api.<span class="property">subscribe</span>,</span><br><span class="line">    <span class="function">() =&gt;</span> <span class="title function_">selector</span>(api.<span class="title function_">getState</span>()),</span><br><span class="line">    <span class="function">() =&gt;</span> <span class="title function_">selector</span>(api.<span class="title function_">getInitialState</span>())</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// 为自定义 Hook 添加调试信息，方便 React DevTools 显示</span></span><br><span class="line">  <span class="title class_">React</span>.<span class="title function_">useDebugValue</span>(slice);</span><br><span class="line">  <span class="keyword">return</span> slice;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">createImpl</span> = (<span class="params">createState</span>) =&gt; {</span><br><span class="line">  <span class="keyword">const</span> api = <span class="title function_">createStore</span>(createState);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 绑定 store api 到 useBoundStore</span></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">useBoundStore</span>: <span class="built_in">any</span> = <span class="function">(<span class="params">selector?: <span class="built_in">any</span></span>) =&gt;</span> <span class="title function_">useStore</span>(api, selector);</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">assign</span>(useBoundStore, api);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> useBoundStore;</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>参考链接</p>
-</blockquote>
-<ul>
-<li><a class="link" href="https://github.com/pmndrs/zustand">Zustand<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
-<li><a class="link" href="https://www.shymean.com/article/zustand%E4%BD%BF%E7%94%A8%E5%92%8C%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90">zustand
-使用和源码分析<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Frontnd</category>
-      </categories>
-      <tags>
-        <tag>Frontnd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
-    <url>/posts/61269/</url>
-    <content><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置">vue cli 解决跨域 线上
-nginx 反向代理配置</h2>
-<h4 id="开发环境跨域">1、开发环境跨域</h4>
-<p>在<strong>vue
-cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
-<p>在<strong>vue
-cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
-<h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
-<p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
-<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
-<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue+element+阿里云oss图片上传</title>
     <url>/posts/63894/</url>
     <content><![CDATA[<h3 id="vueelement阿里云oss图片上传">vue+element+阿里云oss图片上传</h3>
@@ -652,26 +560,22 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </tags>
   </entry>
   <entry>
-    <title>wangeditor</title>
-    <url>/posts/28431/</url>
-    <content><![CDATA[<h2 id="wangeditor基本使用">wangeditor基本使用</h2>
-<p>最近做公安项目的时候需要做一个富文本编辑器实现文章编辑，图片上传等功能。一开始选择了quill，但是做到最后在图片上传的时候出现了跨域的问题（现在回想起来应该是当时后端接口没有写好），当时就想换个别的富文本编辑器试试，最后找到了wangeditor，主要看上了它的轻量，中文文档等等。</p>
-<h5 id="vue中安装wangeditor">1、vue中安装wangEditor</h5>
-<p>使用npm安装：npm install wangeditor --save</p>
-<h5 id="创建公共组件">2、创建公共组件</h5>
-<p>在components中创建wangEnduit.vue文件</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template lang="html"&gt;</span><br><span class="line">  &lt;div class="editor"&gt;</span><br><span class="line">    &lt;div ref="toolbar" class="toolbar"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div ref="editor" class="text"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import E from 'wangeditor'</span><br><span class="line">  export default {</span><br><span class="line">    name: 'editoritem',</span><br><span class="line">    data() {</span><br><span class="line">      return {</span><br><span class="line">        // uploadPath,</span><br><span class="line">        editor: null,</span><br><span class="line">        info_: null</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    model: {</span><br><span class="line">      prop: 'value',</span><br><span class="line">      event: 'change'</span><br><span class="line">    },</span><br><span class="line">    props: {</span><br><span class="line">      value: {</span><br><span class="line">        type: String,</span><br><span class="line">        default: ''</span><br><span class="line">      },</span><br><span class="line">      isClear: {</span><br><span class="line">        type: Boolean,</span><br><span class="line">        default: false</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    watch: {</span><br><span class="line">      isClear(val) {</span><br><span class="line">        // 触发清除文本域内容</span><br><span class="line">        if (val) {</span><br><span class="line">          this.editor.txt.clear()</span><br><span class="line">          this.info_ = null</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">      value: function(value) {</span><br><span class="line">        if (value !== this.editor.txt.html()) {</span><br><span class="line">          this.editor.txt.html(this.value)</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      //value为编辑框输入的内容，这里我监听了一下值，当父组件调用得时候，如果给value赋值了，子组件将会显示父组件赋给的值</span><br><span class="line">    },</span><br><span class="line">    mounted() {</span><br><span class="line">      this.seteditor()</span><br><span class="line">      this.editor.txt.html(this.value)</span><br><span class="line">    },</span><br><span class="line">    methods: {</span><br><span class="line">      seteditor() {</span><br><span class="line">        this.editor = new E(this.$refs.toolbar, this.$refs.editor)</span><br><span class="line">        console.log(this.editor);</span><br><span class="line">      //editor.config这里我使用的是wangeditor4，如果你使用的是wangeditor3将editor.config改为editor.customConfig即可</span><br><span class="line">        this.editor.config.uploadImgShowBase64 = false // base 64 存储图片</span><br><span class="line">        this.editor.config.uploadImgServer = 'http://127.0.0.1:8081/upload/img'// 配置服务器端地址</span><br><span class="line">        this.editor.config.uploadImgHeaders = { }// 自定义 header</span><br><span class="line">        this.editor.config.uploadFileName = 'img' // 后端接受上传文件的参数名</span><br><span class="line">        this.editor.config.uploadImgMaxSize = 2 * 1024 * 1024 // 将图片大小限制为 2M</span><br><span class="line">        this.editor.config.uploadImgMaxLength = 6 // 限制一次最多上传 3 张图片</span><br><span class="line">        this.editor.config.uploadImgTimeout = 3 * 60 * 1000 // 设置超时时间</span><br><span class="line"></span><br><span class="line">        // 配置菜单</span><br><span class="line">        this.editor.config.menus = [</span><br><span class="line">          'head', // 标题</span><br><span class="line">          'bold', // 粗体</span><br><span class="line">          'fontSize', // 字号</span><br><span class="line">          'fontName', // 字体</span><br><span class="line">          'italic', // 斜体</span><br><span class="line">          'underline', // 下划线</span><br><span class="line">          'strikeThrough', // 删除线</span><br><span class="line">          'foreColor', // 文字颜色</span><br><span class="line">          'backColor', // 背景颜色</span><br><span class="line">          'link', // 插入链接</span><br><span class="line">          'list', // 列表</span><br><span class="line">          'justify', // 对齐方式</span><br><span class="line">          'quote', // 引用</span><br><span class="line">          'emoticon', // 表情</span><br><span class="line">          'image', // 插入图片</span><br><span class="line">          'table', // 表格</span><br><span class="line">          'video', // 插入视频</span><br><span class="line">          'code', // 插入代码</span><br><span class="line">          'undo', // 撤销</span><br><span class="line">          'redo', // 重复</span><br><span class="line">          'fullscreen' // 全屏</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        this.editor.config.uploadImgHooks = {</span><br><span class="line">          fail: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 插入图片失败回调</span><br><span class="line">          },</span><br><span class="line">          success: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 图片上传成功回调</span><br><span class="line">          },</span><br><span class="line">          timeout: (xhr, editor) =&gt; {</span><br><span class="line">            // 网络超时的回调</span><br><span class="line">          },</span><br><span class="line">          error: (xhr, editor) =&gt; {</span><br><span class="line">            // 图片上传错误的回调</span><br><span class="line">          },</span><br><span class="line">          customInsert: (insertImg, result, editor) =&gt; {</span><br><span class="line">            // 图片上传成功，插入图片的回调</span><br><span class="line">            //result为上传图片成功的时候返回的数据，这里我打印了一下发现后台返回的是data：[{url:"路径的形式"},...]</span><br><span class="line">            // console.log(result.data[0].url)</span><br><span class="line">            //insertImg()为插入图片的函数</span><br><span class="line">             //循环插入图片</span><br><span class="line">            // for (let i = 0; i &lt; 1; i++) {</span><br><span class="line">              console.log(result.data.url)</span><br><span class="line">              let url = result.data.url</span><br><span class="line">              insertImg(url)</span><br><span class="line">            // }</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">        this.editor.config.onchange = (html) =&gt; {</span><br><span class="line">          this.info_ = html // 绑定当前逐渐地值</span><br><span class="line">          this.$emit('change', this.info_) // 将内容同步到父组件中</span><br><span class="line">        }</span><br><span class="line">        // 创建富文本编辑器</span><br><span class="line">        this.editor.create()</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang="css"&gt;</span><br><span class="line">  .editor {</span><br><span class="line">    width: 100%;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    position: relative;</span><br><span class="line">    z-index: 0;</span><br><span class="line">  }</span><br><span class="line">  .toolbar {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">  }</span><br><span class="line">  .text {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">    min-height: 500px;</span><br><span class="line">  }</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></div>
-<h5 id="在父组件中调用">3.在父组件中调用</h5>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;editor-bar v-model="detail" :isClear="isClear" @change="change"&gt;&lt;/editor-bar&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import EditorBar from '../components/wangEnduit'</span><br><span class="line">export default {</span><br><span class="line">components: { EditorBar },</span><br><span class="line">data() {</span><br><span class="line">      return {</span><br><span class="line">        isClear: false,</span><br><span class="line">        detail:""</span><br><span class="line">        }</span><br><span class="line">      },  </span><br><span class="line">methods: {</span><br><span class="line">  change(val) {</span><br><span class="line">      console.log(val)</span><br><span class="line">      </span><br><span class="line">    },</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>到这里前端代码就完成了，接下来是后端代码</p>
-<h5 id="nodejs代码">4、nodejs代码</h5>
-<p>下面是我所使用的包</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">"cors"</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">"body-parser"</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br></pre></td></tr></table></figure></div>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">var</span> bodyParse = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 设置图片存储路径</span></span><br><span class="line"><span class="keyword">var</span> storage = multer.<span class="title function_">diskStorage</span>({</span><br><span class="line">  <span class="attr">destination</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">'./images'</span>);</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">filename</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">`<span class="subst">${<span class="built_in">Date</span>.now()}</span>-<span class="subst">${file.originalname}</span>`</span>)</span><br><span class="line">  }</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加配置文件到muler对象。</span></span><br><span class="line"><span class="keyword">var</span> upload = <span class="title function_">multer</span>({</span><br><span class="line">  <span class="attr">storage</span>: storage</span><br><span class="line">});</span><br><span class="line"><span class="keyword">var</span> imgBaseUrl = <span class="string">'../'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 application/x-www-form-urlencoded 解析</span></span><br><span class="line"><span class="keyword">var</span> urlencodedParser = bodyParser.<span class="title function_">urlencoded</span>({</span><br><span class="line">  <span class="attr">extended</span>: <span class="literal">false</span>,</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.获取路由中间件对象</span></span><br><span class="line"><span class="keyword">let</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line">server.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">//图片，express设置文件相对路径</span></span><br><span class="line">server.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">'images'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解决跨域问题</span></span><br><span class="line">server.<span class="title function_">all</span>(<span class="string">'*'</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) {</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, POST, GET, DELETE, OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">method</span> == <span class="string">'OPTIONS'</span>) {</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="number">200</span>);</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="title function_">next</span>();</span><br><span class="line">  }</span><br><span class="line">});</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件上传请求处理，upload.array 支持多文件上传，第二个参数是上传文件数目</span></span><br><span class="line">.<span class="title function_">post</span>(<span class="string">'/upload/img'</span>, upload.<span class="title function_">array</span>(<span class="string">'img'</span>, <span class="number">2</span>), <span class="keyword">function</span> (<span class="params">req, res</span>) {</span><br><span class="line">    <span class="comment">// 读取上传的图片信息</span></span><br><span class="line">    <span class="keyword">var</span> files = req.<span class="property">files</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置返回结果</span></span><br><span class="line">    <span class="keyword">var</span> result = {};</span><br><span class="line">    <span class="keyword">if</span> (!files[<span class="number">0</span>]) {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">1</span>;</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传失败'</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">0</span>;</span><br><span class="line">      result.<span class="property">data</span> = {</span><br><span class="line">        <span class="attr">url</span>: <span class="string">"http://127.0.0.1:8081"</span> + files[<span class="number">0</span>].<span class="property">path</span>.<span class="title function_">split</span>(<span class="string">"images"</span>)[<span class="number">1</span>]</span><br><span class="line">      }</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传成功'</span>;</span><br><span class="line">    }</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(result));</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.<span class="title function_">use</span>(router);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8081</span>, <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"服务已运行在：http://127.0.0.1:8081/"</span>);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
-<p>大功告成~</p>
-<p>这里可以参考两篇文章：</p>
-<p>https://blog.csdn.net/qq_33594380/article/details/80164381</p>
-<p>https://blog.csdn.net/ciwei0605/article/details/104402138</p>
+    <title>vue cli 解决跨域 线上 nginx 反向代理配置</title>
+    <url>/posts/61269/</url>
+    <content><![CDATA[<h2 id="vue-cli-解决跨域-线上-nginx-反向代理配置">vue cli 解决跨域 线上
+nginx 反向代理配置</h2>
+<h4 id="开发环境跨域">1、开发环境跨域</h4>
+<p>在<strong>vue
+cli2</strong>中，在/config/index.js里找到proxyTable开启代理changeOrigin:ture;</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="attr">proxyTable</span>: {</span><br><span class="line">    <span class="comment">//解决</span></span><br><span class="line">    <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">      <span class="string">'/api'</span>:{</span><br><span class="line">        <span class="attr">target</span>:<span class="string">'http://xx.com'</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>:{</span><br><span class="line">            <span class="string">'^/api'</span>:<span class="string">'/api'</span></span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    },</span><br></pre></td></tr></table></figure></div>
+<p>在<strong>vue
+cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与package.json同级目录）修改</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">  <span class="attr">devServer</span>: {</span><br><span class="line">    <span class="attr">proxy</span>: {</span><br><span class="line">      <span class="string">"/api"</span>: {</span><br><span class="line">        <span class="attr">target</span>: <span class="string">"http://xx.com"</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">ws</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">secure</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">pathRewrite</span>: {</span><br><span class="line">          <span class="string">"^/api"</span>: <span class="string">""</span>,</span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></table></figure></div>
+<h4 id="nginx反向代理设置">2、nginx反向代理设置</h4>
+<p>如果使用宝塔控制面板，请在当前站点文件夹下进行配置（位置如下图所示）</p>
+<p><img lazyload="" src="/images/loading.svg" data-src="https://jhao413.oss-cn-beijing.aliyuncs.com/blog/20200924151731.png"></p>
+<p>在配置文件（xx.conf）的server{}中按需加入如下代码：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">location /api/ {</span><br><span class="line">        # 把 /api 路径下的请求转发给真正的后端服务器</span><br><span class="line">        proxy_pass <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">        #注意端口后需加/</span><br><span class="line"></span><br><span class="line">        # 把host头传过去，后端服务程序将收到your.<span class="property">domain</span>.<span class="property">name</span>, 否则收到的是<span class="attr">localhost</span>:<span class="number">8080</span></span><br><span class="line">        proxy_set_header <span class="title class_">Host</span> $http_host;</span><br><span class="line"></span><br><span class="line">        # 把cookie中的path部分从/api替换成/service</span><br><span class="line">        proxy_cookie_path /api /;</span><br><span class="line"></span><br><span class="line">        # 把cookie的path部分从<span class="attr">localhost</span>:<span class="number">8080</span>替换成your.<span class="property">domain</span>.<span class="property">name</span></span><br><span class="line">        proxy_cookie_domain <span class="attr">localhost</span>:<span class="number">80</span> <span class="attr">http</span>:<span class="comment">//xx.xx.xx.xx:3000/;</span></span><br><span class="line">    }</span><br></pre></td></tr></table></figure></div>
 ]]></content>
       <categories>
         <category>Vue</category>
@@ -710,6 +614,174 @@ cli3</strong>中的vue.config.js（如果没有可以自行创建。注：与pac
       </categories>
       <tags>
         <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【LeetCode】构造相同颜色的正方形</title>
+    <url>/posts/make-a-square-with-the-same-color/</url>
+    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">【题目链接】3127.
+构造相同颜色的正方形<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<h3 id="题目描述">题目描述</h3>
+<p>给你一个二维 3 x 3 的矩阵 grid ，每个格子都是一个字符，要么是 'B'
+，要么是 'W' 。字符 'W' 表示白色，字符 'B' 表示黑色。</p>
+<p>你的任务是改变 至多一个 格子的颜色，使得矩阵中存在一个 2 x 2
+颜色完全相同的正方形。</p>
+<p>如果可以得到一个相同颜色的 2 x 2 正方形，那么返回 true ，否则返回
+false 。</p>
+<h3 id="实现思路">实现思路</h3>
+<ol type="1">
+<li><strong>遍历所有可能的 2x2 正方形</strong></li>
+</ol>
+<ul>
+<li>(0,0) 到 (1,1)</li>
+<li>(0,1) 到 (1,2)</li>
+<li>(1,0) 到 (2,1)</li>
+<li>(1,1) 到 (2,2)</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>统计每个 2x2 正方形中'B'和'W'的数量</strong></li>
+</ol>
+<p>如果 B 或 W 的数量大于等于 3（因为测试案例中还有 4
+格都是'B'或'W'的情况）那么就符合条件</p>
+<h3 id="具体代码">具体代码</h3>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 辅助函数：检查给定的 2x2 正方形是否可以通过改变一个格子来使其颜色完全相同</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">checkSquare</span> = (<span class="params">x, y</span>) =&gt; {</span><br><span class="line">  <span class="keyword">let</span> countB = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> countW = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 统计 2x2 正方形中 'B' 和 'W' 的数量</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = x; i &lt; x + <span class="number">2</span>; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = y; j &lt; y + <span class="number">2</span>; j++) {</span><br><span class="line">      <span class="keyword">if</span> (grid[i][j] === <span class="string">"B"</span>) {</span><br><span class="line">        countB++;</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        countW++;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// 判断是否可以通过改变一个格子来满足条件,大于3是因为有可能</span></span><br><span class="line">  <span class="keyword">return</span> countB &gt;= <span class="number">3</span> || countW &gt;= <span class="number">3</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历所有可能的 2x2 正方形</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) {</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkSquare</span>(i, j)) {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果没有找到符合条件的 2x2 正方形，返回 false</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure></div>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Github使用</title>
+    <url>/posts/60077/</url>
+    <content><![CDATA[<h1 id="github使用">GitHub使用</h1>
+<h3 id="什么是github">什么是GitHub</h3>
+<p>GitHub是一个面向开源及私有软件项目的托管平台，因为只支持git
+作为唯一的版本库格式进行托管，故名GitHub。作为开源代码库以及版本控制系统，Github拥有超过900万开发者用户。随着越来越多的应用程序转移到了云上，Github已经成为了管理软件开发以及发现已有代码的首选方法。
+如前所述，作为一个分布式的版本控制系统，在Git中并不存在主库这样的概念，每一份复制出的库都可以独立使用，任何两个库之间的不一致之处都可以进行合并。（论百度百科的重要性）</p>
+<h3 id="创建仓库">创建仓库</h3>
+<ol type="1">
+<li><a class="link" href="https://github.com">Github传送门<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，进入网站注册账号，进入主页后，点击New，如下图<img lazyload="" src="/images/loading.svg" data-src="/img/github/1.png"></li>
+<li>创建仓库，Repository name处写仓库名，然后创建即可</li>
+</ol>
+<h3 id="安装git">安装git</h3>
+<ol type="1">
+<li><a class="link" href="https://git-scm.com/downloads">git下载传送门<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>,下载完成后一路next即可</li>
+<li>安装成功后，打开Git
+Bash会弹出一个类似于命令的窗口，安装成功后在窗口输入</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name "Your Name"</span><br><span class="line">$ git config --global user.email "email@example.com"</span><br></pre></td></tr></table></figure></div>
+<p>你的名字和邮箱</p>
+<h3 id="创建本地仓库">创建本地仓库</h3>
+<ol type="1">
+<li>创建一个空文件夹然后输入</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ cd learngit</span><br><span class="line">$ pwd</span><br></pre></td></tr></table></figure></div>
+<p>learnfit就是你之前在GitHub创建的仓库名 2. 通过git
+init命令把这个目录变成Git可以管理的仓库</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure></div>
+<ol start="3" type="1">
+<li>这时候在空目录下创建一个readme.txt,内容随意，规范一下可以写成</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Git is a version control system.</span><br><span class="line">Git is free software.</span><br></pre></td></tr></table></figure></div>
+<ol start="4" type="1">
+<li>git add,把文件添加到仓库</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git add readme.txt</span><br></pre></td></tr></table></figure></div>
+<p>5.git commit，将文件提交到仓库</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git commit -m "wrote a readme file"</span><br></pre></td></tr></table></figure></div>
+<p>-m后面输入的是本次提交的说明，可以输入任意内容</p>
+<h3 id="远程仓库">远程仓库</h3>
+<ol type="1">
+<li>创建ssh key</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C "youremail@example.com"</span><br></pre></td></tr></table></figure></div>
+<p>记得把邮箱改成自己的，然后再用户目录就应该可以找到.ssh的文件夹（主用户目录：C盘下用户的文件夹，然后打开你用户名的文件夹），里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH
+Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+<ol start="2" type="1">
+<li>填写ssh key 登陆GitHub，点击setting，打开“SSH
+Keys”页面：然后，点“New SSH
+Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。<img lazyload="" src="/images/loading.svg" data-src="/img/github/2.png">
+现在就可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
+3.现在在本地仓库运行命令</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git remote add origin git@github.com:username/xxx.git</span><br></pre></td></tr></table></figure></div>
+<p>username改成自己的用户名，git就是你刚刚创建的仓库名（其实这些命令创建仓库后GitHub就会提示你）</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></div>
+<p>这样就推送完成了，以后的上传分为git add，git commit，git push</p>
+<p>我讲的没有那么详细也可以看看<a class="link" href="https://www.liaoxuefeng.com/wiki/896043488029600">廖雪峰Git教程<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Nas折腾日记】Frp + Nginx 内网穿透</title>
+    <url>/posts/nas-note-frp-nginx/</url>
+    <content><![CDATA[<p>目前的主要需求是外网通过对应服务的域名访问 Nas
+上的服务，所以需要做内网穿透。</p>
+<p>其实 IPv6 + DDNS
+也可以解决，也不需要再自行购买服务器了，但是有个弊端是家用宽度屏蔽了 80
+和 443 端口，所以访问的时候需要加上端口号，不太方便。</p>
+<h3 id="所需设备">所需设备</h3>
+<ul>
+<li>一台公网服务器（如果是国内服务器需要备案）</li>
+<li>一台在内网的 Nas</li>
+</ul>
+<h3 id="公网服务器配置">公网服务器配置</h3>
+<h4 id="frps">Frps</h4>
+<p>从 Frp 的 <a class="link" href="https://github.com/fatedier/frp/releases">Github
+Release<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 页面下载对应的版本，然后解压。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://github.com/fatedier/frp/releases/download/v0.61.2/frp_0.61.2_linux_amd64.tar.gz</span><br><span class="line"></span><br><span class="line">tar -zxvf frp_0.61.2_linux_amd64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> frp_0.61.2_linux_amd64</span><br></pre></td></tr></table></figure></div>
+<p>打开解压后的文件夹后，可以看到 <code>frps.toml</code>
+文件，这个文件是 Frps 的配置文件。</p>
+<blockquote>
+<p>需要注意的是，在 Frp 官网中提到，目前支持的文件格式包括
+TOML/YAML/JSON，旧的 INI
+格式仍然支持，但已经不再推荐。但网络中的大多数教程都是使用的 INI
+格式，参照时需注意格式转换。</p>
+</blockquote>
+<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># frps绑定的端口</span></span><br><span class="line"><span class="attr">bindPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="comment"># 指定HTTP请求的监听地址，这里推荐设置80端口以外的端口，因为80端口后续要在Nginx中使用</span></span><br><span class="line"><span class="attr">vhostHTTPPort</span> = <span class="number">8080</span></span><br><span class="line"><span class="comment"># 二级域名后缀，需要将 *.your_domain.com 解析到公网服务器地址</span></span><br><span class="line"><span class="comment"># 参考文档：https://gofrp.org/zh-cn/docs/features/http-https/subdomain/</span></span><br><span class="line"><span class="attr">subdomainHost</span> = <span class="string">"your_domain.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用 dashboard,访问7500端口可以看到frps的状态</span></span><br><span class="line"><span class="attr">webServer.addr</span> = <span class="string">"0.0.0.0"</span></span><br><span class="line"><span class="attr">webServer.port</span> = <span class="number">7500</span></span><br><span class="line"><span class="comment"># dashboard 用户名密码，可选，默认为空</span></span><br><span class="line"><span class="attr">webServer.user</span> = <span class="string">"admin"</span></span><br><span class="line"><span class="attr">webServer.password</span> = <span class="string">"admin"</span></span><br></pre></td></tr></table></figure></div>
+<p>编写完配置文件后，即可启动 Frps。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">./frps -c frps.toml</span><br></pre></td></tr></table></figure></div>
+<p>这里推荐使用 <code>systemd</code> 来管理 Frps
+服务，具体不再赘述。</p>
+<h4 id="acme.sh">acme.sh</h4>
+<blockquote>
+<p>如果不需要 HTTPS 可以跳过这一步。</p>
+</blockquote>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 acme.sh</span></span><br><span class="line">curl https://get.acme.sh | sh -s email=my@example.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里以CF为例，其他DNS服务商请参考官方文档</span></span><br><span class="line"><span class="comment"># 设置CloudFlare的API Key</span></span><br><span class="line"><span class="built_in">export</span> CF_Key=<span class="string">"xxxxxxxxxxxxxxxxxxxxxxxxxx"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># DNS验证</span></span><br><span class="line">/root/.acme.sh/acme.sh --issue --dns dns_cf -d *.your_domain.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制证书</span></span><br><span class="line"><span class="comment"># /ssl/key.pem和/ssl/crt.pem存放证书的路径，可以自行修改</span></span><br><span class="line"><span class="comment"># 最后的reloadcmd是证书更新后的重启命令，这里是重启frps，如果是其他服务可以自行修改</span></span><br><span class="line">/root/.acme.sh/acme.sh --install-cert -d *.your_domain.com --key-file       /ssl/key.pem  --fullchain-file /ssl/crt.pem --reloadcmd     <span class="string">"service frps restart"</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="nginx">Nginx</h4>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 Nginx</span></span><br><span class="line">sudo apt install nginx -y</span><br><span class="line"></span><br><span class="line">sudo systemctl start nginx</span><br><span class="line"></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> nginx</span><br><span class="line"></span><br><span class="line">systemctl status nginx</span><br></pre></td></tr></table></figure></div>
+<p>配置 Nginx</p>
+<blockquote>
+<p>/etc/nginx/default.conf 或者自行新建一个 conf 文件</p>
+</blockquote>
+<div class="code-container" data-rel="Nginx"><figure class="iseeu highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 子域名通配配置</span></span><br><span class="line"><span class="section">server</span> {</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">server_name</span> <span class="regexp">*.your</span>_domian.com;  <span class="comment"># 匹配所有子域名</span></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /ssl/crt.pem; <span class="comment"># 证书路径</span></span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /ssl/key.pem; <span class="comment"># 私钥路径</span></span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / {</span><br><span class="line">        <span class="comment"># 代理到frps的vhostHTTPPort端口</span></span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8080;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment"># HTTP统一跳转</span></span><br><span class="line"><span class="section">server</span> {</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> <span class="regexp">*.your</span>_domian.com;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 带端口重定向（防止端口丢失）</span></span><br><span class="line">    <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span>:443<span class="variable">$request_uri</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="nas-配置">Nas 配置</h3>
+<p>Nas 的配置比较简单，只需要下载对应的 Frpc 版本，然后配置 Frpc
+的配置文件即可。</p>
+<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 公网服务器地址</span></span><br><span class="line"><span class="attr">serverAddr</span> = <span class="string">"xxx.xxx.xxx.xxx"</span></span><br><span class="line"><span class="comment"># 公网服务器端口</span></span><br><span class="line"><span class="attr">serverPort</span> = <span class="number">7000</span></span><br><span class="line"><span class="comment"># 连接失败后退出</span></span><br><span class="line"><span class="attr">loginFailExit</span>=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"test1"</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">"http"</span></span><br><span class="line"><span class="comment"># 本地服务地址，也有可能需要填写192.168.xxx.xxx的内网地址</span></span><br><span class="line"><span class="attr">localIp</span> = <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">1111</span></span><br><span class="line"><span class="comment"># 子域名配置</span></span><br><span class="line"><span class="attr">subdomain</span> = <span class="string">"test1"</span></span><br><span class="line"></span><br><span class="line"><span class="section">[[proxies]]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">"test1"</span></span><br><span class="line"><span class="attr">type</span> = <span class="string">"http"</span></span><br><span class="line"><span class="attr">localIp</span> = <span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="attr">localPort</span> = <span class="number">13210</span></span><br><span class="line"><span class="comment"># 子域名配置</span></span><br><span class="line"><span class="attr">subdomain</span> = <span class="string">"test2"</span></span><br></pre></td></tr></table></figure></div>
+<p>填写完配置文件后，启动 Frpc 即可（填写了 subdomian 后，不需要在 dns
+服务商中再去解析）。</p>
+<blockquote>
+<p>参考链接</p>
+</blockquote>
+<ul>
+<li><a class="link" href="https://gofrp.org/zh-cn/docs/overview/">Frp<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+<li><a class="link" href="https://github.com/acmesh-official/acme.sh">acme.sh<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Nas</category>
+      </categories>
+      <tags>
+        <tag>Nas</tag>
       </tags>
   </entry>
   <entry>
@@ -811,40 +883,66 @@ sorted in V8 · V8<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light ali
       </tags>
   </entry>
   <entry>
-    <title>【LeetCode】构造相同颜色的正方形</title>
-    <url>/posts/make-a-square-with-the-same-color/</url>
-    <content><![CDATA[<p><a class="link" href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">【题目链接】3127.
-构造相同颜色的正方形<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="题目描述">题目描述</h3>
-<p>给你一个二维 3 x 3 的矩阵 grid ，每个格子都是一个字符，要么是 'B'
-，要么是 'W' 。字符 'W' 表示白色，字符 'B' 表示黑色。</p>
-<p>你的任务是改变 至多一个 格子的颜色，使得矩阵中存在一个 2 x 2
-颜色完全相同的正方形。</p>
-<p>如果可以得到一个相同颜色的 2 x 2 正方形，那么返回 true ，否则返回
-false 。</p>
-<h3 id="实现思路">实现思路</h3>
-<ol type="1">
-<li><strong>遍历所有可能的 2x2 正方形</strong></li>
-</ol>
-<ul>
-<li>(0,0) 到 (1,1)</li>
-<li>(0,1) 到 (1,2)</li>
-<li>(1,0) 到 (2,1)</li>
-<li>(1,1) 到 (2,2)</li>
-</ul>
-<ol start="2" type="1">
-<li><strong>统计每个 2x2 正方形中'B'和'W'的数量</strong></li>
-</ol>
-<p>如果 B 或 W 的数量大于等于 3（因为测试案例中还有 4
-格都是'B'或'W'的情况）那么就符合条件</p>
-<h3 id="具体代码">具体代码</h3>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 辅助函数：检查给定的 2x2 正方形是否可以通过改变一个格子来使其颜色完全相同</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">checkSquare</span> = (<span class="params">x, y</span>) =&gt; {</span><br><span class="line">  <span class="keyword">let</span> countB = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> countW = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// 统计 2x2 正方形中 'B' 和 'W' 的数量</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = x; i &lt; x + <span class="number">2</span>; i++) {</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = y; j &lt; y + <span class="number">2</span>; j++) {</span><br><span class="line">      <span class="keyword">if</span> (grid[i][j] === <span class="string">"B"</span>) {</span><br><span class="line">        countB++;</span><br><span class="line">      } <span class="keyword">else</span> {</span><br><span class="line">        countW++;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">  <span class="comment">// 判断是否可以通过改变一个格子来满足条件,大于3是因为有可能</span></span><br><span class="line">  <span class="keyword">return</span> countB &gt;= <span class="number">3</span> || countW &gt;= <span class="number">3</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历所有可能的 2x2 正方形</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) {</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">2</span>; j++) {</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">checkSquare</span>(i, j)) {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果没有找到符合条件的 2x2 正方形，返回 false</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br></pre></td></tr></table></figure></div>
+    <title>wangeditor</title>
+    <url>/posts/28431/</url>
+    <content><![CDATA[<h2 id="wangeditor基本使用">wangeditor基本使用</h2>
+<p>最近做公安项目的时候需要做一个富文本编辑器实现文章编辑，图片上传等功能。一开始选择了quill，但是做到最后在图片上传的时候出现了跨域的问题（现在回想起来应该是当时后端接口没有写好），当时就想换个别的富文本编辑器试试，最后找到了wangeditor，主要看上了它的轻量，中文文档等等。</p>
+<h5 id="vue中安装wangeditor">1、vue中安装wangEditor</h5>
+<p>使用npm安装：npm install wangeditor --save</p>
+<h5 id="创建公共组件">2、创建公共组件</h5>
+<p>在components中创建wangEnduit.vue文件</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template lang="html"&gt;</span><br><span class="line">  &lt;div class="editor"&gt;</span><br><span class="line">    &lt;div ref="toolbar" class="toolbar"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div ref="editor" class="text"&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import E from 'wangeditor'</span><br><span class="line">  export default {</span><br><span class="line">    name: 'editoritem',</span><br><span class="line">    data() {</span><br><span class="line">      return {</span><br><span class="line">        // uploadPath,</span><br><span class="line">        editor: null,</span><br><span class="line">        info_: null</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    model: {</span><br><span class="line">      prop: 'value',</span><br><span class="line">      event: 'change'</span><br><span class="line">    },</span><br><span class="line">    props: {</span><br><span class="line">      value: {</span><br><span class="line">        type: String,</span><br><span class="line">        default: ''</span><br><span class="line">      },</span><br><span class="line">      isClear: {</span><br><span class="line">        type: Boolean,</span><br><span class="line">        default: false</span><br><span class="line">      }</span><br><span class="line">    },</span><br><span class="line">    watch: {</span><br><span class="line">      isClear(val) {</span><br><span class="line">        // 触发清除文本域内容</span><br><span class="line">        if (val) {</span><br><span class="line">          this.editor.txt.clear()</span><br><span class="line">          this.info_ = null</span><br><span class="line">        }</span><br><span class="line">      },</span><br><span class="line">      value: function(value) {</span><br><span class="line">        if (value !== this.editor.txt.html()) {</span><br><span class="line">          this.editor.txt.html(this.value)</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">      //value为编辑框输入的内容，这里我监听了一下值，当父组件调用得时候，如果给value赋值了，子组件将会显示父组件赋给的值</span><br><span class="line">    },</span><br><span class="line">    mounted() {</span><br><span class="line">      this.seteditor()</span><br><span class="line">      this.editor.txt.html(this.value)</span><br><span class="line">    },</span><br><span class="line">    methods: {</span><br><span class="line">      seteditor() {</span><br><span class="line">        this.editor = new E(this.$refs.toolbar, this.$refs.editor)</span><br><span class="line">        console.log(this.editor);</span><br><span class="line">      //editor.config这里我使用的是wangeditor4，如果你使用的是wangeditor3将editor.config改为editor.customConfig即可</span><br><span class="line">        this.editor.config.uploadImgShowBase64 = false // base 64 存储图片</span><br><span class="line">        this.editor.config.uploadImgServer = 'http://127.0.0.1:8081/upload/img'// 配置服务器端地址</span><br><span class="line">        this.editor.config.uploadImgHeaders = { }// 自定义 header</span><br><span class="line">        this.editor.config.uploadFileName = 'img' // 后端接受上传文件的参数名</span><br><span class="line">        this.editor.config.uploadImgMaxSize = 2 * 1024 * 1024 // 将图片大小限制为 2M</span><br><span class="line">        this.editor.config.uploadImgMaxLength = 6 // 限制一次最多上传 3 张图片</span><br><span class="line">        this.editor.config.uploadImgTimeout = 3 * 60 * 1000 // 设置超时时间</span><br><span class="line"></span><br><span class="line">        // 配置菜单</span><br><span class="line">        this.editor.config.menus = [</span><br><span class="line">          'head', // 标题</span><br><span class="line">          'bold', // 粗体</span><br><span class="line">          'fontSize', // 字号</span><br><span class="line">          'fontName', // 字体</span><br><span class="line">          'italic', // 斜体</span><br><span class="line">          'underline', // 下划线</span><br><span class="line">          'strikeThrough', // 删除线</span><br><span class="line">          'foreColor', // 文字颜色</span><br><span class="line">          'backColor', // 背景颜色</span><br><span class="line">          'link', // 插入链接</span><br><span class="line">          'list', // 列表</span><br><span class="line">          'justify', // 对齐方式</span><br><span class="line">          'quote', // 引用</span><br><span class="line">          'emoticon', // 表情</span><br><span class="line">          'image', // 插入图片</span><br><span class="line">          'table', // 表格</span><br><span class="line">          'video', // 插入视频</span><br><span class="line">          'code', // 插入代码</span><br><span class="line">          'undo', // 撤销</span><br><span class="line">          'redo', // 重复</span><br><span class="line">          'fullscreen' // 全屏</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        this.editor.config.uploadImgHooks = {</span><br><span class="line">          fail: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 插入图片失败回调</span><br><span class="line">          },</span><br><span class="line">          success: (xhr, editor, result) =&gt; {</span><br><span class="line">            // 图片上传成功回调</span><br><span class="line">          },</span><br><span class="line">          timeout: (xhr, editor) =&gt; {</span><br><span class="line">            // 网络超时的回调</span><br><span class="line">          },</span><br><span class="line">          error: (xhr, editor) =&gt; {</span><br><span class="line">            // 图片上传错误的回调</span><br><span class="line">          },</span><br><span class="line">          customInsert: (insertImg, result, editor) =&gt; {</span><br><span class="line">            // 图片上传成功，插入图片的回调</span><br><span class="line">            //result为上传图片成功的时候返回的数据，这里我打印了一下发现后台返回的是data：[{url:"路径的形式"},...]</span><br><span class="line">            // console.log(result.data[0].url)</span><br><span class="line">            //insertImg()为插入图片的函数</span><br><span class="line">             //循环插入图片</span><br><span class="line">            // for (let i = 0; i &lt; 1; i++) {</span><br><span class="line">              console.log(result.data.url)</span><br><span class="line">              let url = result.data.url</span><br><span class="line">              insertImg(url)</span><br><span class="line">            // }</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">        this.editor.config.onchange = (html) =&gt; {</span><br><span class="line">          this.info_ = html // 绑定当前逐渐地值</span><br><span class="line">          this.$emit('change', this.info_) // 将内容同步到父组件中</span><br><span class="line">        }</span><br><span class="line">        // 创建富文本编辑器</span><br><span class="line">        this.editor.create()</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang="css"&gt;</span><br><span class="line">  .editor {</span><br><span class="line">    width: 100%;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    position: relative;</span><br><span class="line">    z-index: 0;</span><br><span class="line">  }</span><br><span class="line">  .toolbar {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">  }</span><br><span class="line">  .text {</span><br><span class="line">    border: 1px solid #ccc;</span><br><span class="line">    min-height: 500px;</span><br><span class="line">  }</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></div>
+<h5 id="在父组件中调用">3.在父组件中调用</h5>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;editor-bar v-model="detail" :isClear="isClear" @change="change"&gt;&lt;/editor-bar&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import EditorBar from '../components/wangEnduit'</span><br><span class="line">export default {</span><br><span class="line">components: { EditorBar },</span><br><span class="line">data() {</span><br><span class="line">      return {</span><br><span class="line">        isClear: false,</span><br><span class="line">        detail:""</span><br><span class="line">        }</span><br><span class="line">      },  </span><br><span class="line">methods: {</span><br><span class="line">  change(val) {</span><br><span class="line">      console.log(val)</span><br><span class="line">      </span><br><span class="line">    },</span><br><span class="line"> }</span><br><span class="line">}</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>到这里前端代码就完成了，接下来是后端代码</p>
+<h5 id="nodejs代码">4、nodejs代码</h5>
+<p>下面是我所使用的包</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</span><br><span class="line"><span class="keyword">const</span> server = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> cors = <span class="built_in">require</span>(<span class="string">"cors"</span>);</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">"body-parser"</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span>(<span class="string">"multer"</span>);</span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">var</span> bodyParse = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 设置图片存储路径</span></span><br><span class="line"><span class="keyword">var</span> storage = multer.<span class="title function_">diskStorage</span>({</span><br><span class="line">  <span class="attr">destination</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">'./images'</span>);</span><br><span class="line">  },</span><br><span class="line">  <span class="attr">filename</span>: <span class="keyword">function</span> (<span class="params">req, file, cb</span>) {</span><br><span class="line">    <span class="title function_">cb</span>(<span class="literal">null</span>, <span class="string">`<span class="subst">${<span class="built_in">Date</span>.now()}</span>-<span class="subst">${file.originalname}</span>`</span>)</span><br><span class="line">  }</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加配置文件到muler对象。</span></span><br><span class="line"><span class="keyword">var</span> upload = <span class="title function_">multer</span>({</span><br><span class="line">  <span class="attr">storage</span>: storage</span><br><span class="line">});</span><br><span class="line"><span class="keyword">var</span> imgBaseUrl = <span class="string">'../'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 application/x-www-form-urlencoded 解析</span></span><br><span class="line"><span class="keyword">var</span> urlencodedParser = bodyParser.<span class="title function_">urlencoded</span>({</span><br><span class="line">  <span class="attr">extended</span>: <span class="literal">false</span>,</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.获取路由中间件对象</span></span><br><span class="line"><span class="keyword">let</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line">server.<span class="title function_">use</span>(<span class="title function_">cors</span>());</span><br><span class="line"></span><br><span class="line"><span class="comment">//图片，express设置文件相对路径</span></span><br><span class="line">server.<span class="title function_">use</span>(express.<span class="title function_">static</span>(<span class="string">'images'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 解决跨域问题</span></span><br><span class="line">server.<span class="title function_">all</span>(<span class="string">'*'</span>, <span class="keyword">function</span> (<span class="params">req, res, next</span>) {</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Origin'</span>, <span class="string">'*'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Headers'</span>, <span class="string">'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild'</span>);</span><br><span class="line">  res.<span class="title function_">header</span>(<span class="string">'Access-Control-Allow-Methods'</span>, <span class="string">'PUT, POST, GET, DELETE, OPTIONS'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">method</span> == <span class="string">'OPTIONS'</span>) {</span><br><span class="line">    res.<span class="title function_">send</span>(<span class="number">200</span>);</span><br><span class="line">  } <span class="keyword">else</span> {</span><br><span class="line">    <span class="title function_">next</span>();</span><br><span class="line">  }</span><br><span class="line">});</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件上传请求处理，upload.array 支持多文件上传，第二个参数是上传文件数目</span></span><br><span class="line">.<span class="title function_">post</span>(<span class="string">'/upload/img'</span>, upload.<span class="title function_">array</span>(<span class="string">'img'</span>, <span class="number">2</span>), <span class="keyword">function</span> (<span class="params">req, res</span>) {</span><br><span class="line">    <span class="comment">// 读取上传的图片信息</span></span><br><span class="line">    <span class="keyword">var</span> files = req.<span class="property">files</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置返回结果</span></span><br><span class="line">    <span class="keyword">var</span> result = {};</span><br><span class="line">    <span class="keyword">if</span> (!files[<span class="number">0</span>]) {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">1</span>;</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传失败'</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">      result.<span class="property">code</span> = <span class="number">0</span>;</span><br><span class="line">      result.<span class="property">data</span> = {</span><br><span class="line">        <span class="attr">url</span>: <span class="string">"http://127.0.0.1:8081"</span> + files[<span class="number">0</span>].<span class="property">path</span>.<span class="title function_">split</span>(<span class="string">"images"</span>)[<span class="number">1</span>]</span><br><span class="line">      }</span><br><span class="line">      result.<span class="property">errMsg</span> = <span class="string">'上传成功'</span>;</span><br><span class="line">    }</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(result));</span><br><span class="line">  })</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.<span class="title function_">use</span>(router);</span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">8081</span>, <span class="keyword">function</span> (<span class="params"></span>) {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"服务已运行在：http://127.0.0.1:8081/"</span>);</span><br><span class="line">});</span><br></pre></td></tr></table></figure></div>
+<p>大功告成~</p>
+<p>这里可以参考两篇文章：</p>
+<p>https://blog.csdn.net/qq_33594380/article/details/80164381</p>
+<p>https://blog.csdn.net/ciwei0605/article/details/104402138</p>
 ]]></content>
       <categories>
-        <category>Algorithm</category>
+        <category>Vue</category>
       </categories>
       <tags>
-        <tag>LeetCode</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>避免 Day.js 与 UTC 时区的常见陷阱</title>
+    <url>/posts/2/</url>
+    <content><![CDATA[<p>在前端开发中，我们通常使用 Day.js
+来格式化从后端传递过来的时间数据。后端传来的时间通常是标准的 UTC
+格式，例如：</p>
+<ul>
+<li>2015-09-01T14:55:00+00:00
+<ul>
+<li>2015-09-01 表示日期，格式为 YYYY-MM-DD</li>
+<li>T 是日期和时间的分隔符</li>
+<li>14:55:00 表示时间，格式为 HH:MM:SS</li>
+<li>+00:00 表示时区偏移，+00:00 代表 UTC 时间
+因为之前公司一直都是把本地时间直接存UTC时区+00:00，但这种做法存在不规范之处——在不同的时区查看时间时可能会出现错误。实际上，更为标准的做法是将本地时间按照当地时区（如
++08:00）存储。</li>
+</ul></li>
+</ul>
+<p>由于之前的习惯，前端代码通常是这样来格式化时间的：</p>
+<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">dayjs.<span class="title function_">utc</span>(item.<span class="property">filledOn</span>).<span class="title function_">format</span>(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</span><br></pre></td></tr></table></figure></div>
+<p>这段代码的假设前提是所有存储的时间都是 UTC
+时间。因此，当我们遇到如下时间格式时：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2024-08-26T09:56:45.403258+08:00</span><br></pre></td></tr></table></figure></div>
+<p>这时使用 dayjs.utc() 进行格式化，就会导致时间被错误地减去 8
+小时。这种错误应该在时间存储时统一规避，以避免前端展示错误的时间信息。当然在前端处理时间信息时，也应该多注意时区的格式和时区问题。</p>
+<p><a class="link" href="https://day.js.org/docs/zh-CN/parse/utc">UTC·Day.js<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><a class="link" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6">协调世界时·维基百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+]]></content>
+      <categories>
+        <category>Frontnd</category>
+      </categories>
+      <tags>
+        <tag>Frontnd</tag>
       </tags>
   </entry>
   <entry>
@@ -880,40 +978,6 @@ hh，这号再这样下去，以后的游戏就没啥玩头了，基础属性：
       </categories>
       <tags>
         <tag>跑步</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>避免 Day.js 与 UTC 时区的常见陷阱</title>
-    <url>/posts/2/</url>
-    <content><![CDATA[<p>在前端开发中，我们通常使用 Day.js
-来格式化从后端传递过来的时间数据。后端传来的时间通常是标准的 UTC
-格式，例如：</p>
-<ul>
-<li>2015-09-01T14:55:00+00:00
-<ul>
-<li>2015-09-01 表示日期，格式为 YYYY-MM-DD</li>
-<li>T 是日期和时间的分隔符</li>
-<li>14:55:00 表示时间，格式为 HH:MM:SS</li>
-<li>+00:00 表示时区偏移，+00:00 代表 UTC 时间
-因为之前公司一直都是把本地时间直接存UTC时区+00:00，但这种做法存在不规范之处——在不同的时区查看时间时可能会出现错误。实际上，更为标准的做法是将本地时间按照当地时区（如
-+08:00）存储。</li>
-</ul></li>
-</ul>
-<p>由于之前的习惯，前端代码通常是这样来格式化时间的：</p>
-<div class="code-container" data-rel="Javascript"><figure class="iseeu highlight javascript"><table><tr><td class="code"><pre><span class="line">dayjs.<span class="title function_">utc</span>(item.<span class="property">filledOn</span>).<span class="title function_">format</span>(<span class="string">'YYYY-MM-DD HH:mm:ss'</span>);</span><br></pre></td></tr></table></figure></div>
-<p>这段代码的假设前提是所有存储的时间都是 UTC
-时间。因此，当我们遇到如下时间格式时：</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">2024-08-26T09:56:45.403258+08:00</span><br></pre></td></tr></table></figure></div>
-<p>这时使用 dayjs.utc() 进行格式化，就会导致时间被错误地减去 8
-小时。这种错误应该在时间存储时统一规避，以避免前端展示错误的时间信息。当然在前端处理时间信息时，也应该多注意时区的格式和时区问题。</p>
-<p><a class="link" href="https://day.js.org/docs/zh-CN/parse/utc">UTC·Day.js<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p><a class="link" href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%B0%83%E4%B8%96%E7%95%8C%E6%97%B6">协调世界时·维基百科<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-]]></content>
-      <categories>
-        <category>Frontnd</category>
-      </categories>
-      <tags>
-        <tag>Frontnd</tag>
       </tags>
   </entry>
 </search>

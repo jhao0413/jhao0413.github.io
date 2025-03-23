@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://jhao.me/posts/nas-note-frp-nginx/</loc>
+        <lastmod>2025-03-23T08:36:41.400Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/mini-zustand/</loc>
         <lastmod>2025-02-10T09:06:16.723Z</lastmod>
         <changefreq>weekly</changefreq>
