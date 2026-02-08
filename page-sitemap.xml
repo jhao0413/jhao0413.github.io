@@ -19,7 +19,7 @@
     
     
     <url>
-        <loc>https://jhao.me/categories/</loc>
+        <loc>https://jhao.me/tags/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -28,7 +28,7 @@
     
     
     <url>
-        <loc>https://jhao.me/tags/</loc>
+        <loc>https://jhao.me/categories/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
