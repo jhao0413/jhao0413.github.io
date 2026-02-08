@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>https://jhao.me/posts/2026-02-fedora/</loc>
+        <lastmod>2026-02-08T05:55:04.232Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/2026-02-proxy/</loc>
         <lastmod>2026-02-08T05:26:43.545Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -129,7 +137,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/28431/</loc>
+        <loc>https://jhao.me/posts/63894/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -137,7 +145,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/63894/</loc>
+        <loc>https://jhao.me/posts/28431/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -177,7 +185,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/2/</loc>
+        <loc>https://jhao.me/posts/9495/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -185,7 +193,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/9495/</loc>
+        <loc>https://jhao.me/posts/2/</loc>
         <lastmod>2025-11-19T13:55:38.903Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
