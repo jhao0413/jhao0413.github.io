@@ -133,15 +133,17 @@
         
         <meta name="description" content="wangeditor基本使用最近做公安项目的时候需要做一个富文本编辑器实现文章编辑，图片上传等功能。一开始选择了quill，但是做到最后在图片上传的时候出现了跨域的问题（现在回想起来应该是当时后端接口没有写好），当时就想换个别的富文本编辑器试试，最后找到了wangeditor，主要看上了它的轻量，中文文档等等。 1、vue中安装wangEditor使用npm安装：npm install wange">
 <meta property="og:type" content="article">
-<meta property="og:title" content="wangeditor">
+<meta property="og:title" content="wangeditor基本使用">
 <meta property="og:url" content="https://jhao.me/posts/28431/index.html">
 <meta property="og:site_name" content="九號">
 <meta property="og:description" content="wangeditor基本使用最近做公安项目的时候需要做一个富文本编辑器实现文章编辑，图片上传等功能。一开始选择了quill，但是做到最后在图片上传的时候出现了跨域的问题（现在回想起来应该是当时后端接口没有写好），当时就想换个别的富文本编辑器试试，最后找到了wangeditor，主要看上了它的轻量，中文文档等等。 1、vue中安装wangEditor使用npm安装：npm install wange">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-15T02:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-19T13:55:38.903Z">
+<meta property="article:modified_time" content="2026-02-08T06:07:56.249Z">
 <meta property="article:author" content="九號">
 <meta property="article:tag" content="Vue">
+<meta property="article:tag" content="wangEditor">
+<meta property="article:tag" content="富文本编辑器">
 <meta name="twitter:card" content="summary">
     
     
@@ -154,7 +156,7 @@
     
     <title>
         
-            wangeditor | Jhao&#39;s Blog
+            wangeditor基本使用 | Jhao&#39;s Blog
         
     </title>
 
@@ -767,7 +769,7 @@ mjx-container[display="true"] + br {
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">65</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -798,7 +800,7 @@ mjx-container[display="true"] + br {
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">wangeditor</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">wangeditor基本使用</h1>
 			</div>
 			
 		</div>
@@ -824,8 +826,8 @@ mjx-container[display="true"] + br {
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-11-19 21:55:38</span>
-            <span class="mobile">2025-11-19 21:55:38</span>
+            <span class="desktop">2026-02-08 14:07:56</span>
+            <span class="mobile">2026-02-08 14:07:56</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -839,7 +841,7 @@ mjx-container[display="true"] + br {
                     
                         
                         <li>
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>&nbsp;
                         </li>
                     
                     
@@ -854,6 +856,14 @@ mjx-container[display="true"] + br {
                 
                     <li>
                         <a href="/tags/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/wangEditor/">wangEditor</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/">富文本编辑器</a>&nbsp;
                     </li>
                 
             </ul>
@@ -885,7 +895,7 @@ mjx-container[display="true"] + br {
 			function updateExpirationDate() {
 				try {
 					const expiredDate = new Date("Thu Apr 15 2021 10:00:00 GMT+0800 (China Standard Time)");
-					const updatedDate = new Date("Wed Nov 19 2025 21:55:38 GMT+0800");
+					const updatedDate = new Date("Sun Feb 08 2026 14:07:56 GMT+0800");
 					const now = new Date();
 					const expirationValue = document.getElementById("expiration-date");
 					const expirationContainer = document.getElementById("expiration-container");
@@ -932,14 +942,14 @@ mjx-container[display="true"] + br {
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> wangeditor</li>
+        <li><strong>Title:</strong> wangeditor基本使用</li>
         <li><strong>Author:</strong> 九號</li>
         <li><strong>Created at
                 :</strong> 2021-04-15 10:00:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-11-19 21:55:38
+                    :</strong> 2026-02-08 14:07:56
             </li>
         
         <li>
@@ -966,6 +976,14 @@ mjx-container[display="true"] + br {
 			
 			<li class="tag-item mx-0.5">
 				<a href="/tags/Vue/">#Vue</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/wangEditor/">#wangEditor</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/">#富文本编辑器</a>&nbsp;
 			</li>
 			
 		</ul>
@@ -1071,7 +1089,7 @@ mjx-container[display="true"] + br {
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">On this page</div>
-		<div class="page-title">wangeditor</div>
+		<div class="page-title">wangeditor基本使用</div>
 		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#wangeditor%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">wangeditor基本使用</span></a></li></ol>
 
 	</div>
