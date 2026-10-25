@@ -25,7 +25,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/first-marathon/</loc>
+        <loc>https://jhao.me/posts/ai-procurement/</loc>
         <lastmod>2026-07-18T05:23:30.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -41,16 +41,8 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/ai-procurement/</loc>
+        <loc>https://jhao.me/posts/first-marathon/</loc>
         <lastmod>2026-07-18T05:23:30.773Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/63894/</loc>
-        <lastmod>2026-07-18T05:23:30.772Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -105,15 +97,15 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/3560/</loc>
-        <lastmod>2026-07-18T05:23:30.771Z</lastmod>
+        <loc>https://jhao.me/posts/63894/</loc>
+        <lastmod>2026-07-18T05:23:30.772Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/1/</loc>
+        <loc>https://jhao.me/posts/3560/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -129,7 +121,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/60077/</loc>
+        <loc>https://jhao.me/posts/1/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -137,7 +129,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/47938/</loc>
+        <loc>https://jhao.me/posts/60077/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -161,6 +153,14 @@
     </url>
 
     <url>
+        <loc>https://jhao.me/posts/47938/</loc>
+        <lastmod>2026-07-18T05:23:30.771Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/61269/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -169,7 +169,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/2026-proxy/</loc>
+        <loc>https://jhao.me/posts/2026-02-proxy/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -177,7 +177,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/2026-02-proxy/</loc>
+        <loc>https://jhao.me/posts/2026-proxy/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -201,6 +201,14 @@
     </url>
 
     <url>
+        <loc>https://jhao.me/posts/55319/</loc>
+        <lastmod>2026-07-18T05:23:30.770Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://jhao.me/posts/sunshine-and-moonlight-streaming/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -210,14 +218,6 @@
 
     <url>
         <loc>https://jhao.me/posts/9143/</loc>
-        <lastmod>2026-07-18T05:23:30.770Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://jhao.me/posts/55319/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

@@ -17,8 +17,8 @@
   --selection: #dce4cb;
   --shadow: 0 2px 4px #22231f04, 0 18px 60px #22231f0c;
 
-  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  --serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+  --sans: "LXGW WenKai GB Lite", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --serif: "LXGW WenKai GB Lite", "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
   --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -190,7 +190,7 @@ p { text-wrap: pretty; }
 }
 .chip .icon { width: 15px; height: 15px; }
 .chip:hover { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); background: var(--accent-soft); }
-.chip sup { font-family: var(--mono); font-size: 10px; color: var(--faint); }
+.chip sup { font-family: var(--sans); font-size: 10px; color: var(--faint); }
 
 /* Header ----------------------------------------------------------------- */
 
@@ -394,7 +394,7 @@ p { text-wrap: pretty; }
   overflow: hidden;
   text-align: center;
 }
-.hero-inner { position: relative; }
+.hero-inner { position: relative; --hero-font: var(--serif); }
 
 .hero-avatar {
   position: relative;
@@ -422,21 +422,21 @@ p { text-wrap: pretty; }
 
 .hero-title {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--hero-font);
   font-size: clamp(30px, 5.5vw, 42px);
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.02em;
 }
-.hero-bio { margin: 14px 0 0; font-size: 17px; color: var(--ink-2); }
+.hero-bio { margin: 14px 0 0; font-family: var(--hero-font); font-size: 17px; color: var(--ink-2); }
 .hero-quote {
   max-width: 34em;
   margin: 32px auto 0;
   padding: 0;
   border: 0;
-  font-family: var(--serif);
-  font-size: 15px;
-  font-style: italic;
+  font-family: var(--hero-font);
+  font-size: 16px;
+  font-style: normal;
   color: var(--muted);
 }
 .hero-quote p { margin: 0; text-wrap: balance; }
@@ -446,7 +446,7 @@ p { text-wrap: pretty; }
   justify-content: center;
   gap: 8px;
   margin: 14px 0 0;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 12px;
   color: var(--faint);
 }
@@ -459,7 +459,7 @@ p { text-wrap: pretty; }
 .baseline-grid {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(to bottom, transparent 0 27px, color-mix(in srgb, var(--line) 70%, transparent) 27px 28px);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 calc(var(--hero-rule) - 1px), color-mix(in srgb, var(--line) 70%, transparent) calc(var(--hero-rule) - 1px) var(--hero-rule));
   -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 45%, #000, transparent);
   mask-image: radial-gradient(ellipse 60% 70% at 50% 45%, #000, transparent);
   opacity: .8;
@@ -492,15 +492,30 @@ p { text-wrap: pretty; }
 .slug {
   position: absolute;
   right: max(24px, calc(50% - 470px));
-  bottom: 22px;
+  bottom: 28px;
   margin: 0;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 10px;
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--faint);
 }
-.hero-print { padding-bottom: 88px; }
+.hero-print {
+  --hero-rule: 28px;
+  padding-bottom: 88px;
+}
+/* Keep wrapped text on the same ruling as the first line. */
+/* Align the visible letter bottoms, including the font's CJK descent, to the ruling. */
+.hero-print .hero-title {
+  position: relative;
+  top: calc(19px - .44em);
+  line-height: calc(var(--hero-rule) * 2);
+}
+.hero-print .hero-bio { position: relative; top: -3px; margin-top: 0; line-height: var(--hero-rule); }
+.hero-print .hero-quote { margin-top: var(--hero-rule); line-height: var(--hero-rule); }
+.hero-print .hero-quote p { position: relative; top: -2px; }
+.hero-print .hero-stats { position: relative; top: -1px; margin-top: 0; line-height: var(--hero-rule); }
+.hero-print .hero-social { margin-top: var(--hero-rule); }
 .decor-print { padding-block: 8px; }
 .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
 .crop::before, .crop::after { content: ""; position: absolute; background: var(--faint); opacity: .8; }
@@ -535,7 +550,7 @@ p { text-wrap: pretty; }
   transition: background-color .2s;
 }
 .post-index a:hover { background: var(--soft); }
-.post-index-num { font-family: var(--mono); font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.post-index-num { font-family: var(--sans); font-size: 12px; color: var(--faint); font-variant-numeric: tabular-nums; }
 .post-index-title { font-weight: 500; transition: color .2s; }
 .post-index a:hover .post-index-title { color: var(--accent); }
 .post-index-meta {
@@ -546,7 +561,7 @@ p { text-wrap: pretty; }
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
-.post-index-meta time { font-family: var(--mono); }
+.post-index-meta time { font-family: var(--sans); }
 @media (max-width: 560px) {
   .post-index a { grid-template-columns: 28px 1fr; row-gap: 2px; }
   .post-index-meta { grid-column: 2; }
@@ -556,7 +571,7 @@ p { text-wrap: pretty; }
 
 .essay-list { list-style: none; margin: 0; padding: 0; }
 .essay-list li { position: relative; }
-.essay-list time { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+.essay-list time { font-family: var(--sans); font-size: 12px; color: var(--faint); }
 .essay-list p { margin: 4px 0 0; color: var(--ink-2); white-space: pre-line; }
 
 .essay-list.compact li + li { margin-top: 20px; }
@@ -588,7 +603,7 @@ p { text-wrap: pretty; }
   line-height: 1.25;
   letter-spacing: -0.02em;
 }
-.page-sub { margin: 8px 0 0; font-family: var(--mono); font-size: 13px; color: var(--faint); }
+.page-sub { margin: 8px 0 0; font-family: var(--sans); font-size: 13px; color: var(--faint); }
 
 .year + .year { margin-top: 48px; }
 .year-title {
@@ -598,7 +613,7 @@ p { text-wrap: pretty; }
   font-weight: 700;
   color: var(--ink);
 }
-.year-title sup { margin-left: 6px; font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--faint); }
+.year-title sup { margin-left: 6px; font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--faint); }
 
 .archive-list { list-style: none; margin: 0 -12px; padding: 0; }
 .archive-list a {
@@ -610,16 +625,16 @@ p { text-wrap: pretty; }
   transition: background-color .2s, color .2s;
 }
 .archive-list a:hover { background: var(--soft); color: var(--accent); }
-.archive-list time { font-family: var(--mono); font-size: 13px; color: var(--faint); font-variant-numeric: tabular-nums; flex: none; }
+.archive-list time { font-family: var(--sans); font-size: 13px; color: var(--faint); font-variant-numeric: tabular-nums; flex: none; }
 
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
 
 .category-list { list-style: none; margin: 0 -12px; padding: 0; }
 .category-list a { display: flex; justify-content: space-between; padding: 12px; border-radius: 10px; transition: background-color .2s; }
 .category-list a:hover { background: var(--soft); }
-.category-list .muted { font-family: var(--mono); font-size: 13px; }
+.category-list .muted { font-family: var(--sans); font-size: 13px; }
 
-.pagination { margin-top: 48px; display: flex; gap: 6px; justify-content: center; font-family: var(--mono); font-size: 14px; }
+.pagination { margin-top: 48px; display: flex; gap: 6px; justify-content: center; font-family: var(--sans); font-size: 14px; }
 .pagination a, .pagination span { display: inline-grid; place-items: center; min-width: 36px; height: 36px; padding: 0 8px; border-radius: 8px; color: var(--muted); }
 .pagination a:hover { background: var(--soft); color: var(--ink); }
 .pagination .current { background: var(--ink); color: var(--bg); }
@@ -668,7 +683,7 @@ p { text-wrap: pretty; }
   flex-wrap: wrap;
   gap: 4px 16px;
   margin: 16px 0 0;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 13px;
   color: var(--faint);
 }
