@@ -25,7 +25,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/ai-procurement/</loc>
+        <loc>https://jhao.me/posts/first-marathon/</loc>
         <lastmod>2026-07-18T05:23:30.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -41,7 +41,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/first-marathon/</loc>
+        <loc>https://jhao.me/posts/ai-procurement/</loc>
         <lastmod>2026-07-18T05:23:30.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -81,7 +81,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/nas-note-frp-nginx/</loc>
+        <loc>https://jhao.me/posts/make-a-square-with-the-same-color/</loc>
         <lastmod>2026-07-18T05:23:30.772Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -89,7 +89,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/make-a-square-with-the-same-color/</loc>
+        <loc>https://jhao.me/posts/nas-note-frp-nginx/</loc>
         <lastmod>2026-07-18T05:23:30.772Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -113,7 +113,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/2026-02-fedora/</loc>
+        <loc>https://jhao.me/posts/1/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -121,7 +121,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/1/</loc>
+        <loc>https://jhao.me/posts/2026-02-fedora/</loc>
         <lastmod>2026-07-18T05:23:30.771Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -177,14 +177,6 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/epub-structure/</loc>
-        <lastmod>2026-07-18T05:23:30.770Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://jhao.me/posts/2026-02-proxy/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -193,7 +185,15 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/9143/</loc>
+        <loc>https://jhao.me/posts/epub-structure/</loc>
+        <lastmod>2026-07-18T05:23:30.770Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://jhao.me/posts/promise-usage/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -209,7 +209,7 @@
     </url>
 
     <url>
-        <loc>https://jhao.me/posts/promise-usage/</loc>
+        <loc>https://jhao.me/posts/9143/</loc>
         <lastmod>2026-07-18T05:23:30.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

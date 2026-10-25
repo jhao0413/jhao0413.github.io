@@ -501,7 +501,6 @@ p { text-wrap: pretty; }
   color: var(--faint);
 }
 .hero-print { padding-bottom: 88px; }
-.hero-pixel { padding-bottom: 24px; }
 .decor-print { padding-block: 8px; }
 .crop { position: absolute; width: 18px; height: 18px; pointer-events: none; }
 .crop::before, .crop::after { content: ""; position: absolute; background: var(--faint); opacity: .8; }
